@@ -1,0 +1,272 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{turtlew3c2014}{misc}{}
+      \name{author}{4}{}{%
+        {{hash=06ed14a914d8fa6ae59d8979736418d1}{%
+           family={Beckett},
+           familyi={B\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=d469e0df304c98f67b55d087ea6187a1}{%
+           family={Berners-Lee},
+           familyi={B\bibinithyphendelim L\bibinitperiod},
+           given={Tim},
+           giveni={T\bibinitperiod}}}%
+        {{hash=be64499247ac1c766030e23529596f0e}{%
+           family={Prud'hommeaux},
+           familyi={P\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+        {{hash=87385230d3daa8d140e2f054f14ae497}{%
+           family={Carothers},
+           familyi={C\bibinitperiod},
+           given={Gavin},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{3ef2e0fc27ba9ef984117a323472bdd3}
+      \strng{fullhash}{d690d4ae6379f608f2fd470b87c2afe9}
+      \strng{bibnamehash}{3ef2e0fc27ba9ef984117a323472bdd3}
+      \strng{authorbibnamehash}{3ef2e0fc27ba9ef984117a323472bdd3}
+      \strng{authornamehash}{3ef2e0fc27ba9ef984117a323472bdd3}
+      \strng{authorfullhash}{d690d4ae6379f608f2fd470b87c2afe9}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{2}
+      \field{title}{RDF 1.1 Turtle}
+      \field{year}{2014}
+      \verb{urlraw}
+      \verb http://www.w3.org/TR/turtle/
+      \endverb
+      \verb{url}
+      \verb http://www.w3.org/TR/turtle/
+      \endverb
+    \endentry
+    \entry{bernersLee2006}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=d469e0df304c98f67b55d087ea6187a1}{%
+           family={Berners-Lee},
+           familyi={B\bibinithyphendelim L\bibinitperiod},
+           given={Tim},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{d469e0df304c98f67b55d087ea6187a1}
+      \strng{fullhash}{d469e0df304c98f67b55d087ea6187a1}
+      \strng{bibnamehash}{d469e0df304c98f67b55d087ea6187a1}
+      \strng{authorbibnamehash}{d469e0df304c98f67b55d087ea6187a1}
+      \strng{authornamehash}{d469e0df304c98f67b55d087ea6187a1}
+      \strng{authorfullhash}{d469e0df304c98f67b55d087ea6187a1}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Linked Data - Design Issues}
+      \field{year}{2006}
+      \verb{urlraw}
+      \verb http://www.w3.org/DesignIssues/LinkedData.html
+      \endverb
+      \verb{url}
+      \verb http://www.w3.org/DesignIssues/LinkedData.html
+      \endverb
+    \endentry
+    \entry{Cyganiak:14:TRD}{report}{}
+      \name{author}{2}{}{%
+        {{hash=ff065518eacac535eec041c322c21896}{%
+           family={Cyganiak},
+           familyi={C\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod}}}%
+        {{hash=079517606efa0a8618f1d0e9a729112f}{%
+           family={Reynolds},
+           familyi={R\bibinitperiod},
+           given={Dave},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {W3C}%
+      }
+      \strng{namehash}{59a9966a3bbbce0087db1157ed4e216f}
+      \strng{fullhash}{59a9966a3bbbce0087db1157ed4e216f}
+      \strng{bibnamehash}{59a9966a3bbbce0087db1157ed4e216f}
+      \strng{authorbibnamehash}{59a9966a3bbbce0087db1157ed4e216f}
+      \strng{authornamehash}{59a9966a3bbbce0087db1157ed4e216f}
+      \strng{authorfullhash}{59a9966a3bbbce0087db1157ed4e216f}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{1}
+      \field{note}{https://www.w3.org/TR/2014/REC-vocab-data-cube-20140116/}
+      \field{title}{The {RDF} Data Cube Vocabulary}
+      \field{type}{{W3C} Recommendation}
+      \field{year}{2014}
+    \endentry
+    \entry{Galarraga2013}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=18674af5afb94551a3ce682e24e6706d}{%
+           family={Galárraga},
+           familyi={G\bibinitperiod},
+           given={Luis\bibnamedelima Antonio},
+           giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=04816795c9877feddae45c038e2508f3}{%
+           family={Teflioudi},
+           familyi={T\bibinitperiod},
+           given={Christina},
+           giveni={C\bibinitperiod}}}%
+        {{hash=1b753e139c8ab7af870d74e326b796ad}{%
+           family={Hose},
+           familyi={H\bibinitperiod},
+           given={Katja},
+           giveni={K\bibinitperiod}}}%
+        {{hash=55d7f682b85e1f9066365cc900f8331c}{%
+           family={Suchanek},
+           familyi={S\bibinitperiod},
+           given={Fabian},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{1d5ca0dcef50a6c0946037e7a697d1ee}
+      \strng{fullhash}{5c770da4ca763c325e09a0b506f3ed61}
+      \strng{bibnamehash}{1d5ca0dcef50a6c0946037e7a697d1ee}
+      \strng{authorbibnamehash}{1d5ca0dcef50a6c0946037e7a697d1ee}
+      \strng{authornamehash}{1d5ca0dcef50a6c0946037e7a697d1ee}
+      \strng{authorfullhash}{5c770da4ca763c325e09a0b506f3ed61}
+      \field{sortinit}{G}
+      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{WWW 2013 - Proceedings of the 22nd International Conference on World Wide Web}
+      \field{month}{05}
+      \field{title}{AMIE: Association rule mining under incomplete evidence in ontological knowledge bases}
+      \field{year}{2013}
+      \field{pages}{413\bibrangedash 422}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1145/2488388.2488425
+      \endverb
+    \endentry
+    \entry{Heath2011}{book}{}
+      \name{author}{2}{}{%
+        {{hash=c040f12898283360a9825ed80f52e777}{%
+           family={Heath},
+           familyi={H\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod}}}%
+        {{hash=c0ab52e226557a243a4a5277aec8acdc}{%
+           family={Bizer},
+           familyi={B\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Morgan \& Claypool}%
+      }
+      \strng{namehash}{17ae26f2157cfb8702683fb417996e21}
+      \strng{fullhash}{17ae26f2157cfb8702683fb417996e21}
+      \strng{bibnamehash}{17ae26f2157cfb8702683fb417996e21}
+      \strng{authorbibnamehash}{17ae26f2157cfb8702683fb417996e21}
+      \strng{authornamehash}{17ae26f2157cfb8702683fb417996e21}
+      \strng{authorfullhash}{17ae26f2157cfb8702683fb417996e21}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9781608454303}
+      \field{title}{Linked Data: Evolving the Web into a Global Data Space}
+      \field{year}{2011}
+      \verb{urlraw}
+      \verb http://linkeddatabook.com/
+      \endverb
+      \verb{url}
+      \verb http://linkeddatabook.com/
+      \endverb
+    \endentry
+    \entry{rdfPrimer2004}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=f0d8c4e9bebfe5c0a01bde2d9a6a5ea6}{%
+           family={Manola},
+           familyi={M\bibinitperiod},
+           given={Frank},
+           giveni={F\bibinitperiod}}}%
+        {{hash=3ef11451147b897553ce15f7a8d52c7a}{%
+           family={Miller},
+           familyi={M\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{326a5f749f7c4fd2bc4483907da456c1}
+      \strng{fullhash}{326a5f749f7c4fd2bc4483907da456c1}
+      \strng{bibnamehash}{326a5f749f7c4fd2bc4483907da456c1}
+      \strng{authorbibnamehash}{326a5f749f7c4fd2bc4483907da456c1}
+      \strng{authornamehash}{326a5f749f7c4fd2bc4483907da456c1}
+      \strng{authorfullhash}{326a5f749f7c4fd2bc4483907da456c1}
+      \field{sortinit}{M}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{2}
+      \field{title}{RDF Primer}
+      \field{year}{2004}
+      \verb{urlraw}
+      \verb http://www.w3c.org/TR/rdf-primer/
+      \endverb
+      \verb{url}
+      \verb http://www.w3c.org/TR/rdf-primer/
+      \endverb
+    \endentry
+    \entry{sparqlw3c2008}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=be64499247ac1c766030e23529596f0e}{%
+           family={Prud'hommeaux},
+           familyi={P\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+        {{hash=b0f2e76dd842dc9052f49422b3cc10e6}{%
+           family={Seaborne},
+           familyi={S\bibinitperiod},
+           given={Andy},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{836b969fa9b2eeb117f5d2c8855d570e}
+      \strng{fullhash}{836b969fa9b2eeb117f5d2c8855d570e}
+      \strng{bibnamehash}{836b969fa9b2eeb117f5d2c8855d570e}
+      \strng{authorbibnamehash}{836b969fa9b2eeb117f5d2c8855d570e}
+      \strng{authornamehash}{836b969fa9b2eeb117f5d2c8855d570e}
+      \strng{authorfullhash}{836b969fa9b2eeb117f5d2c8855d570e}
+      \field{sortinit}{P}
+      \field{sortinithash}{bb5b15f2db90f7aef79bb9e83defefcb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{1}
+      \field{title}{SPARQL Query Language for RDF}
+      \field{year}{2008}
+      \verb{urlraw}
+      \verb http://www.w3.org/TR/rdf-sparql-query/
+      \endverb
+      \verb{url}
+      \verb http://www.w3.org/TR/rdf-sparql-query/
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

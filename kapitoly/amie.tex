@@ -1,0 +1,335 @@
+\chapter{AMIE Algorithm and Its Derivatives}
+
+Finding association rules in knowledge bases can serve several purposes. New facts that are not yet present in the dataset can be derived from the found regularities described by the rules. From such rules opposing facts present in the dataset can be deduced to be wrong. Mined rules can also help to understand the data better.
+
+For mining rules from a graph database such as LOD datasets, Inductive Logic Programming (ILP) can be used. ILP work under the Closed World Assumtion (CWA) meaning it supposed that both negative and positive statements are present in the data. However LOD operates under the Open World Assumption (OWA) ie. if a statement is not present in the data, it does not mean that this statement does not correspond to reality. Rules mined by ILP would not reflect this matter. Moreover ILP are not observed to be efficient over large datasets in the order of millions of statements, making it not a viable way to mine rules over real-world knowledge bases such as YAGO or Wikidata.
+
+\section{AMIE}
+
+An algorithm that is specifically designed to mine rules from data operating under OWA and constisting of binary predicates (just as Linked Data) is AMIE (\textbf{A}ssociation Rule \textbf{M}ining under \textbf{I}ncomplete \textbf{E}vidence).\cite{Galarraga2013} AMIE mines rules in the form of Horn rule. Horn rule is an implication with conjunction of atoms on the left side, called body and a single atom on right side call head. We can imagine an atom as an RDF triple, where subject and object can be replaced by variables. Number of atoms in a rule indicates the length of the rule. In this work rules are represented with an infix notation. The AMIE literature use the Datalog notation commonly used in ILP domain. An example of a rule AMIE seeks to discover is shown below. 
+
+$$
+(?a\hspace{0.4em}worksIn\hspace{0.4em}?b) \land
+(?b\hspace{0.4em}hasHeadquatersIn\hspace{0.4em}?c) \Rightarrow
+(?a\hspace{0.4em}livesIn\hspace{0.4em}?c)
+$$
+
+This rule states that any person lives in a place his or her company's headquaters. Length of this rule is 3 since it has two body atoms. The rule has 3 variables. When we substitute the variables by constants present in the examined data set, we get an \textit{instantiation} of the rule. If all atoms of the instantiated rule appear in the data set, the head atom of the instantiation is one the \textit{predictions} of the rule. Number of all instantiations of an atom that appear in the data set is called \textit{size} of the atom.
+
+\subsection{Language Bias}
+
+In order to efficiently traverse the search space, AMIE subjects the rules to a particular language bias. Only the rules comforming the conditions stated below can be generated and further refined.
+
+\begin{description}
+    \item[rules have to be connected] A rule is connected when every atom in the rule shares every variable with another atom in the rule.
+    \item[rules have to be closed] A rule is closed when every variable appears at least twice in the rule.
+    \item[rules cannot be reflexive] reflexive rule contains at least one atom with identical subject and object variable or constant.
+    \item[rule can be recursive] Any predicate can occur more then once in a rule.
+\end{description}
+
+\subsection{Measures of Significance}
+
+\subsubsection{Support}
+
+For a chosen definition of a support measure for the AMIE algorithm it is crucial for the definition to have the property of monotonicity ie. by adding any new atom to the body of a rule, the support of the rule shall always decrease or remain the same. A naive way to count support of a rule would be to count all instantiations of the rule that appear in KB. Such definition would not comply the property of monotonicity, since an addition of a dangling atom to a rule would introduce a new variable multiplying the number of instantiations and thus the value of the support measure. By counting only all distinct pairs of subjects and objects in the head of all instantiations that appear in KB, the property of monotonicity is preserved:
+
+$$ supp(\vec{B} \Rightarrow r(x,y)) := \# (x,y): \exists z_{1}\ldots z_{n}: \vec{B} \land r(x,y) $$
+
+\subsubsection{Head Coverage}
+
+Since the support is an absolute number, so the size of the examined data set has to be taken into account while defining this threshold. Plus If the defined support value is greater than a number of distint triples containing a certain predicate, any rule containing this predicate in the head atom would be disregarded. Head Coverage is the relative expression of support. It is defined as support of a rule over the size of its head atom.
+
+$$ hc(\vec{B} \Rightarrow r(x,y)) := \frac{supp(\vec{B} \Rightarrow r(x,y))}{size(r)}  $$
+
+\subsection{Confidence Measures}
+
+The above-mentioned measures describe a quantitative significance of the rule in relation to the examined data set. They quantify the true predictions of the rule but do not take into account the false predictions. Confidence is a way to measure the quality of a rule. Generally speaking, confidence is a ratio of true predictions of a rule to the sum of true predictions and the counterexamples. Number of true predictions can easily be expressed by the rule's support. Two different ways to count the counterexamples are discussed below.
+
+\subsubsection{CWA and Standard Confidence}
+
+Standard confidence considers every fact that is not present in the examined dataset a false fact and thus a counterexample when predicted by a rule. Facts predicted by a rule is either present in the data set or it is not. Therefore the standard confidence is defined as the ratio of the number of true predictions of the rule to the number of all predictions of the rule.
+
+$$ conf(\vec{B} \Rightarrow r(x,y)) := \frac{supp(\vec{B} \Rightarrow r(x,y))}{\# (x,y): \exists z_{1}\ldots z_{n}: \vec{B}} $$
+
+This way of generating counterexamples fails to distinguish a false fact from an unknown fact. This conforms the CWA and it is traditionally used for association rule mining over transactional data where this assumption can be applied. For example if the data does not state, that I bought a bottle of milk last Wednesday, then I really did not buy it. AMIE, however, is intended to mine rules from data operating under OWA, so the usage of this measure is inappropriate.
+
+\subsubsection{PCA Confidence}
+
+For the PCA Confidence, Partial Completeness Assumption (PCA) is used for generating the counterexamples:
+
+If $\langle s\hspace{0.4em}p\hspace{0.4em}o\rangle\in KBtrue$ then $\forall_{o'}: \langle s\hspace{0.4em}p\hspace{0.4em}o'\rangle))\in(KBtrue \cup NEWtrue) \Rightarrow \langle s\hspace{0.4em}p\hspace{0.4em}o'\rangle\in KBtrue$.
+
+Meaning that if we know any object for given predicate and subject, we know all triples of containing the predicate and subject together. This assumption is certainly true for predicates with high or complete functionality, such as birthdate or capital. A triple predicted by the measured rule is considered an counterexample only when triples with its combination of subject and predicate are present in the data set and none of those has the triple's object. 
+
+
+
+% todo priklad jak se obe spocitaji
+
+
+% The assumption is also true in the vast majority of cases for relations that are not functional, but that have a high functionality.
+
+% we normalize the confidence not by the entire set of facts, but by the set of facts of which we know that they are true, together with the facts of which we assume that they are false.
+
+$$conf_{pca} := \frac{supp(\vec{B} \Rightarrow r(x,y))}{\# (x,y): \exists z_{1}\ldots z_{n},y': \vec{B}\land r(x,y')}$$
+
+\subsection{Algorithm}
+
+% TODO algoritmus
+
+\begin{algorithm}
+\caption{AMIE algorithm}
+\scriptsize
+\begin{algorithmic}[1]
+\Procedure{AMIE}{$x, y$}
+\State $queue = [(?a\hspace{0.4em}r_{1}\hspace{0.4em}?b), (?a\hspace{0.4em}r_{2}\hspace{0.4em}?b) \ldots (?a\hspace{0.4em}r_{m}\hspace{0.4em}?b)]$
+\State $output = \langle \rangle$
+\While {$\neg queue.isEmpty()$}
+\State $rule = queue.dequeue()$
+\If {$AcceptedForOutput(r, out, minConf)$}
+\State $output.add(rule)$
+\EndIf
+\If {$length(rule) < maxLen$}
+\State $R(rule) = Refine(rule)$
+\EndIf
+\For {$r_{i}\in R(rule)$}
+\If {$hc(r_{i} \geq minHC\hspace{0.4em}\&\hspace{0.4em}r_{i} \notin queue)$}
+\State $queue.enqueue(r_{i})$
+\EndIf
+\EndFor
+\EndWhile
+\State \Return $output$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
+\subsection{Refinement Operators}
+
+% In the process of traversing the search space, we can extend a rule by using one of the following operators
+
+\begin{description}
+    \item[$O_{D}$] add dangling atom (with a fresh variable)
+    \item[$O_{I}$] add instantiated atom (with a constant)
+    \item[$O_{C}$] add closing atom (both arguments are shared variables)
+\end{description}
+
+\subsection{Count Projection Queries}
+
+new relation r to the rule $B_{1} \land \ldots B_{n-1} \Rightarrow H$
+
+% TODO selecty
+
+find all relations that lead to a new rule that passes the min head coverage threshhold.
+
+\subsection{In-Memory Database}
+
+query implementation
+
+one fact index for each permutation of $\{S,P,O\}$
+
+allowing to check existence of a triple in constant time
+
+allowing to efficiently fetch instantiation of an atom
+
+aggregated indexes S,P,O: store aggregated count of facts for each key of the fact indexes: P stores count of triples for each relation
+
+\subsubsection{Size Queries}
+
+$size(livesIn(x,y))\rightarrow$ aggregated index \textbf{P}
+
+1. look up: \textit{livesIn} in \textbf{P}
+
+$size(livesIn(x,USA))\rightarrow$ fact index \textbf{POS}
+
+1. look up: \textit{livesIn} in \textbf{POS}
+
+2. look up: USA in \textbf{OS} and count of subjects
+
+\subsubsection{Existence Queries}
+
+to determine whether there exists a binding for a conjunctive query
+
+\subsubsection{Select Queries}
+
+finding distinct instances of a variable, which is in a conjunction of atoms
+
+\subsubsection{Count Queries}
+
+compute count of bindings
+
+for confidence of a rule
+
+first fire SELECT 
+%TODO select 
+then for each binding of x it instantiates the query and fires select query on variable y, adding up the count of instantiations
+
+\section{AMIE+}
+
+does not alter output in any way compared to AMIE.
+
+\begin{enumerate}
+    \item refinements phase
+    \item confidence evaluation
+\end{enumerate}
+
+\subsection{Rule Refinement}
+
+Given a maximum rule length maxLen and a non-closed Horn rule of length maxLen-1, AMIE+ will refine it only if it is possible to close it before exceeding the length constraint.
+
+For a not-yet-closed rule of length maxLen-1, AMIE+ will not apply the $O_{D}$, because this would result in a non-closed rule, which will be neihter output nor refined.
+
+If a rule contains more than two non-closed variables, AMIE+ will skip the application of $O_{C}$. $O_{C}$ cannot close more than two variables.
+
+Rules with more than one non-closed variable are not refined with instantiated atoms, because the addition of and instantiated atom can close at most one variable.
+
+Rules with $conf_{pca} = 1$ are not further refined -> perfects rules
+
+\subsubsection{Simplyfing Projection Queries}
+
+addition of a dangling atom cannot reduce support when:
+
+\begin{enumerate}
+    \item parent rule already contains atoms with the same relation as a dangling atom
+    \item these atoms have a variable in common with the dangling atom
+\end{enumerate}
+
+Both rules have to have same support.
+
+\subsection{Speeding Up Confidence Evaluation}
+
+approximation of confidence, tends to overestimate (4\% of errors)
+
+turns days runtime to minutes
+
+\section{RDFRules}
+
+\subsection{Limitations of AMIE+}
+
+little attetion to data pre-processing and data post-processing
+
+lack of various features which were found useful for mining rules from transactional data, such as support for additional interest measures (lift)
+
+does not support multiple graphs
+
+inability to process numerical data
+
+absence of the top-k approach. In top-k approach, user is only returned the k rules with the highest values of a chosen measure.
+
+coarse rule patterns. Without additional guidence by the user, the top-k approach often generates rules that reflect patterns in data that are obvious or uninteresting.
+
+repetitive calculations during refinement
+
+exhaustive calculations
+
+\subsection{Faster Projection Counting}
+
+reducing the number of calls to the binding functions
+
+% TODO vzorec? vzorce?
+
+\subsection{Processing of Numerical Attributes}
+
+\subsection{Multiple Graphs}
+
+graph aware rules
+
+$$(?a \hspace{0.4em} \langle wasBornIn \rangle \hspace{0.4em} ?b \hspace{0.4em} \langle YAGO \rangle) \Rightarrow (?a \hspace{0.4em} dbo:deatchPlace \hspace{0.4em} ?b \hspace{0.4em} \langle DBpedia \rangle)$$
+
+extension of fact indexes
+
+PG, PSG, POG, PSOG
+
+\subsection{Improvements to Expressivenes of Rule Patterns}
+
+\begin{description}
+\item[$?$] pattern for any symbol
+\item[$?_{v}$] pattern for any variable
+\item[$?_{c}$] pattern for any constant
+\item[$\neg$] negation
+\end{description}
+
+$$(?a\hspace{0.4em}\langle wasBornIn \rangle\hspace{0.4em}?b) \land (?b\hspace{0.4em}?_{c}\hspace{0.4em}?_{c} \hspace{0.4em} \langle DBpedia \rangle) \Rightarrow (?a\hspace{0.4em}[ \,\langle livesIn \rangle,\langle deadIn \rangle	] \,\hspace{0.4em}?b)$$
+
+$$(?a\hspace{0.4em}\langle wasBornIn \rangle\hspace{0.4em}?b) \land (?b\hspace{0.4em}dbo:cityOf\hspace{0.4em}\langle USA \rangle \hspace{0.4em} \langle DBpedia \rangle) \Rightarrow (?a\hspace{0.4em} \langle deadIn \rangle\hspace{0.4em}?b)$$
+
+\subsection{Top-k Approach}
+
+% TODO graf
+
+\subsubsection{Top-k Confidence}
+
+increasing minConf may speed up the confidence calculation
+
+$$conf(\vec{B}\Rightarrow H) = \frac{supp(\vec{B}\Rightarrow H)}{bsize(\vec{B}\Rightarrow H)} $$
+
+if minConf is set, this inequality must apply:
+
+$$bsize(\vec{B}\Rightarrow H) \leq \frac{supp(\vec{B} \Rightarrow H))}{minConf} $$
+
+during calculation of bsize we can stop the calculation as soon as the value is greater than the ratio.
+
+\subsection{Support for the Lift Measure}
+
+$$lift(\vec{B} \Rightarrow H) = \frac{conf(\vec{B} \Rightarrow H)}{hconf(H)}$$
+
+hconf
+
+if $H = (?a\hspace{0.4em}p\hspace{0.4em}?b)$ then
+
+$$hconf(\vec{B} \Rightarrow H) = \frac{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}?b) }{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}?r\hspace{0.4em}?b) }$$
+
+ratio between the number of distinct subjects bound with the predicate p and the number of distinct subjects in the whole KG.
+
+if $H = (?a\hspace{0.4em}p\hspace{0.4em}C)$ then
+
+$$hconf(\vec{B} \Rightarrow H) = \frac{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}C) }{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}?b) }$$
+
+if $H = (C\hspace{0.4em}p\hspace{0.4em}?a)$ then
+
+$$hconf(\vec{B} \Rightarrow H) = \frac{\# s: \exists \langle s,p,o\rangle \prec (C\hspace{0.4em}p\hspace{0.4em}?a) }{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}?b) }$$
+
+\subsection{Rule Clustering}
+
+$$sim(r_{1}, r{2}) = \sum_{i = 1}^m w_{i} * sim_{i}(R_{1,i}, R_{2,i})$$
+
+$$\sum_{i = 1}^m w_{i} = 1$$
+
+\subsubsection{Similarity Function of Atom Items}
+
+\textit{s} can be substituted by \textit{o}
+
+$$sim ( \langle s_{1}, p_{1} \rangle, \langle s_{2}, p_{2} \rangle ) = $$
+
+%% TODO
+
+\subsubsection{Similarity Function of Predicates}
+
+\subsubsection{Similarity Function of Atoms}
+
+$$sim_a(A_{1}, A_{2}) = \frac{1}{3} [ \, sim(\langle s_{1}, p_{1} \rangle, \langle s_{2}, p_{2} \rangle) + sim(\langle o_{1}, p_{1} \rangle, \langle o_{2}, p_{2} \rangle) + sim(p_{1}, p_{2}) ] \,$$
+
+\subsubsection{Similarity Function of Rules}
+
+$$|r_{1}| \geq |r_{2}|$$
+
+$$ sim_{r}(r_{1}, r_{2}) = \frac{1}{r_{1}} \sum_{i = 1}^{|r_{1}|} max(sim_{a}(A_{i}^{r_{1}}, A_{1}^{r_{2}}), \ldots, sim_{a}(A_{i}^{r_{1}}, A_{|r_{2}|}^{r_{2}}))  $$
+
+\subsection{Rule Pruning}
+
+data coverage pruning
+
+ranking (order in which the rules enter the data coverage pruning algorithm)
+
+Rule A is ranked higher than B if:
+
+\begin{enumerate}
+    \item $conf(A) > conf(B)$
+    \item $conf(A) = conf(B) and hc(A) > hc(B)$
+    \item rule A has a shorter body than the rule B
+\end{enumerate}
+
+For each rule, the algorithm checks whether the rule correctly classifies at least one triple in the input KG
+
+In AMIE+, it is often the case that a single triple is covered by multiple rules.
+
+

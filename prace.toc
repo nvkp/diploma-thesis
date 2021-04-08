@@ -1,0 +1,106 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {english}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Linked Data}{3}{chapter.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.1}Resource Description Framework}{3}{section.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.2}Linked Open Data}{5}{section.1.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Data Cubes}{7}{chapter.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}The Data Cube Vocabulary}{8}{section.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Association Rules}{9}{chapter.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}AMIE Algorithm and Its Derivatives}{10}{chapter.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}AMIE}{10}{section.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.1}Language Bias}{11}{subsection.4.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.2}Measures of Significance}{11}{subsection.4.1.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Support}{11}{section*.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Head Coverage}{11}{section*.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.3}Confidence Measures}{12}{subsection.4.1.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{CWA and Standard Confidence}{12}{section*.9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{PCA Confidence}{12}{section*.10}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.4}Algorithm}{13}{subsection.4.1.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.5}Refinement Operators}{13}{subsection.4.1.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.6}Count Projection Queries}{13}{subsection.4.1.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.7}In-Memory Database}{13}{subsection.4.1.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Size Queries}{14}{section*.11}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Existence Queries}{14}{section*.12}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Select Queries}{14}{section*.13}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Count Queries}{14}{section*.14}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}AMIE+}{14}{section.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.1}Rule Refinement}{14}{subsection.4.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Simplyfing Projection Queries}{15}{section*.15}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2.2}Speeding Up Confidence Evaluation}{15}{subsection.4.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.3}RDFRules}{15}{section.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.1}Limitations of AMIE+}{15}{subsection.4.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.2}Faster Projection Counting}{16}{subsection.4.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.3}Processing of Numerical Attributes}{16}{subsection.4.3.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.4}Multiple Graphs}{16}{subsection.4.3.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.5}Improvements to Expressivenes of Rule Patterns}{16}{subsection.4.3.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.6}Top-k Approach}{16}{subsection.4.3.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Top-k Confidence}{16}{section*.16}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.7}Support for the Lift Measure}{17}{subsection.4.3.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.8}Rule Clustering}{17}{subsection.4.3.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Similarity Function of Atom Items}{18}{section*.17}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Similarity Function of Predicates}{18}{section*.18}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Similarity Function of Atoms}{18}{section*.19}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Similarity Function of Rules}{18}{section*.20}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.9}Rule Pruning}{18}{subsection.4.3.9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}RDFRules Reference Implementation}{19}{chapter.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Leveraging a Combination of OLAP Cubes and Knowlegde Graphs}{20}{chapter.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {7}Experiment}{21}{chapter.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.1}Czech Social Security Administration}{21}{section.7.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.2}Czech Statistical Office}{22}{section.7.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.3}Linking}{22}{section.7.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.4}Mining Tasks}{22}{section.7.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.5}Discussion}{22}{section.7.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Conclusions}{23}{chapter*.21}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{List of References}{24}{chapter*.22}%

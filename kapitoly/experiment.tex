@@ -1,0 +1,72 @@
+\chapter{Experiment}
+
+% TODO nějaký úvod, že ukazuju, jak je možné kombinovat OLAP a KG, co jsem použil za technologie, proč to dělám REPL
+
+This section describes an experiment of mining associtation rules from RDF data compiled of statistical data structured by the Data Cube Vocabulary and facts pulled from the Wikidata data set that was performed as an practical part of this work. The statistical data come from two sources. The first one is the Czech Social Security Administration and the second one is the Czech Statistical Office. Analysis was performed using the Scala API of the reference implementation of the RDFRules algorithm. The following sectins describe how the available data had to be preprocced to give reasonable results in combination with KG data. The preprocessing was perfomed partly by the implementation's API itself, partly by performing SPARQL queries over the data. The described method can be taken inspiration from when performing similar analysis ie. association rule mining task over the multidimensional data merged with loosely structured graph data. 
+
+\section{Czech Social Security Administration}
+
+Czech Social Security Administration (CSSA) is a czech public administration organtisation responsible for collecting social security premiums and contributions to the state employment policy. Since 2015 the organization publishes its statistical yearbook datasets and other (vocabularies, code lists and datasets containing data concerning the internal operation of the organization) in the form LOD and became of the first czech public institutions to do so. The yearbook statistical data sets are modelled using Data Cube Vocabulary. Their dimension values are represented by the SKOS vocabulary. The organization has published 73 datasets so far. All these datasets are downloadable as dumps\footnote{\href{http://data.cssz.cz/web/otevrena-data/katalog-otevrenych-dat}{http://data.cssz.cz/web/otevrena-data/katalog-otevrenych-dat}} or accesible througth a SPARQL endpoint\footnote{\href{http://data.cssz.cz/web/otevrena-data/sparql-query-editor/}{http://data.cssz.cz/web/otevrena-data/sparql-query-editor/}}. The CSSA's URI are dereferenceable.
+
+% project vše
+% že tam jsou i CSV data a pro každý data set je stránka s popisem
+
+The largest of the data cubes published is \verb|cssad:duchodci-v-cr-krajich-okresech|\footnote{https://data.cssz.cz/resource/dataset/duchodci-v-cr-krajich-okresech}. From now on it will be denoted as CSSA1. It contains \numprint{368118} observations structured spread over four dimensions: reference area\footnote{https://data.cssz.cz/ontology/dimension/refArea}, reference period\footnote{https://data.cssz.cz/ontology/dimension/refPeriod}, sex\footnote{https://data.cssz.cz/ontology/dimension/pohlavi} and pension kind\footnote{https://data.cssz.cz/ontology/dimension/druh-duchodu}. Observations are assigned three measures: the average amount of pension\footnote{https://data.cssz.cz/ontology/measure/prumerna-vyse-duchodu-v-kc}, the average age\footnote{https://data.cssz.cz/ontology/measure/prumerny-vek} and the number of persons\footnote{https://data.cssz.cz/ontology/measure/pocet-duchodcu}. Each observation is assigned only one measure.
+
+% Example of an observation
+
+% kolik je čeho, dimenze ref area, že jsou v code listu, že to jsou proxy entities
+
+% pension kinds pension kinds defined by the Czech legislation
+
+% The code list of regions is based on one of Czech Republic’s base registries, It does not have a LOD interface yet, so we create it as part of OpenData.cz activities.
+
+% The State Administration of Land Surveying and Cadastre (SALSC) 15 runs the Registry of Territorial Identification, Addresses and Real Estate (RTIAR).
+
+% It is one of the base registries in the Czech Republic and therefore, all public administration systems have to link to it
+
+% This makes RTIAR an important link target for the Czech LOD since it may interlink datasets of different publishers through their shared administrative units or buildings.
+
+% Nevertheless, there is an unofficial transformation by the Opendata.cz initiative 16
+
+% Multiple Czech LOD datasets, such as the CSSA statistics, started to use it as a provisional link target.
+
+
+% linking can be done simply based on the equality of these codes during data transformation
+
+% Since the RTIAR codes are reference codes by law, it is obligatory for CSSA to have them correct. Therefore, also the resulting links are correct.
+
+% Reference time intervals: The data.gov.uk Time Intervals 20 are reused in many British datasets. It is a service providing a Linked Data resource and extensive description for each time instant and time interval, e.g. http://reference.data.gov.uk/ id/gregorian-year/2012 for the year 2012. Resources from this dataset are also used in examples in the DCV specification and it seemed a natural candidate for reuse in the CSSA statistical data cubes as well.
+
+% proxy entities
+
+%The CSSA data uses proxy entities for reused code lists. This means that instead of using the original code list item IRIs directly as objects in the RDF triples, their proxies, https://data.cssz.cz/resource/reference.data.gov. uk/id/gregorian-year/2012 for example, are used in- stead. The CSSA proxies also contain data important to the CSSA, mainly the labels.
+
+% so that the code list items themselves are dereferenceable to the CSSA domain, and their availability and potential versioning isunder the control of the CSSA itself
+
+% code lists published as an individual data set
+
+
+\section{Czech Statistical Office}
+
+% TODO data o ČSÚ, něco o ČSÚ, jak vznikla data, dostupné datasety, hodnoty dimenzé, jak se k datům dostat, že URI nejsou dereferencovatelné
+
+\section{Linking}
+
+% linking data sets versus linking dimension values
+
+% denote data sets by nejaka zkratka, treba CSSA1, CZSO2
+
+% cssa regiony jsou proxy entities, ktere byly spojene pres owl:sameAs na stejné entity jako CSU, ale ted sou napojene na nejake jine, ktere nejsou dereferencovatelné
+
+% TODO wikidata -> co tam využiju za dta, jak se k nim dostat, jaké je potřeba předzpracování
+
+% TODO YAGO -> co tam využiju, jak se k datům dostanu, jaké je potřeba předzpracování
+
+% TODO Linking
+
+\section{Mining Tasks}
+
+% TODO samotné bádání
+
+\section{Discussion}
