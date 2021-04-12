@@ -11,59 +11,267 @@ Czech Social Security Administration (CSSA) is a czech public administration org
 % project vše
 % že tam jsou i CSV data a pro každý data set je stránka s popisem
 
-The largest of the data cubes published is \verb|cssad:duchodci-v-cr-krajich-okresech|\footnote{https://data.cssz.cz/resource/dataset/duchodci-v-cr-krajich-okresech}. From now on it will be denoted as CSSA1. It contains \numprint{368118} observations structured spread over four dimensions: reference area\footnote{https://data.cssz.cz/ontology/dimension/refArea}, reference period\footnote{https://data.cssz.cz/ontology/dimension/refPeriod}, sex\footnote{https://data.cssz.cz/ontology/dimension/pohlavi} and pension kind\footnote{https://data.cssz.cz/ontology/dimension/druh-duchodu}. Observations are assigned three measures: the average amount of pension\footnote{https://data.cssz.cz/ontology/measure/prumerna-vyse-duchodu-v-kc}, the average age\footnote{https://data.cssz.cz/ontology/measure/prumerny-vek} and the number of persons\footnote{https://data.cssz.cz/ontology/measure/pocet-duchodcu}. Each observation is assigned only one measure.
+The largest of the data cubes published is \verb|cssa-d:duchodci-v-cr-krajich-okresech|\footnote{https://data.cssz.cz/resource/dataset/duchodci-v-cr-krajich-okresech}. From now on it will be denoted as CSSA1. It contains \numprint{368118} observations structured spread over four dimensions: reference area\footnote{https://data.cssz.cz/ontology/dimension/refArea}, reference period\footnote{https://data.cssz.cz/ontology/dimension/refPeriod}, sex\footnote{https://data.cssz.cz/ontology/dimension/pohlavi} and pension kind\footnote{https://data.cssz.cz/ontology/dimension/druh-duchodu}. Observations are assigned three measures: the average amount of pension\footnote{https://data.cssz.cz/ontology/measure/prumerna-vyse-duchodu-v-kc}, the average age\footnote{https://data.cssz.cz/ontology/measure/prumerny-vek} and the number of persons\footnote{https://data.cssz.cz/ontology/measure/pocet-duchodcu}. Each observation is assigned only one measure.
 
-% Example of an observation
+\begin{figure}[h]
+\begin{lstlisting}[language = turtle, caption={Example of an observation from CSSA1}, label={cssa1example},captionpos=b escapeinside={(*@}{@*)}]
+@prefix qb: <http://purl.org/linked-data/cube#> .
+@prefix cssa-om: <https://data.cssz.cz/ontology/measure/> .
+@prefix cssa-d: <https://data.cssz.cz/resource/dataset/> .
+@prefix cssa-od: <https://data.cssz.cz/ontology/dimension/> .
 
-% kolik je čeho, dimenze ref area, že jsou v code listu, že to jsou proxy entities
+<https://data.cssz.cz/resource/observation/duchodci-v-cr-krajich-okresech/2017-12-31/prumerna-vyse-duchodu-v-kc/pk_srnvm/vc.35/m>
+    a qb:Observation ;
+    qb:dataSet cssa-d:duchodci-v-cr-krajich-okresech .
+    qb:measureType cssa-om:prumerna-vyse-duchodu-v-kc ;
+    cssa-od:druh-duchodu <https://data.cssz.cz/resource/pension-kind/PK_SRNVM_2010> ;
+    cssa-od:pohlavi <https://data.cssz.cz/ontology/sdmx/code/sex-M> ;
+    cssa-od:refArea <https://data.cssz.cz/resource/ruian/vusc/35>;
+    cssa-od:refPeriod <https://data.cssz.cz/resource/reference.data.gov.uk/id/gregorian-day/2017-12-31>;
+    cssa-om:prumerna-vyse-duchodu-v-kc 6622.0;
+\end{lstlisting}
+\end{figure}
 
-% pension kinds pension kinds defined by the Czech legislation
+In this particular data set there are \numprint{102} distinct values of the dimension of reference area: 14 regions (NUTS 3 administrative units, czech translation in singular nominative is \textit{kraj}) including Prague, 77 districts (\textit{okres}) also including Prague, 10 Prague districts (\textit{správní obvod}) and a value representing the state in total. Each entity representing a reference area is assigned an unique numerical identifier which corresponds to this area's identifier in the official Registry of Territorial Identification, Addresses and Real Estate (RTIAR) runned by the State Administration of Land Surveying and Cadastre (SALSC). RTIAR codes are reference codes by law, so it is obligatory for CSSA to use them and have them correct.
 
-% The code list of regions is based on one of Czech Republic’s base registries, It does not have a LOD interface yet, so we create it as part of OpenData.cz activities.
+% SPARQL dotaz, ktery ukaze ty hodnoty ?
 
-% The State Administration of Land Surveying and Cadastre (SALSC) 15 runs the Registry of Territorial Identification, Addresses and Real Estate (RTIAR).
+\begin{figure}[h]
+\begin{lstlisting}[language = turtle, caption={Dereferenced proxy entity of the South Bohemian Region}, label={sbrexample},captionpos=b, escapeinside={(*@}{@*)}]
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
 
-% It is one of the base registries in the Czech Republic and therefore, all public administration systems have to link to it
+<https://data.cssz.cz/resource/ruian/vusc/35>
+    a <https://data.cssz.cz/ontology/ruian/Vusc> , skos:Concept ;
+    <http://www.w3.org/2002/07/owl#sameAs> <https://linked.cuzk.cz/resource/ruian/vusc/35> ;
+    skos:inScheme  <https://data.cssz.cz/resource/ruian/ConceptScheme> ;
+    skos:notation "VC.35" ;
+    skos:prefLabel "(*@Jihočeský kraj@*)" .
+\end{lstlisting}
+\end{figure}
 
-% This makes RTIAR an important link target for the Czech LOD since it may interlink datasets of different publishers through their shared administrative units or buildings.
+There are official URIs of this registry but CSSA datasets do not used them directly. The entities for the dimension of reference area and other dimensions in the dataset CSSA1 and all other data sets of CSSA with the dimension of reference area work as so-called \textit{proxy entities}. This means that instead of using the original code list item URIs directly as objects in the RDF triples,  it uses their equivalents defined in the internal code lists. These equivalents are connected to the original URI by the \verb|owl:sameAs| statement. These proxies can then contain data specific to CSSA e.g. labels. Another advantage of this is, that these URIs are dereferenceable to the CSSA domain and their versioning is under the control of CSSA and they can be easily redirect to a different equivalent code list. Previously the proxy entities of the reference area were directed to the unofficial transformation of the Opendata.cz initiative\footnote{\href{https://linked.opendata.cz/dataset/cz-ruian}{https://linked.opendata.cz/dataset/cz-ruian}}.
 
-% Nevertheless, there is an unofficial transformation by the Opendata.cz initiative 16
+Another dimension whose values work as proxy entities is the dimension of reference period. This dimension divides the observations into one year intervals. This applies to all other CSSA data cubes containg the reference period dimension. The data set vary in the overall covered period. The last covered year of all data sets is the year 2019. The entities link to the \verb|data.gov.uk| Time Intervals\footnote{\href{http://old.datahub.io/dataset/data-gov-uk-time-intervals}{http://old.datahub.io/dataset/data-gov-uk-time-intervals}} OWL ontology. Usage of this entities is, however, not unified. In some data sets intervals are assigned an entity representing a year, in other they are assigned an entity representing the last day of the corresponding year. All of them are, however, representing a period of a whole year.
 
-% Multiple Czech LOD datasets, such as the CSSA statistics, started to use it as a provisional link target.
+\begin{figure}[h]
+\begin{lstlisting}[language = turtle, caption={Dereferenced proxy entity of the year 2017}, label={gd2017example},captionpos=b, escapeinside={(*@}{@*)}]
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
 
+<https://data.cssz.cz/resource/reference.data.gov.uk/id/gregorian-year/2017>
+    a skos:Concept ;
+    <http://www.w3.org/2002/07/owl#sameAs> <http://reference.data.gov.uk/id/gregorian-year/2017> ;
+    skos:inScheme <https://data.cssz.cz/ontology/years/YearsScheme> ;
+    skos:notation "2017" ;
+    skos:prefLabel "2017" .
+\end{lstlisting}
+\end{figure}
 
-% linking can be done simply based on the equality of these codes during data transformation
+The CSSA1 dataset uses two distinct schemes for the pension kinds, because in 2010, the official categorization of pensions was changed in the czech legislation. Only the observations assigned to year 2008 are divided according to the old pension scheme. All other year's observations correnspond to the new pension scheme. So one can not simply multiply the numbers of distinct values for each dimension and the number of measures to get the total number of observations for this particular cube. The URIs of both pension kind schemes are suffixed either by \verb|_2008| (31 of them) for the old scheme or \verb|_2010| (37 of them) for the new scheme. Not all entities correspond to a particular kind of pension. Some of them represent an aggregation over related pension kinds or simply an aggregation over all of the pension kinds.
 
-% Since the RTIAR codes are reference codes by law, it is obligatory for CSSA to have them correct. Therefore, also the resulting links are correct.
+\begin{figure}[h]
+\begin{lstlisting}[language = turtle, caption={Dereferenced pension kind}, label={pkexample},captionpos=b, escapeinside={(*@}{@*)}]
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
 
-% Reference time intervals: The data.gov.uk Time Intervals 20 are reused in many British datasets. It is a service providing a Linked Data resource and extensive description for each time instant and time interval, e.g. http://reference.data.gov.uk/ id/gregorian-year/2012 for the year 2012. Resources from this dataset are also used in examples in the DCV specification and it seemed a natural candidate for reuse in the CSSA statistical data cubes as well.
+<https://data.cssz.cz/resource/pension-kind/PK_SRNVM_2010>
+    a <https://data.cssz.cz/ontology/pension-kinds/PensionKind> , skos:Concept ;
+    skos:altLabel "SRNVM"@cs ;
+    skos:exactMatch <https://data.cssz.cz/resource/pension-kind/PK_SRNVM> ;
+    skos:inScheme <https://data.cssz.cz/ontology/pension-kinds/PensionKindScheme_2010> ;
+    skos:notation "PK_SRNVM" ;
+    skos:prefLabel "(*@Starobní důchod SRN vyplácený v souběhu s vdoveckým důchodem@*)"@cs .
+\end{lstlisting}
+\end{figure}
 
-% proxy entities
-
-%The CSSA data uses proxy entities for reused code lists. This means that instead of using the original code list item IRIs directly as objects in the RDF triples, their proxies, https://data.cssz.cz/resource/reference.data.gov. uk/id/gregorian-year/2012 for example, are used in- stead. The CSSA proxies also contain data important to the CSSA, mainly the labels.
-
-% so that the code list items themselves are dereferenceable to the CSSA domain, and their availability and potential versioning isunder the control of the CSSA itself
-
-% code lists published as an individual data set
-
+The dimension of sex consists of three distinct values: dimension of male pension, dimension of female pensions and its total. The values are proxy entities linking to the SDMX representations of sexes\footnote{\href{http://purl.org/linked-data/sdmx/2009/code}{http://purl.org/linked-data/sdmx/2009/code}}
 
 \section{Czech Statistical Office}
 
-% TODO data o ČSÚ, něco o ČSÚ, jak vznikla data, dostupné datasety, hodnoty dimenzé, jak se k datům dostat, že URI nejsou dereferencovatelné
+The Czech Statistical Office (CZSO) is the main public organization responsible for collecting and analyzing statistical data in the Czech Republic. This organization is for example responsible for the state's census. Data about demography, economics, education, health care etc. are made availabe on the organization's website\footnote{\href{https://vdb.czso.cz/vdbvo2/faces/en/index.jsf?page=uziv-dotaz}{https://vdb.czso.cz/vdbvo2/faces/en/index.jsf?page=uziv-dotaz}} in a form of interactive spreadsheet builder. Thanks to the Opendata.cz initiative this data sets are made available as LOD modelled by the Daca Cube Vocabulary in the initiative's catalogue. The data is also hosted as a SPARQL endpoint\footnote{\href{http://linked.opendata.cz/sparql}{http://linked.opendata.cz/sparql}}. 8 of these data sets have a dimension of reference period. Each data set’s dump file can be downloaded from the catalouge\footnote{The download link URLs are, however, broken and return HTTP status code 404. To get the dump file, word \textit{dumps} has to be substituted with word \textit{soubor} (czech word for \textit{file}). For example, the dump file of the data set \textbf{czso-job-applicants} is available at \href{https://linked.opendata.cz/soubor/czso-job-applicants.trig}{https://linked.opendata.cz/soubor/czso-job-applicants.trig}}.
 
-\section{Linking}
+\begin{figure}[h]
+\begin{lstlisting}[language = turtle, caption={Example of an observation from the CZSO data sets}, label={turtleexample},captionpos=b escapeinside={(*@}{@*)}]
+@prefix qb: <http://purl.org/linked-data/cube#> .
+@prefix czso: <http://data.czso.cz/ontology/> .
 
-% linking data sets versus linking dimension values
+<http://data.czso.cz/resource/observation/job-applicants-and-unemployment-rate/CZ0513/2009-12-31/T> a qb:Observation ;
+    czso:refArea <http://ruian.linked.opendata.cz/resource/okresy/3505> ;
+    czso:refPeriod <http://reference.data.gov.uk/id/gregorian-day/2009-12-31> ;
+    czso:sex sdmx-code:sex-T ;
+    czso:neumisteniUchazeciOZamestnani 9692.0 ;
+    czso:dosazitelniNeumisteniUchazeciOZamestnani 9528.0 ;
+    czso:podilNezamestnanych 7.92 ;
+    czso:pocetVolnychMist 569.0 ;
+    qb:dataSet <http://data.czso.cz/resource/dataset/job-applicants-and-unemployment-rate> .
+\end{lstlisting}
+\end{figure}
 
-% denote data sets by nejaka zkratka, treba CSSA1, CZSO2
+Observations in CZSO data cubes are assigned multiple measures. Their URIs are not dereferenceable. Their dimension value URIs do not work as proxy entities. The dimension of reference area uses entities of an above-mentioned initiative's unofficial RTIAR transformation\footnote{\href{https://linked.opendata.cz/dataset/cz-ruian}{https://linked.opendata.cz/dataset/cz-ruian}} with its own SPARQL endpoint\footnote{\href{https://ruian.linked.opendata.cz/sparql}{https://ruian.linked.opendata.cz/sparql}}. The measured values relate to regions and district. They do not contain observations related to the whole state. The proxy entities of the reference area dimension values for the CSSA data sets previously linked to this code list. 
 
-% cssa regiony jsou proxy entities, ktere byly spojene pres owl:sameAs na stejné entity jako CSU, ale ted sou napojene na nejake jine, ktere nejsou dereferencovatelné
+For time intervals representation the CZSO data cubes also use the the \verb|data.gov.uk| Time Intervals OWL ontology. They only do so directly unlike the CSSA data cubes. The data cubes vary their time span. The earliest recorded values are for the year 2005. The latest values are for the year 2013. There are two data sets that contain values for both the earliest and latest year mentioned meaning they cover a period of 9 years: \textbf{czso-deaths-by-selected-causes-of-death}\footnote{\href{https://linked.opendata.cz/dataset/czso-deaths-by-selected-causes-of-death}{https://linked.opendata.cz/dataset/czso-deaths-by-selected-causes-of-death}} and \textbf{czso-job-applicants-and-unemployment-rate}\footnote{\href{https://linked.opendata.cz/dataset/czso-job-applicants-and-unemployment-rate}{https://linked.opendata.cz/dataset/czso-job-applicants-and-unemployment-rate}}
 
-% TODO wikidata -> co tam využiju za dta, jak se k nim dostat, jaké je potřeba předzpracování
+Just as with the CSSA data cubes, some of the CZSO data cubes contain the dimension of sex consisting of three distinct values: dimension of male pension, dimension of female pensions and its total. The values used are the SDMX representations of sexes themselves.
 
-% TODO YAGO -> co tam využiju, jak se k datům dostanu, jaké je potřeba předzpracování
+\section{Wikidata}
 
-% TODO Linking
+Wikidata data set contains data about political representation of countries, their administrative areas and municipalities. For the purposes of this experiment, such data concerning the Czech Republic was extracted from the data set. In the Czech Republic, regions and municipalities\footnote{Not districts though.} are being assigned a government that emerges from elections. In Wikidata data set, there exist records of who was or still is head of this local government, including the head of the state government. Records of these \textit{head of government} roles are given a time period of validity of this role by stating the date of this role's start and optionally the end of this role when it is not a current area government head anymore. For the persons who hold or held the office, the affiliation to a political party is stated in the data also with the start and end date of this affiliation. The entities of the political parties are assigned their political alignment (left, center, far-right etc.). In the sample of Wikidata data set's content below it is stated that since 2008 till 2016 the head of the government of the South Moravian Region was Michal Hašek who since 1998 is a member of the Czech Social Democratic Party, which has the centre-left political alignment.
+
+\begin{figure}[h]
+\begin{lstlisting}[language = turtle, caption={Description of XXX (Source: author)}, label={wdhasekexample},captionpos=b, escapeinside={(*@}{@*)}]
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix p: <http://www.wikidata.org/prop/> .
+
+wd:Q192697 rdfs:label "South Moravian Region"@en ;
+    p:P6 [ p:P6 wd:Q6835752 ; p:P580 "2008-11-21T00:00:00Z" ; p:P582 "2016-11-16T00:00:00Z" ] .
+
+wd:Q6835752 rdfs:label (*@"Michal Hašek"@*)@en ;
+    p:P102 [ p:P102  wd:Q341148 ; p:P580 "1998-01-01T00:00:00Z" ] .
+
+wd:Q341148 rdfs:label "Czech Social Democratic Party"@en ;
+    p:P1387 [ p:P1387 wd:Q737014 ] .
+
+wd:Q737014 rdfs:label "centre-left"@en .
+\end{lstlisting}
+\end{figure}
+
+When adequately preprocced, this data can be utilized to find relations of statistical data described in the data cubes of CSSA and CZSO and the political cycle in the country. For example a rule can be found that states, that if in any year, the head of the Czech Republic's government was a member of a left-leaning policital party, the pension expenses for one-off allowance to pensions were above average. A query that extracts this data from the Wikidata's SPARQL endpoint is listed in \ref{wdextract}. This data, however, cannot be used for mining such rules yet. Measures in the data cubes are recorded on year to year bases. For the governmental roles and political affiliations it is only know the start date and end date. It is necessary to transform these triples into set of triples stating that a governmental role or the policital affiliation \textit{applies} for a certain year. The edge years are a bit tricky because the role or the membership was not valid for the whole year it started or ended. To facilitate the query and to generate more triples I decided to generate the triples for the edge years as well. The SPARQL query that constructs the \textit{appliesToRefPeriod} triples from the extracted data is listed in \ref{wdapplies}. The triples stating the start dates and end dates are no longer needed and do not have to be loaded into the RDFRules mining task.
+
+% todo P582 a P580 nejsou už potřeba a proto se pak smažou ...
+
+% jak jsem si to musel předzpracovat, vytvořit ty appliesTo
+
+\section{Filtering the Observations}
+
+The values for the city of Prague are duplicated. The city is assigned an entity both as a region and as a district. The administrative area of the Czech Republic's capital is given a special status by the Act No. 131/2000 Coll., on the Capital City of Prague and does not in fact fall into neighter of those categories. Nonetheless, Prague is assigned an identifier both as a district (\numprint{3100}) and as a region (\numprint{19}) in the RTIAR registry. When it comes to total population of the area (\numprint{1324227} as of 2020), it is comparable to other czech regions. The least populated is the Karlovy Vary Region with around \numprint{300000} inhabitants and the most populated: the Central Bohemian Region has around \numprint{1300000} inhabitants. Its surface area is on the other hand comparable with the districts. As the statistics about pensioners are certainly more correlated with the population rather than the surface area, the observation allocated to the dimension value of Prage as being district would be filtered out to maintain the commensurability along values measured for districts (see \ref{cssaSlicing}).
+
+I also chose to filter out all observations regarding year 2008. For 2008 the pension kinds are structured according to a different scheme than any other year and it is hard to assume compatibility for the URIs that only differ in the year's suffix. 2008 scheme contains penkind kinds that 2010 does not end vice versa. It could be possible to just cut the cube so that the year's 2008 become one cube and the other years the other one, but a cube concerning only one reference period has not got much value. Both filters can be performed in a single SPARQL query. In the CSSA1 data set, discarting the Prague as a District entity removes \numprint{3609} observations. The year 2008 contained \numprint{28458} observations. \numprint{336330} observations are contained in the query's result making up 91,4\% of the unfiltered data set.
+
+\begin{figure}[h]
+\begin{lstlisting}[language = SPARQL, caption={SPARQL query to filter the CSSA1 data set (Source: author)}, label={sparqlexample},captionpos=b escapeinside={(*@}{@*)}]
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX qb: <http://purl.org/linked-data/cube#>
+PREFIX cssa-d: <https://data.cssz.cz/resource/dataset/>
+PREFIX cssa-od: <https://data.cssz.cz/ontology/dimension/>
+PREFIX cssa-rd: <https://data.cssz.cz/resource/ruian/okresy/>
+PREFIX cssa-op: <https://data.cssz.cz/ontology/pension-kinds/>
+
+CONSTRUCT {
+    ?observation ?p ?o
+} 
+WHERE {
+    GRAPH cssa-d:duchodci-v-cr-krajich-okresech {
+        ?observation qb:dataSet cssa-d:duchodci-v-cr-krajich-okresech ;
+            cssa-od:druh-duchodu ?druh ;
+            ?p ?o .
+        NOT EXISTS {
+            ?observation cssa-od:refArea cssa-rd:3100 .
+        }
+     }
+     GRAPH cssa-d:pomocne-ciselniky {
+        ?druh skos:inScheme cssa-op:PensionKindScheme_2010 .
+     }
+}
+\end{lstlisting}
+\end{figure}
+
+\section{Slicing the Cubes\label{cssaSlicing}}
+
+It is in part aimed to mine rules, in which the head atom's predicate is one of the cube's measures. In order to ensure, that such rules can achieve a reasonable support, the numerical values at the position of object in the measure triples have to be discretized and replaced by intervals. Irrespective to a chosen discretization approach, it is inadmissible to discretize values belonging to different disproportionate contexts. For example, we cannot create intervals for the number of pensioners from values measured for both regions and districts together. A district is a lower administrative unit. It belongs to a lower level in the concept hierarchy and it is assumed that its numbers of pensioners are of a different order of magnitude than those for regions or for the whole state. Same applies for values of dimensions sex and pension kind of the described data set. The values of the reference period represent even time intervals so the commensurability is assumed.
+
+One way to solve is to slice a preprocessed cube having disproportionate dimension values into a set of smaller subcubes, in which the dimension values belong to the same level of a concept hierarchy. Measured values can be then discretized into intervals in each subcube separately. Number of subcubes that the main cube has to be divided into depends on the number dimensions and the number of levels in each dimension's hierarchies. Also when the commensurability cannot be expected among dimension values on the same level of their hierarchy, it is a good idea to \textit{make a cut} for each dimension value. For example, the dataset \verb|cssa-d:vydaje-na-duchody-v-cr|\footnote{\href{https://data.cssz.cz/resource/dataset/vydaje-na-duchody-v-cr}{https://data.cssz.cz/resource/dataset/vydaje-na-duchody-v-cr}} capturing costs on pensions in the Czech Republic by year and kind of pension contains 10 distinct values of the dimension of pension kind (not considering the scheme used only for year 2008). The cube would have to be divided into 10 subcubes for each value of the pension kind dimension. The CSSA1 data set would have to be divided into 222 subcubes. It has 37 pension kinds. Dimension of sex has two hierarchy levels: each sex and total. The dimension of reference area is considered to have 3 hierarchy levels: State's total, regions and Prague districts combined with the regional districts since they are comparable in number of inhabitants.
+
+$$
+37 \times 2 \times 3 = 222\hspace{0.4em}subcubes
+$$
+
+The construction of a subcube from a \textit{master} cube can be performed by a SPARQL CONSTRUCT query. An example of such query is shown in the listing \ref{sparqlcutexample}. This query filters the triples of the CZSO data cube \textbf{czso-job-applicants-and-unemployment-rate} to create a smaller cube of statistics about job applicants and unemployment rate for districts by sex. Notice how the reference area values corresponding to districts are distinguished. After the reference area values are linked (see \ref{linking}) to their CSSA counterparts, the ontology provided with the CSSA data sets can be reused.
+
+\begin{figure}[h]
+\begin{lstlisting}[language = SPARQL, caption={SPARQL query to create a subcube (Source: author)}, label={sparqlcutexample},captionpos=b escapeinside={(*@}{@*)}]
+PREFIX qb: <http://purl.org/linked-data/cube#>
+PREFIX sdmx-c: <http://purl.org/linked-data/sdmx/2009/code#>
+PREFIX czso: <http://data.czso.cz/ontology/>
+PREFIX czso-rd: <http://data.czso.cz/resource/dataset/>
+PREFIX cssa-rd: <https://data.cssz.cz/resource/dataset/>
+PREFIX cssa-or: <https://data.cssz.cz/ontology/ruian/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+    
+CONSTRUCT { ?observation ?p ?o } 
+WHERE { 
+    GRAPH czso-rd:job-applicants-and-unemployment-rate {
+        ?observation qb:dataSet czso-rd:job-applicants-and-unemployment-rate ;
+            ?p ?o ;
+            czso:refArea ?refAreaCZSO .
+        NOT EXISTS {
+            ?observation czso:sex sdmx-c:sex-T .
+        }             
+     }
+    ?refAreaCSSZ owl:sameAs   ?refAreaCZSO.
+    GRAPH cssa-rd:pomocne-ciselniky { ?refAreaCSSZ a cssa-or:Okres }
+}
+\end{lstlisting}
+\end{figure}
+
+For every subcube a similar query has to be created and performed over the master cube. For a cube that has to be divided into a small number of subcubes it is plausible to write (and save it for the documentation and repeatability purposes) and perform these queries manually. But there are cubes for which this would involve an hours long work. At the same time, it is an trivial activity that can easily be automated. For this preproccesing step for the CSSA1 dataset, a Scala script was written that creates 222 distinct SPARQL queries that construct 222 subcubes, saves each query to a text file and also creates a shell script that triggers all queries and saves a result of each query to a distinct file in the turtle format. The script is listed in \ref{scalascript}. This, however, still requires writing such script for each preprocced data cube and solve the problem of a time consuming resolution of the queries.
+
+
+% že jsem řezal SPARQLem a ne RDFRules API, do ní už šly nařezané kostky
+
+% že se musel potom upravit triply qb:dataSet object
+
+\section{Linking\label{linking}}
+
+In order to find rules describing relations across multiple sources (meaning data cubes of CZSO, data cubes of CSSA and Wikidata triples) the entities either have to be assigned the same URIs or to be connected by the \verb|owl:sameAs| statements. The shared dimensions of the CSSA and CZSO data cubes are the reference area, reference period and sex. The dimension values URIs used for these dimensions differ not only institution from institution but also data cube from data cube from the same institution (In the CSSA data cubes, reference period is represented by an entity of a year and of the last day of the year as well). Linking of equivalent dimension values of the three dimensions is done by creating \verb|owl:sameAs| statements.
+
+\subsection{Sex Dimension Values}
+
+It was already mentioned that the CSSA data cubes use proxy entities linking to the SDMX representations of sexes, whereas the CZSO data cubes use these representations directly. So the linking statements are already provided with the CSSA code list file. To extract these very triples, the query listed below can be used. These triples can be than loaded into a mining task involving mining from data cubes contain the dimension of sex instead of loading the whole code list file.
+
+\begin{figure}[h]
+\begin{lstlisting}[language = SPARQL, caption={Linking the sex dimension values}, label={sexlinkextract},captionpos=b, escapeinside={(*@}{@*)}]
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+CONSTRUCT { ?cssaSex owl:sameAs ?sdmxSex }
+WHERE {
+    GRAPH <https://data.cssz.cz/resource/dataset/pomocne-ciselniky> {
+        ?cssaSex a <https://data.cssz.cz/ontology/sdmx/code/Sex> ; owl:sameAs ?sdmxSex
+    }
+}
+\end{lstlisting}
+\end{figure}
+
+\subsection{Reference Periods}
+
+In CSSA data cubes, values from two concept schemes are used for representing the year intervals: a years scheme and a days scheme. The entities in the schemes are proxy entitities linking to the \verb|data.gov.uk| Time Intervals ontology. CZSO data cubes use the ontology's day scheme concepts directly. That means that every year is represented by three distinct URIs in the data cubes so two \verb|owl:sameAs| statements are required for each year. A query was written that generates theses statements for every year entity in the CSSA code list:
+
+\begin{figure}[h]
+\begin{lstlisting}[language = SPARQL, caption={Linking the reference periods}, label={sexlinkextract},captionpos=b, escapeinside={(*@}{@*)}]
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    
+CONSTRUCT {
+    ?cssaYear owl:sameAs  ?cssaDay .
+    ?cssaYear owl:sameAs ?dataGovDay .
+    ?cssaDay owl:sameAs ?dataGovDay .
+}  
+WHERE {
+    GRAPH <https://data.cssz.cz/resource/dataset/pomocne-ciselniky> {
+        ?cssaYear skos:inScheme <https://data.cssz.cz/ontology/years/YearsScheme>
+        BIND (REPLACE(str(?cssaYear),".*(\\d{4})","$1") as ?cssaYearValue)
+        ?cssaDay skos:inScheme <https://data.cssz.cz/ontology/days/DaysScheme>
+        FILTER (REGEX(str(?cssaDay), ".*day.*12-31"))
+        BIND (REPLACE(str(?cssaDay),".*(\\d{4})-12-31","$1") as ?cssaDayValue)
+        ?cssaDay owl:sameAs ?dataGovDay
+        FILTER (?cssaYearValue = ?cssaDayValue)
+    }
+}
+\end{lstlisting}
+\end{figure}
+
+\subsection{Reference Areas}
+
+The proxy entities of the reference area in CSSA data set used to link to the same entities that are used by the CZSO data sets. This linking is no longer present in the CSSA's code list but can be retrieved from the Opendata.cz's SPARQL endpoint. The query listed below returns 114 linking triples for all districts (including the Prague district entity), all regions (including Prague), Prague districts and the entity of the whole state. The linking with the Wikidata's entities had to be performed manually.
+
+\section{Discretization\label{discretization}}
 
 \section{Mining Tasks}
 

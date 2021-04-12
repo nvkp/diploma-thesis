@@ -1,2 +1,223 @@
-\chapter{Formulář v plném znění}
+\chapter{Queries and Scripts}
 
+% todo scala
+\begin{lstlisting}[language = scala, caption={Scala script for creating SPARQL queries for preproccesing the CSSA1 data set}, label={scalascript},captionpos=b, escapeinside={(*@}{@*)}]
+import scala.io.Source
+import java.io.PrintWriter
+import scala.sys.process._
+    
+val byRegion = """
+?observation cssz-dimension:refArea ?refAreaCSSA .
+GRAPH <https://data.cssz.cz/resource/dataset/pomocne-ciselniky> {
+    ?refAreaCSSA a <https://data.cssz.cz/ontology/ruian/Vusc> .
+}
+"""
+    
+val byDistrict = """
+?observation cssz-dimension:refArea ?refAreaCSSA .
+GRAPH <https://data.cssz.cz/resource/dataset/pomocne-ciselniky> {
+    ?refAreaCSSA a ?class .
+    FILTER (?class IN (
+        <https://data.cssz.cz/ontology/ruian/Okres>,
+        <https://data.cssz.cz/ontology/ruian/SpravniObvod>
+        )
+    )
+}
+"""
+    
+val stateTotal = """
+?observation cssz-dimension:refArea <https://data.cssz.cz/resource/ruian/staty/1> .
+"""
+    
+val bySex = """
+NOT EXISTS {
+    ?observation cssz-dimension:pohlavi <https://data.cssz.cz/ontology/sdmx/code/sex-T>
+}
+"""
+    
+val bothSexes = """
+?observation cssz-dimension:pohlavi <https://data.cssz.cz/ontology/sdmx/code/sex-T> .
+"""
+    
+val template = """
+PREFIX qb: <http://purl.org/linked-data/cube#>
+PREFIX cssz-dimension: <https://data.cssz.cz/ontology/dimension/>
+    
+CONSTRUCT {
+    ?observation ?p ?o
+}
+WHERE {
+    
+    ?observation qb:dataSet <https://data.cssz.cz/resource/dataset/duchodci-v-cr-krajich-okresech> .
+    ?observation ?p ?o .
+    %s
+    ?observation cssz-dimension:druh-duchodu <%s> .
+    %s
+}
+"""
+    
+val commandTemplate = "../../jena/bin/arq --data \"../../data/pensions-filtered.ttl\" --data \"../../data/pomocne-ciselniky.trig\" --query \"queries/%s.rq\" > \"results/%s.ttl\""
+val source = Source.fromFile("pensionkinds.txt")
+val lines = source.getLines().toArray
+val pw = new PrintWriter(s"script.sh") 
+lines.foreach(line => {
+        
+    val kindName = line.replaceAll("https://data.cssz.cz/resource/pension-kind/","").replaceAll("_2010","")
+    val districtTotalQuery = template.format(bothSexes,line,byDistrict)
+    val districtTotalFileName = s"pensions-by-district-total-$kindName"
+    val districtTotalPw = new PrintWriter(s"queries/$districtTotalFileName.rq")
+    districtTotalPw.print(districtTotalQuery)
+    districtTotalPw.close()
+    pw.println(commandTemplate.format(districtTotalFileName,districtTotalFileName))
+    
+    val districtBySexQuery = template.format(bySex,line,byDistrict)
+    val districtBySexFileName = s"pensions-by-district-by-sex-$kindName"
+    val districtBySexPw = new PrintWriter(s"queries/$districtBySexFileName.rq")
+    districtBySexPw.print(districtBySexQuery)
+    districtBySexPw.close()
+    pw.println(commandTemplate.format(districtBySexFileName,districtBySexFileName))
+    
+    val regionTotalQuery = template.format(bothSexes,line,byRegion)
+    val regionTotalFileName = s"pensions-by-region-total-$kindName"
+    val regionTotalPw = new PrintWriter(s"queries/$regionTotalFileName.rq")
+    regionTotalPw.print(regionTotalQuery)
+    regionTotalPw.close()
+    pw.println(commandTemplate.format(regionTotalFileName,regionTotalFileName))
+    
+    val regionBySexQuery = template.format(bySex,line,byRegion)
+    val regionBySexFileName = s"pensions-by-region-by-sex-$kindName"
+    val regionBySexPw = new PrintWriter(s"queries/$regionBySexFileName.rq")
+    regionBySexPw.print(regionBySexQuery)
+    regionBySexPw.close()
+    pw.println(commandTemplate.format(regionBySexFileName,regionBySexFileName))
+    
+    val totalTotalQuery = template.format(bothSexes,line,stateTotal)
+    val totalTotalFileName = s"pensions-total-total-$kindName"
+    val totalTotalPw = new PrintWriter(s"queries/$totalTotalFileName.rq")
+    totalTotalPw.print(totalTotalQuery)
+    totalTotalPw.close()
+    pw.println(commandTemplate.format(totalTotalFileName,totalTotalFileName))
+    
+    val totalBySexQuery = template.format(bySex,line,stateTotal)
+    val totalBySexFileName = s"pensions-total-by-sex-$kindName"
+    val totalBySexPw = new PrintWriter(s"queries/$totalBySexFileName.rq")
+    totalBySexPw.print(totalBySexQuery)
+    totalBySexPw.close()
+    pw.println(commandTemplate.format(totalBySexFileName,totalBySexFileName))
+})
+pw.close()
+\end{lstlisting}
+
+
+\begin{lstlisting}[language = SPARQL, caption={Extracting the Wikidata's political data about the Czech Republic}, label={wdextract},captionpos=b, escapeinside={(*@}{@*)}]
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX p: <http://www.wikidata.org/prop/>
+
+CONSTRUCT {
+    ?area p:P31 wd:Q5153359.
+    ?area p:P6 ?headRole ; 
+        p:P131 ?superiorArea .
+    ?headRole p:P6 ?person ;
+        p:P580 ?headRoleStartDate ;
+        p:P582 ?headRoleEndDate .
+    ?person p:P102 ?partyRole .
+    ?partyRole p:P580 ?partyRoleStartDate ;
+            p:P582 ?partyRoleEndDate ;
+            p:P102 ?party .
+    ?party p:P1387 ?alignmentLabel .
+}
+WHERE {
+    {
+        ?area wdt:P31 wd:Q38911 .
+    } UNION {
+        ?area wdt:P31|p:P31 wd:Q5153359 .
+        OPTIONAL {
+            ?area wdt:P131|p:P131 ?superiorArea
+        }
+    } UNION {
+        wd:Q3342946 wdt:P1269 ?area
+    }
+    OPTIONAL {
+        ?area p:P6|wdt:P6 ?headRole .
+        ?headRole ps:P6 ?person ;
+            pqv:P580|pq:P580 ?headRoleStartDate .
+        OPTIONAL {
+            ?headRole pqv:P582|pq:P582 ?headRoleEndDate .
+        }
+        OPTIONAL {
+            ?person p:P102|wdt:102 ?partyRole .
+            OPTIONAL {
+                ?partyRole pqv:P580|pq:P580 ?partyRoleStartDate .
+            }
+            OPTIONAL {
+                ?partyRole pqv:P582|pq:P582 ?partyRoleEndDate .
+            }
+            OPTIONAL {
+                ?partyRole ps:P102 ?party .
+                ?party wdt:P1387|p:P1387 ?alignment .
+                ?alignment rdfs:label ?alignmentLabel
+                FILTER (lang(?alignmentLabel) = "en")
+            }
+        }
+    }
+}
+\end{lstlisting}
+
+
+\begin{lstlisting}[language = SPARQL, caption={Creating the \textbf{appliesToRefPeriod} triples}, label={wdapplies},captionpos=b, escapeinside={(*@}{@*)}]
+PREFIX cssa-ody:  <https://data.cssz.cz/ontology/days/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dt: <http://kizi.vse.cz/novp19/diploma-thesis/>
+    
+CONSTRUCT {
+    ?headRole dt:appliesToRefPeriod ?refPeriod .
+    ?partyRole dt:appliesToRefPeriod ?refPeriod .
+}
+WHERE {
+    GRAPH <https://data.cssz.cz/resource/dataset/pomocne-ciselniky> {
+        ?refPeriod skos:inScheme cssa-ody:DaysScheme .
+        FILTER REGEX(str(?refPeriod), ".*year.*")
+        FILTER REGEX(str(?refPeriod), "^.*\\d{4}-12-31")
+        BIND(REPLACE(str(?refPeriod), "^.*(\\d{4}).*","$1") as ?refPeriodBind)
+    }
+    ?area p:P6 ?headRole .
+    ?headRole p:P580 ?headRoleStartDate .
+    FILTER ( datatype(?headRoleStartDate) = xsd:string)	
+    BIND(REPLACE(str(?headRoleStartDate), "^(\\d{4}).*","$1") as ?headRoleStartDateBind)
+    OPTIONAL {
+        ?headRole p:P582 ?headRoleEndDate .
+        FILTER ( datatype(?headRoleEndDate) = xsd:string)	
+        BIND(REPLACE(str(?headRoleEndDate), "^(\\d{4}).*","$1") as ?headRoleEndDateBind)
+    }
+    FILTER (
+        (bound(?headRoleEndDateBind) && ?refPeriodBind >= ?headRoleStartDateBind && ?refPeriodBind <= ?headRoleEndDateBind)
+        ||
+        (!bound(?headRoleEndDateBind) && ?refPeriodBind >= ?headRoleStartDateBind && ?headRoleStartDateBind > "2000")
+    )
+    OPTIONAL {
+        ?headRole p:P6 ?person .
+        ?person p:P102 ?partyRole .
+        OPTIONAL {
+            ?partyRole p:P580 ?partyRoleStartDate .
+            FILTER (datatype(?partyRoleStartDate) = xsd:string)	
+            BIND(REPLACE(str(?partyRoleStartDate), "^(\\d{4}).*","$1") as ?partyRoleStartDateBind)
+        }
+        OPTIONAL {
+            ?partyRole p:P582 ?partyRoleEndDate .
+            FILTER ( datatype(?partyRoleEndDate) = xsd:string)	
+            BIND(REPLACE(str(?partyRoleEndDate), "^(\\d{4}).*","$1") as ?partyRoleEndDateBind)
+        }
+        FILTER (
+            (bound(?partyRoleEndDateBind) && ?refPeriodBind >= ?partyRoleStartDateBind && ?refPeriodBind <= ?partyRoleEndDateBind)
+            ||
+            (!bound(?partyRoleEndDateBind) && ?refPeriodBind >= ?partyRoleStartDateBind && ?partyRoleStartDateBind > "2000")
+            ||
+            (!bound(?partyRoleStartDateBind) && !bound(?partyRoleEndDateBind))
+        )
+    }
+}
+\end{lstlisting}
