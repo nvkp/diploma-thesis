@@ -109,14 +109,16 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.6.3}Reference Areas}{30}{subsection.7.6.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.7}Discretization}{30}{section.7.7}%
+\contentsline {section}{\numberline {7.7}Discretization}{31}{section.7.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.8}Mining Tasks}{30}{section.7.8}%
+\contentsline {section}{\numberline {7.8}Mining Tasks}{32}{section.7.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.9}Discussion}{30}{section.7.9}%
+\contentsline {subsection}{\numberline {7.8.1}Relation between the pension expenses and the policital alignment of the state's government}{32}{subsection.7.8.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Conclusions}{31}{chapter*.31}%
+\contentsline {section}{\numberline {7.9}Discussion}{32}{section.7.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of References}{32}{chapter*.32}%
+\contentsline {chapter}{Conclusions}{33}{chapter*.34}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Queries and Scripts}{34}{appendix.A}%
+\contentsline {chapter}{List of References}{34}{chapter*.35}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Queries and Scripts}{36}{appendix.A}%
