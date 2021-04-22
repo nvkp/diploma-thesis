@@ -4,7 +4,7 @@
 
 This section describes an experiment of mining associtation rules from RDF data compiled of statistical data structured by the Data Cube Vocabulary and facts pulled from the Wikidata data set that was performed as an practical part of this work. The statistical data come from two sources. The first one is the Czech Social Security Administration and the second one is the Czech Statistical Office. Analysis was performed using the Scala API of the reference implementation of the RDFRules algorithm. The following sectins describe how the available data had to be preprocced to give reasonable results in combination with KG data. The preprocessing was perfomed partly by the implementation's API itself, partly by performing SPARQL queries over the data. The described method can be taken inspiration from when performing similar analysis ie. association rule mining task over the multidimensional data merged with loosely structured graph data. 
 
-\section{Czech Social Security Administration}
+\section{Czech Social Security Administration's Data Cubes}
 
 Czech Social Security Administration (CSSA) is a czech public administration organtisation responsible for collecting social security premiums and contributions to the state employment policy. Since 2015 the organization publishes its statistical yearbook datasets and other (vocabularies, code lists and datasets containing data concerning the internal operation of the organization) in the form LOD and became of the first czech public institutions to do so. The yearbook statistical data sets are modelled using Data Cube Vocabulary. Their dimension values are represented by the SKOS vocabulary. The organization has published 73 datasets so far. All these datasets are downloadable as dumps\footnote{\href{http://data.cssz.cz/web/otevrena-data/katalog-otevrenych-dat}{http://data.cssz.cz/web/otevrena-data/katalog-otevrenych-dat}} or accesible througth a SPARQL endpoint\footnote{\href{http://data.cssz.cz/web/otevrena-data/sparql-query-editor/}{http://data.cssz.cz/web/otevrena-data/sparql-query-editor/}}. The CSSA's URI are dereferenceable.
 
@@ -84,7 +84,7 @@ The CSSA1 dataset uses two distinct schemes for the pension kinds, because in 20
 
 The dimension of sex consists of three distinct values: dimension of male pension, dimension of female pensions and its total. The values are proxy entities linking to the SDMX representations of sexes\footnote{\href{http://purl.org/linked-data/sdmx/2009/code}{http://purl.org/linked-data/sdmx/2009/code}}
 
-\section{Czech Statistical Office}
+\section{Czech Statistical Office's Data Cubes}
 
 The Czech Statistical Office (CZSO) is the main public organization responsible for collecting and analyzing statistical data in the Czech Republic. This organization is for example responsible for the state's census. Data about demography, economics, education, health care etc. are made availabe on the organization's website\footnote{\href{https://vdb.czso.cz/vdbvo2/faces/en/index.jsf?page=uziv-dotaz}{https://vdb.czso.cz/vdbvo2/faces/en/index.jsf?page=uziv-dotaz}} in a form of interactive spreadsheet builder. Thanks to the Opendata.cz initiative this data sets are made available as LOD modelled by the Daca Cube Vocabulary in the initiative's catalogue. The data is also hosted as a SPARQL endpoint\footnote{\href{http://linked.opendata.cz/sparql}{http://linked.opendata.cz/sparql}}. 8 of these data sets have a dimension of reference period. Each data set’s dump file can be downloaded from the catalouge\footnote{The download link URLs are, however, broken and return HTTP status code 404. To get the dump file, word \textit{dumps} has to be substituted with word \textit{soubor} (czech word for \textit{file}). For example, the dump file of the data set \textbf{czso-job-applicants} is available at \href{https://linked.opendata.cz/soubor/czso-job-applicants.trig}{https://linked.opendata.cz/soubor/czso-job-applicants.trig}}.
 
@@ -138,6 +138,8 @@ When adequately preprocced, this data can be utilized to find relations of stati
 % todo P582 a P580 nejsou už potřeba a proto se pak smažou ...
 
 % jak jsem si to musel předzpracovat, vytvořit ty appliesTo
+
+% kolik je to dohromady trojic ...
 
 \section{Filtering the Observations}
 
@@ -300,7 +302,7 @@ To avoid guessing, which number of intervals and which minimal support suits bes
 That means that the number of overall measurements multiplies by the number of distinct discretizations. A situation has to be avoided, when the instantiations of variable representing observations are involving observations not only from various subcubes. The approach to solve this problem no matter how many measures are assigned to each observation will be shown on a sample of data below.
 
 \begin{figure}[h]
-\begin{lstlisting}[language = turtle, caption={XYZ}, label={discsample},captionpos=b escapeinside={(*@}{@*)}]
+\begin{lstlisting}[language = turtle, caption={Observation example}, label={discsample},captionpos=b escapeinside={(*@}{@*)}]
 @prefix qb: <http://purl.org/linked-data/cube#> .
 
 <o1> qb:dataSet <original-dataset> ;
@@ -318,7 +320,7 @@ That means that the number of overall measurements multiplies by the number of d
 Each application of a discretization algorithm will create a new measurement triple for each measure and observation with an object of the assigned interval based on the discretization algorithm and the parameter. The objects in triples assigning the observations to a data set will be changed to point to the particular subcube. In the example below two discretizations for each measure were performed on the two observations. In the example the same pair of discretizations were performed on the two distinct measures, but that does not have to be so. Assigning multiple triples of the same measure is fine as far as the measure is differently discretized. 
 
 \begin{figure}[h]
-\begin{lstlisting}[language = turtle, caption={XYZ}, label={discsample},captionpos=b escapeinside={(*@}{@*)}]
+\begin{lstlisting}[language = turtle, caption={Discretization example}, label={discsample},captionpos=b escapeinside={(*@}{@*)}]
 @prefix qb: <http://purl.org/linked-data/cube#> .
         
 <o1> qb:dataSet <subcube1> ;
@@ -342,18 +344,102 @@ An alternative to creating subcubes based on the concept hierarchy in the master
     \item For each distinct measure in the master cube a set of subcubes would have to be generated. So if the observations are assigned multiple measures (as the CZSO observations are) the number of observations would multiple with the number of measures and the observation URIs would have to be distinguished as one observation cannot be assigned to multiple data sets by the \verb|qb:dataSet| triple.
 \end{enumerate}
 
-% zkus si i tu equisize pro různé min supporty, jestli to nevygeneruje to same co ten ef
-
 \section{Mining Tasks}
 
-% 1 kostka + KG
-% 2 kostky (nejlíp z jiného zdroje) + KG
-
-% finding KG triples
-% predicting measure intervals
+The source codes of the performed experiment are available in repository on github\footnote{\href{https://github.com/nvkp/diploma-thesis-code}{https://github.com/nvkp/diploma-thesis-code}} in the directory \textit{notebooks} in a form of jupyter\footnote{\href{https://jupyter.org/}{https://jupyter.org/}} notebooks. A Scala kernel for jupyter (eg. \textit{almond.sh}\footnote{\href{http://almond.sh/}{http://almond.sh/}}) has to be install in order to execute the code directly from the notebooks (see \textit{README.md}). Some of the notebooks are dedicated to preproccesing of a particular data set and other contain the performed mining tasks. In the preproccesing notebooks the preprocced data set is exported to a text file in the \textit{Turtle} format and also saved into a cache file from which the data set is loaded into memory before a mining task.  Github strictly enforces 100 MB size limit for each file so the cache files and \textit{Turtle} files are not pushed into the repository. In order to run the mining tasks locally one has to create the cache files by running the code in the preproccesing notebooks.
 
 \subsection{Relation between the pension expenses and the policital alignment of the state's government}
 
-% TODO samotné bádání
+A relation can be assumed between the expandature on pensions in a state social security system and the political ideology of the state. A left leaning governments usually tend to spend more on social welfare than the right-wing governments. In this section it is shown how this relation can be described by association rules in the spirit of \ref{asocRule} mined from the data published by CSSA and Wikidata. Data from various countries would be more appropriate for mining such relation. The available data are, however, sufficient for a simple demonstration. 
+
+The data cube used\footnote{\href{https://data.cssz.cz/web/otevrena-data/-/vydaje-na-duchody-v-cr}{https://data.cssz.cz/web/otevrena-data/-/vydaje-na-duchody-v-cr}} is published by CSSA and contains records of total annual expenses on particular pensions. From now on it will be denoted as \textit{expenses}. The only measure of the data cube is the expendature amount in CZK. The dimensions of the data cube are the reference period with the granularity of whole years (from 2008 till 2019) and the dimension of the pension kind containing individual pension kind and also aggregated dimension values. For the year 2008 and 2009 and old pension scheme is used so the observations considering these two years were discarted. For the dimension of reference period 10 distinct values remain and the newer pension kind scheme contains also 10 distinct values. That would suggest that 100 observations remain but there are only 94. For the one-off allowance to pensions there are only 4 observations. That probably means that the expenses for this pension kind in the missing years were zero. So the missing observations with the measured value of zero were created manually.
+
+The original data cube was sliced into 10 subcubes (by SPARQL queries) each containing 10 observations. Each subcube is in a separate file in the folder \verb|data/expenses|. In the notebook \verb|expenses.ipynb| each subcube's measures are dicretized equifrequently (with 2 and 5 intervals) and equisizeably (with the relative support of 20, 30 and 50 percent) assigning each measurement 5 intervals.
+
+The preproccesing of the Wikidata data set (notebook \verb|wikidata.ipynb|) rested in merging the triples returned by queries \ref{wdextract} and \ref{wdapplies} and removing the triples with predicates \verb|P580| and \verb|P582| as they only served to generate annual triples in the query \ref{wdapplies}.
+
+In the notebook (\verb|expenses-wikidata.ipynb|) of the mining task the two preprocessed data sets were loaded and merged together with the reference period linking triples. From this data set containing \numprint{25494} triples an object of index was created. The rules that should be found are described in plain text as \textit{If in any year the current prime minister belongs to a political party that has a certain political alignment then the annual expenses of a certain pension kind fit into certain interval}. Let's write it as a \textit{pseudo} rule pattern in the context of the available data's structure:
+$$
+(\langle Czech\_Republic\rangle\hspace{0.4em}headOfGovernment\hspace{0.4em}?headRole) \land (?headRole\hspace{0.4em}person\hspace{0.4em}?person)
+$$
+$$
+\land (?person\hspace{0.4em}partyRole\hspace{0.4em}?partyRole) \land (?partyRole\hspace{0.4em}party\hspace{0.4em}?party)
+$$
+$$
+\land (?party\hspace{0.4em}alignment\hspace{0.4em}AnyConstant) \land (?partyRole\hspace{0.4em}appliesTo\hspace{0.4em}?refPeriod)
+$$
+$$
+\land (?headRole\hspace{0.4em}appliesTo\hspace{0.4em}?refPeriod) \land (?observation\hspace{0.4em}refPeriod\hspace{0.4em}?refPeriod)
+$$
+$$
+\land (?observation\hspace{0.4em}dataSet\hspace{0.4em}AnyConstant) \Rightarrow (?observation\hspace{0.4em}expenses\hspace{0.4em}AnyConstant)
+$$
+
+The variable $?headRole$ would bind to binding entitities representing an acting of a specific person in the office just as the variable $?partyRole$ would bind to a binding entitites of memberships of a specific person in a specific political party. The rules yielded from this rule pattern would differ only by the entities at the object positions of the fifth and nineth atom and the head atom. The last body atom with the \verb|qb:dataSet| will ensure that all $?observation$ bindings belong to the same sub cube and thus the commensurability of measures will be preserved. There is no need of an atom stating the pension kind, because all observations in a sub cube share the same one. That way the rule is shorter.
+
+Human tends to write a rule pattern and understand a rule from left to right, from the body to the head, but the algorithm creates the rules in the opposite direction. When writing a rule pattern this fact has to be taken into consideration together with which refining operators are available to the algorithm. The rule pattern above makes perfect sense but the algorithm is not able to generate such rules. Have a look at the sixth body atom. When read from the head, the atom introduces new variable $?partyRole$ while the $?headRole$ variable is still open. The algorithm cannot add a new variable to a rule without closing an open variable in the rule. For this particular rule pattern the problem will be solved by moving the seventh atom to the first position in the body and by switching the positions of the fourth and fifth atom. Also the used algorithm implementation does not allow custom names for variables in a pattern. The variable names have to be single characters ordered alphabeticaly beginning with $?a$ from the rule's head. The definition of the rule pattern object to match the seeked relations in this mining task is shown in listing \ref{alignmentExpensesPattern}:
+
+\begin{figure}[h]
+\begin{lstlisting}[language = scala, caption={First pattern definition}, label={alignmentExpensesPattern},captionpos=b, escapeinside={(*@}{@*)}]
+val alignmentExpenses: RulePattern = (
+    AtomPattern(subject = 'f', predicate = appliesTo, `object` = 'b') &:
+    AtomPattern(subject = czURI, predicate = wdProperty(6), `object` = 'f') &:
+    AtomPattern(subject = 'f', predicate = wdProperty(6), `object` = 'e') &:
+    AtomPattern(subject = 'e', predicate = wdProperty(102), `object` = 'c') &:  
+    AtomPattern(subject = 'd', predicate = wdProperty(1387)) &:
+    AtomPattern(subject = 'c', predicate = wdProperty(102), `object` = 'd') &:
+    AtomPattern(subject = 'c', predicate = appliesTo, `object` = 'b') &:
+    AtomPattern(subject = 'a', predicate = cssaRefPeriod, `object` = 'b') &:
+    AtomPattern(subject = 'a', predicate = qbdPredicate, `object` = AnyConstant)
+    =>:
+    AtomPattern(subject = 'a', predicate = expenses)
+)
+\end{lstlisting}
+\end{figure}
+
+This pattern was connected to the mining task definition itself. No minimal support an head coverage thresholds were set so that a maximal number of rules that can be filtered later are found. The maximal rule length set corresponds to the provided rule pattern. The mining task generated \numprint{192} rules\footnote{\href{https://raw.githubusercontent.com/nvkp/diploma-thesis-code/master/rulesets/alignmentExpensesTaskRuleset.txt}{https://raw.githubusercontent.com/nvkp/diploma-thesis-code/master/\\rulesets/alignmentExpensesTaskRuleset.txt}}. The rules with a support of 1 were filtered out and the PCA confidence, the standard confidence and lift was computed on the remaining 116 rules\footnote{\href{https://raw.githubusercontent.com/nvkp/diploma-thesis-code/master/rulesets/alignmentExpensesTaskRulesetFiltered.txt}{https://raw.githubusercontent.com/nvkp/diploma-thesis-code/master/\\rulesets/alignmentExpensesTaskRulesetFiltered.txt}}. The listing below shows two of them as they are written in the export file.
+
+\begin{figure}[h]
+\begin{lstlisting}[language = scala, caption={First pattern's rule sample}, label={alignmentExpensesRulesSample},captionpos=b, escapeinside={(*@}{@*)}]
+(?f prfx:appliesToRefPeriod ?b) ^ (wd:Q213 p:P6 ?f) ^ (?f p:P6 ?e) ^ (?e p:P102 ?c) ^ (?d p:P1387 "centre-right") ^ (?c p:P102 ?d) ^ (?c prfx:appliesToRefPeriod ?b) ^ (?a cssa-od:refPeriod ?b) ^ (?a qb:dataSet <expenses-old-age-total>) -> (?a cssa-om:vydaje-na-duchody-opravene-o-zalohy-v-tis-kc <<3.1797095155E8__3.8222294828E8)_ef3_3/3>) | support: 3, headCoverage: 0.005, confidence: 1.0, pcaConfidence: 1.0, lift: 25.0, headConfidence: 0.04, headSize: 600, bodySize: 3, pcaBodySize: 3
+
+(?f prfx:appliesToRefPeriod ?b) ^ (wd:Q213 p:P6 ?f) ^ (?f p:P6 ?e) ^ (?e p:P102 ?c) ^ (?d p:P1387 "centrism") ^ (?c p:P102 ?d) ^ (?c prfx:appliesToRefPeriod ?b) ^ (?a cssa-od:refPeriod ?b) ^ (?a qb:dataSet <expenses-it>) -> (?a cssa-om:vydaje-na-duchody-opravene-o-zalohy-v-tis-kc <<2.488316469E7__2.553204263E7)_ef3_1/3>) | support: 2, headCoverage: 0.0033333333333333335, confidence: 0.6666666666666666, pcaConfidence: 0.6666666666666666, lift: 22.22222222222222, headConfidence: 0.03, headSize: 600, bodySize: 3, pcaBodySize: 3
+\end{lstlisting}
+\end{figure}
+
+The first rule states that when the government has the center-right political alignment, the total expenses for all types of old age pensions are in the upper third. The second rule predicts the lower third value of expenses on the third degree invalidity pension, when the government's policital alignment is centristic. Note that the head size values are distorted by the performed discretizations. Each of the \numprint{100} observations appears in the head size as many times as there are measure intervals assigned to the head measure predicate. This also distorts the head coverage. Also the lift is over estimated because its denominator works with all \numprint{100} observations when the only observations that matter are that of the sub cube specified in the rule's body.
+
+Quite suprisingly in none of the 116 rules the left alignment is mentioned even though Czech Republic's prime minister from the years 2014 to 2017 was a left leaning politician. Only alignments mentioned are \textit{centre-right} and \textit{centrism}. The only governing party assigned to those values in the covered period is \textit{ANO 2011}\footnote{\href{https://www.wikidata.org/wiki/Q10728124}{https://www.wikidata.org/wiki/Q10728124}}. It seems that the party itself is a sufficient \textit{explanatory variable} for the measure in the data cube. So the pattern was simplified to connect the measured values only to the appropriate party.
+
+\begin{figure}[h]
+\begin{lstlisting}[language = scala, caption={Second pattern definition}, label={partyExpensesPattern},captionpos=b, escapeinside={(*@}{@*)}]
+val partyExpenses: RulePattern = (
+    AtomPattern(subject = 'e', predicate = appliesTo, `object` = 'b') &:
+    AtomPattern(subject = czURI, predicate = wdProperty(6), `object` = 'e') &:
+    AtomPattern(subject = 'e', predicate = wdProperty(6), `object` = 'd') &:
+    AtomPattern(subject = 'd', predicate = wdProperty(102), `object` = 'c') &:  
+    AtomPattern(subject = 'c', predicate = wdProperty(102), `object` = AnyConstant) &:
+    AtomPattern(subject = 'c', predicate = appliesTo, `object` = 'b') &:
+    AtomPattern(subject = 'a', predicate = cssaRefPeriod, `object` = 'b') &:
+    AtomPattern(subject = 'a', predicate = qbdPredicate, `object` = AnyConstant)
+    =>:
+    AtomPattern(subject = 'a', predicate = expenses)
+)
+\end{lstlisting}
+\end{figure}
+
+\numprint{58} rules matching the pattern in \ref{partyExpensesPattern} exceed support of 1. Only party appearing in these rule is the above mentioned \textit{ANO 2011}. It is the latest governing party in the covered period so it could seem that, more than the relation between the pensions expendature and governing party, the rules describe a relation between pensions expendature and time because the measured values are not treated for inflation. There are, however, also rules that predict the lowest of the intervals.
+
+\begin{figure}[h]
+\begin{lstlisting}[language = scala, caption={Second pattern's rule sample}, label={alignmentExpensesRulesSample},captionpos=b, escapeinside={(*@}{@*)}]
+(?e prfx:appliesToRefPeriod ?b) ^ (wd:Q213 p:P6 ?e) ^ (?e p:P6 ?d) ^ (?d p:P102 ?c) ^ (?c p:P102 wd:Q10728124) ^ (?c prfx:appliesToRefPeriod ?b) ^ (?a cssa-od:refPeriod ?b) ^ (?a qb:dataSet <expenses-old-age-total>) -> (?a cssa-om:vydaje-na-duchody-opravene-o-zalohy-v-tis-kc <<3.1797095155E8__3.8222294828E8)_ef3_3/3>) | support: 3, headCoverage: 0.005, confidence: 1.0, pcaConfidence: 1.0, lift: 25.0, headConfidence: 0.04, headSize: 600, bodySize: 3, pcaBodySize: 3
+
+(?e prfx:appliesToRefPeriod ?b) ^ (wd:Q213 p:P6 ?e) ^ (?e p:P6 ?d) ^ (?d p:P102 ?c) ^ (?c p:P102 wd:Q10728124) ^ (?c prfx:appliesToRefPeriod ?b) ^ (?a cssa-od:refPeriod ?b) ^ (?a qb:dataSet <expenses-it>) -> (?a cssa-om:vydaje-na-duchody-opravene-o-zalohy-v-tis-kc <<2.488316469E7__2.553204263E7)_ef3_1/3>) | support: 2, headCoverage: 0.0033333333333333335, confidence: 0.6666666666666666, pcaConfidence: 0.6666666666666666, lift: 22.22222222222222, headConfidence: 0.03, headSize: 600, bodySize: 3, pcaBodySize: 3
+\end{lstlisting}
+\end{figure}
+
+\subsection{Relation between the average salaries and the political alignment of the regional government}
+
+\subsection{Relation between the average pension amounts and the political alignment of the regional government}
 
 \section{Discussion}

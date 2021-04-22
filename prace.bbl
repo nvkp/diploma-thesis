@@ -121,6 +121,49 @@
       \field{type}{{W3C} Recommendation}
       \field{year}{2014}
     \endentry
+    \entry{Galarraga2015}{article}{}
+      \name{author}{4}{}{%
+        {{hash=37684d86bd145fd2fb544c3944a76464}{%
+           family={Galárraga},
+           familyi={G\bibinitperiod},
+           given={Luis},
+           giveni={L\bibinitperiod}}}%
+        {{hash=04816795c9877feddae45c038e2508f3}{%
+           family={Teflioudi},
+           familyi={T\bibinitperiod},
+           given={Christina},
+           giveni={C\bibinitperiod}}}%
+        {{hash=1b753e139c8ab7af870d74e326b796ad}{%
+           family={Hose},
+           familyi={H\bibinitperiod},
+           given={Katja},
+           giveni={K\bibinitperiod}}}%
+        {{hash=55d7f682b85e1f9066365cc900f8331c}{%
+           family={Suchanek},
+           familyi={S\bibinitperiod},
+           given={Fabian},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{d7bf95951951000152c5e46d124e7beb}
+      \strng{fullhash}{557d367cdfe6429caa836dc433221721}
+      \strng{bibnamehash}{d7bf95951951000152c5e46d124e7beb}
+      \strng{authorbibnamehash}{d7bf95951951000152c5e46d124e7beb}
+      \strng{authornamehash}{d7bf95951951000152c5e46d124e7beb}
+      \strng{authorfullhash}{557d367cdfe6429caa836dc433221721}
+      \field{extraname}{1}
+      \field{sortinit}{G}
+      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The VLDB Journal}
+      \field{month}{07}
+      \field{title}{Fast rule mining in ontological knowledge bases with AMIE+}
+      \field{volume}{24}
+      \field{year}{2015}
+      \verb{doi}
+      \verb 10.1007/s00778-015-0394-1
+      \endverb
+    \endentry
     \entry{Galarraga2013}{inproceedings}{}
       \name{author}{4}{}{%
         {{hash=18674af5afb94551a3ce682e24e6706d}{%
@@ -150,6 +193,7 @@
       \strng{authorbibnamehash}{1d5ca0dcef50a6c0946037e7a697d1ee}
       \strng{authornamehash}{1d5ca0dcef50a6c0946037e7a697d1ee}
       \strng{authorfullhash}{5c770da4ca763c325e09a0b506f3ed61}
+      \field{extraname}{2}
       \field{sortinit}{G}
       \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
       \field{labelnamesource}{author}

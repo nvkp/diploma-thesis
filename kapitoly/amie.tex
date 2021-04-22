@@ -4,10 +4,11 @@ Finding association rules in knowledge bases can serve several purposes. New fac
 
 For mining rules from a graph database such as LOD datasets, Inductive Logic Programming (ILP) can be used. ILP work under the Closed World Assumtion (CWA) meaning it supposed that both negative and positive statements are present in the data. However LOD operates under the Open World Assumption (OWA) ie. if a statement is not present in the data, it does not mean that this statement does not correspond to reality. Rules mined by ILP would not reflect this matter. Moreover ILP are not observed to be efficient over large datasets in the order of millions of statements, making it not a viable way to mine rules over real-world knowledge bases such as YAGO or Wikidata.
 
-\section{AMIE}
+\section{AMIE\label{amie}}
 
 An algorithm that is specifically designed to mine rules from data operating under OWA and constisting of binary predicates (just as Linked Data) is AMIE (\textbf{A}ssociation Rule \textbf{M}ining under \textbf{I}ncomplete \textbf{E}vidence).\cite{Galarraga2013} AMIE mines rules in the form of Horn rule. Horn rule is an implication with conjunction of atoms on the left side, called body and a single atom on right side call head. We can imagine an atom as an RDF triple, where subject and object can be replaced by variables. Number of atoms in a rule indicates the length of the rule. In this work rules are represented with an infix notation. The AMIE literature use the Datalog notation commonly used in ILP domain. An example of a rule AMIE seeks to discover is shown below. 
 
+\label{asocRule}
 $$
 (?a\hspace{0.4em}worksIn\hspace{0.4em}?b) \land
 (?b\hspace{0.4em}hasHeadquatersIn\hspace{0.4em}?c) \Rightarrow
@@ -61,10 +62,7 @@ If $\langle s\hspace{0.4em}p\hspace{0.4em}o\rangle\in KBtrue$ then $\forall_{o'}
 
 Meaning that if we know any object for given predicate and subject, we know all triples of containing the predicate and subject together. This assumption is certainly true for predicates with high or complete functionality, such as birthdate or capital. A triple predicted by the measured rule is considered an counterexample only when triples with its combination of subject and predicate are present in the data set and none of those has the triple's object. 
 
-
-
 % todo priklad jak se obe spocitaji
-
 
 % The assumption is also true in the vast majority of cases for relations that are not functional, but that have a high functionality.
 
@@ -74,13 +72,15 @@ $$conf_{pca} := \frac{supp(\vec{B} \Rightarrow r(x,y))}{\# (x,y): \exists z_{1}\
 
 \subsection{Algorithm}
 
-% TODO algoritmus
+The AMIE algorithm takes as input parameters the RDF graph the rules are to be mined from (\textit{KG}), the minimum head coverage of the rules (\textit{minHC}), maximal length of the rules (\textit{maxLen}) and the minimal confidence of the rules (\textit{minConf}). For each distinct predicate in the graph a rule with empty body and a head atom with this predicate is created an the algorithm is initialized by filling a queue with those rules. 
+
+The algorithm than iteratively dequeues rules from the queue. If the dequeued rules complies the criteria set by the input parameters, it is accepted for output and added to the result rules array. If rule's length is shorter than the maximal stated length, the rule is refined meaning new atoms are added to its body to create new rules. If a new rule reaches the defined minimal head coverage and is not already present in the queue, it is added to the rule queue. The algorithm continues dequeueing the rules until the queue is empty and no more new rules can be created by the refinement.
 
 \begin{algorithm}
 \caption{AMIE algorithm}
 \scriptsize
 \begin{algorithmic}[1]
-\Procedure{AMIE}{$x, y$}
+\Procedure{AMIE}{$KG, minHC, maxLen, minConf$}
 \State $queue = [(?a\hspace{0.4em}r_{1}\hspace{0.4em}?b), (?a\hspace{0.4em}r_{2}\hspace{0.4em}?b) \ldots (?a\hspace{0.4em}r_{m}\hspace{0.4em}?b)]$
 \State $output = \langle \rangle$
 \While {$\neg queue.isEmpty()$}
@@ -102,104 +102,82 @@ $$conf_{pca} := \frac{supp(\vec{B} \Rightarrow r(x,y))}{\# (x,y): \exists z_{1}\
 \end{algorithmic}
 \end{algorithm}
 
-
-\subsection{Refinement Operators}
-
-% In the process of traversing the search space, we can extend a rule by using one of the following operators
-
-\begin{description}
-    \item[$O_{D}$] add dangling atom (with a fresh variable)
-    \item[$O_{I}$] add instantiated atom (with a constant)
-    \item[$O_{C}$] add closing atom (both arguments are shared variables)
-\end{description}
-
-\subsection{Count Projection Queries}
-
-new relation r to the rule $B_{1} \land \ldots B_{n-1} \Rightarrow H$
-
-% TODO selecty
-
-find all relations that lead to a new rule that passes the min head coverage threshhold.
-
-\subsection{In-Memory Database}
-
-query implementation
-
-one fact index for each permutation of $\{S,P,O\}$
-
-allowing to check existence of a triple in constant time
-
-allowing to efficiently fetch instantiation of an atom
-
-aggregated indexes S,P,O: store aggregated count of facts for each key of the fact indexes: P stores count of triples for each relation
-
-\subsubsection{Size Queries}
-
-$size(livesIn(x,y))\rightarrow$ aggregated index \textbf{P}
-
-1. look up: \textit{livesIn} in \textbf{P}
-
-$size(livesIn(x,USA))\rightarrow$ fact index \textbf{POS}
-
-1. look up: \textit{livesIn} in \textbf{POS}
-
-2. look up: USA in \textbf{OS} and count of subjects
-
-\subsubsection{Existence Queries}
-
-to determine whether there exists a binding for a conjunctive query
-
-\subsubsection{Select Queries}
-
-finding distinct instances of a variable, which is in a conjunction of atoms
-
-\subsubsection{Count Queries}
-
-compute count of bindings
-
-for confidence of a rule
-
-first fire SELECT 
-%TODO select 
-then for each binding of x it instantiates the query and fires select query on variable y, adding up the count of instantiations
-
-\section{AMIE+}
-
-does not alter output in any way compared to AMIE.
-
-\begin{enumerate}
-    \item refinements phase
-    \item confidence evaluation
-\end{enumerate}
+When Choosing larger thresholds on minimal head coverage and minimal confidence and shorter maximum length makes the algorithm stop earlier and generate fewer rules. Choosing smaller thresholds and allowing generation of longer rules results in longer runtime and more found rules. So the setting of these parameters always introduces a trade-off between the runtime and the number of returned rules.
 
 \subsection{Rule Refinement}
 
-Given a maximum rule length maxLen and a non-closed Horn rule of length maxLen-1, AMIE+ will refine it only if it is possible to close it before exceeding the length constraint.
+By simply enumerating all possible rules and then computing the interest measures for them in order to find the significant ones is not a fiasible approach for large graphs. The exploration of the the search space of the rules has to be done efficiently. Such exploration is performed by the rules refinement. During the rule refinement, the new atoms are added to the rule by three means (called \textit{operators}). Each operator creates zero to many rules when applied to a rule.
 
-For a not-yet-closed rule of length maxLen-1, AMIE+ will not apply the $O_{D}$, because this would result in a non-closed rule, which will be neihter output nor refined.
+\begin{description}
+    \item[$O_{D}$] A \textit{dangling} atom is added to the rule. This atom introduces a new variable to the rule. Its second variable is already present in the rule.
+    \item[$O_{I}$] An \textit{instantiated} atom extends the rule. Instantiated atom contains a constant and a variable already present in the rule.
+    \item[$O_{C}$] A \textit{closing} atom is added. This atom's both variables are already present in the rule.
+\end{description}
 
-If a rule contains more than two non-closed variables, AMIE+ will skip the application of $O_{C}$. $O_{C}$ cannot close more than two variables.
+\subsection{Querying the Graph}
 
-Rules with more than one non-closed variable are not refined with instantiated atoms, because the addition of and instantiated atom can close at most one variable.
+The algorithm uses so-called \textit{count projection queries} to find the predicates and entities with which new atoms are created during the rule refinement by applying the mining operators, such that the minimum head coverage of the new rule is reached. These queries are not efficient when implemented in SPARQL or SQL. So the authors of the AMIE algorithm suggested in-memory database that is tailored to this type of queries.
 
-Rules with $conf_{pca} = 1$ are not further refined -> perfects rules
+The data structure constists of six \textit{fact indexes}: each for a permutation of subject (\verb|S|), predicate (\verb|P|) and object (\verb|O|). Let they be denoted as \verb|SPO|, \verb|SOP|, \verb|PSO|, \verb|POS|, \verb|OSP| and \verb|OPS|. Each fact index is a hash table that maps elements of the first column to a hash table that constains elements of the second column as key mapping to a set of third column elements, such that triples in the graph containing the first column element, second column element and the third column element exist. For example the index SPO is a hash table with each subject present in the graph as a key. Every subject key points to a hash table with keys of predicates that exist with this subject in at least one triple in the graph. The predicate key then points to a array of objects for which triples with this subject, predicate and object exist in the graph. That means that each triple in the graph is store six times in this database.
 
-\subsubsection{Simplyfing Projection Queries}
+Along with the fact indexes, the \textit{aggregated} indexes are used for the algorithm. There are three (\verb|S|, \verb|P|, \verb|O|) of them for each triple position and they store number of triples in the graph that contain the element of corresponding key. For example the index \verb|P| stores number of triples for each distinct predicate in the graph. The numbers have to be precomputed before initializing the mining. With these indexes, it is easy to check of size of an atom (\textit{size queries}). When computing for example the size of atom \verb|?a knows ?b| the algorithm would turn to the aggregated index P and simply look up the number corresponding to the key \verb|knows|. For an atom with a constant instead of one of the variables, a fact index is used. For computing the size for an atom \verb|?a knows John_Smith| the algorithm would look into the \verb|POS| index and find a hash table corresponding to the predicate \verb|knows|. Then in this hash table it would find the array corresponding to the key of the entity \verb|John_Smith| and count the items in the array. For checking the existence of a triple any fact index can be used. Either way the database allows checking for existence of a triple or computing atom's size in constant time. A drawback of this is that the database is six times memory-demanding than the input graph itself.
 
-addition of a dangling atom cannot reduce support when:
+The algorithm exercices other types of queries. The size queries are part of the so-called \textit{existence queries} that check for existence of a binding of a conjunction of atoms. The existence queries are in turn used in the so-called \textit{select queries} that look for all instances of a variable in a conjunction of atoms. The select queries are part of the \textit{count queries} that count distinct bindings to variables of an atom in a conjunction of atom. This is useful for computing the confidence of a rule. 
+
+For the PCA confidence of a rule the denominator is the bindings count of head atom's variables $x$ and $y$ for which $(x\hspace{0.4em}r\hspace{0.4em}y') \land \vec{B}$ can be instantiated from the graph. To compute the denominator, the algorithm first fires SELECT DISTINCT $x$ where $(x\hspace{0.4em}r\hspace{0.4em}y') \land \vec{B}$. Then for each found $x$ it instantiates the conjunction with with $x$ and fires SELECT DISTINCT $y$ where $(x\hspace{0.4em}r\hspace{0.4em}y') \land \vec{B}$. By adding up the numbers of distinct $y$ from each query the denominator is computed.
+
+\subsubsection{Count Projection Queries}
+
+The select queries are also necessary for the count projection queries to find the predicates and entities for new atoms for a rule during the rule refinement. The algorithm considers the set minimal head coverage when creating the new atoms to be added. Only the atoms are added for which the new rule still reaches the minimal head coverage. The general structure of a count projection query is as this:
+
+$SELECT$ $x,$ $COUNT(H)$ $WHERE$ $H \land \vec{B}\\$
+$SUCH$ $THAT$ $COUNT(H)\geq k$
+
+where x can represent either predicates or entities of new atoms. $\vec{B}$ is body of the new rule including the added atom. The symbol $k$ stands for an absolute translation of the minimal head coverage for the rule: $minHC \times size(H)$. The authors of the algorithm provide following example for explaining the usage of count projection queries during a rule refinement. The rule $(?x\hspace{0.4em}marriedTo\hspace{0.4em}?z) \Rightarrow (?x\hspace{0.4em}livesIn\hspace{0.4em}?y)$ is about to be refined. When applying a dangling atom operator to this rule, atoms are to be created that contain a new variable ($?w$). The new variable in the new atoms will be either:
+
+\begin{itemize}
+    \item at the position of subject and the variable $?y$ will be at the position of object: $(?w\hspace{0.4em}p\hspace{0.4em}?y)$
+    \item at the position of subject and the variable $?z$ will be at the position of object: $(?w\hspace{0.4em}p\hspace{0.4em}?z)$
+    \item at the position of object and the variable $?y$ will be at the position of subject: $(?y\hspace{0.4em}p\hspace{0.4em}?w)$
+    \item at the position of object and the variable $?z$ will be at the position of subject: $(?z\hspace{0.4em}p\hspace{0.4em}?w)$
+\end{itemize}
+
+For each of those four \textit{join combinations} a count projection query will be fired to find predicates to be substituted into them:
+
+$SELECT$ $p,$ $COUNT(?x\hspace{0.4em}livesIn\hspace{0.4em}?y)\\$ 
+$WHERE$ $(?x\hspace{0.4em}livesIn\hspace{0.4em}?y) \land (?x\hspace{0.4em}marriedTo\hspace{0.4em}?z) \land (X\hspace{0.4em}p\hspace{0.4em}Y)\\$
+$SUCH$ $THAT$ $COUNT(?x\hspace{0.4em}livesIn\hspace{0.4em}?y)\geq k$
+
+$(X\hspace{0.4em}p\hspace{0.4em}Y) \in \{(?w\hspace{0.4em}p\hspace{0.4em}?y),(?w\hspace{0.4em}p\hspace{0.4em}?z),(?y\hspace{0.4em}p\hspace{0.4em}?w),(?z\hspace{0.4em}p\hspace{0.4em}?w)\}$
+
+If the dangling atom operator is applied on an intermediate rule (not all variables are closed) like this one, the dangling atoms are joined on the non-closed variables ($?y$ and $?z$) in this case. If the rule is closed, the dangling atom is joined on all variables in the rule. The closed atom operator would apply join combinations of $(?y\hspace{0.4em}p\hspace{0.4em}?z)$ and $(?z\hspace{0.4em}p\hspace{0.4em}?y)$ for this example. If there were only one open variable, the closed atom operator would apply join combinations with this variable and each other variable in the rule. If there were no open variable, the operator would apply join combinations of all possible pairs of variables in the rule. When applying the instantiated atom operator, first the dangling atom is used to generate new atoms with new variable. For each this new atom a count projection query on instance of the new variable in the atom is fired to find all entities, that can substitute the variable and the minimal head coverage is still reached. Each found entity then forms a new rule with the new atom with the instantiated variable. This is an example of the query for atom $(?x\hspace{0.4em}citizenOf\hspace{0.4em}?w)$:
+
+$SELECT$ $w,$ $COUNT(?x\hspace{0.4em}livesIn\hspace{0.4em}?y)$ $WHERE\\$
+$(?x\hspace{0.4em}livesIn\hspace{0.4em}?y) \land (?x\hspace{0.4em}marriedTo\hspace{0.4em}?z) \land (?x\hspace{0.4em}citizenOf\hspace{0.4em}w)\\$
+$SUCH$ $THAT$ $COUNT(?x\hspace{0.4em}livesIn\hspace{0.4em}?y)\geq k$
+
+\section{AMIE+}
+
+In \cite{Galarraga2015} the authors of the AMIE algorithm came up with an improved version reffering to it as AMIE+. The improvements lie in the rule refinement phase and the confidence evaluation. The improvements do not alter the output of the algorithm, they only speed it up so that it is applicable to mining over large knowledge bases.
+
+\subsection{Rule Refinement}
+
+From the refined rule, it is sometimes possible to infere that an application of a operator would not yield better on any new rules. AMIE+ adds these checks before an operator application:
 
 \begin{enumerate}
-    \item parent rule already contains atoms with the same relation as a dangling atom
-    \item these atoms have a variable in common with the dangling atom
+    \item When a not-closed rule with a length of $maxLen - 1$ is being refined, the dangling atom operator is not applied, since the new variable cannot be closed before exceeding the $maxLen$ threshold.
+    \item When a not-closed rule with a length of $maxLen - 1$ and more than two open variables is being refined, the closed atom operator is not applied, because one variable would still be open when the rule exceeds the $maxLen$ constraints so no such rules would be accepted for output.
+    \item A not-closed rule with a length of $maxLen - 1$ and more than one open variable is not applied an instantiated atom operator on, because the instantiated atom operator can only close at most one variable.
+    \item If the refined rule reaches PCA confidence of 1, it is no further refined, since the new rule would not increase in confidence. They can only decrease in support.
 \end{enumerate}
 
-Both rules have to have same support.
+Also in some cases a dangling atom cannot reduce support of a rule. It is when the parent rule already contains atoms with the same relation as a dangling atom and these atoms have a variable in common with the dangling atom. The child rules would have the same support as the parent rule, so the support computation for these rules can be skipped.
 
 \subsection{Speeding Up Confidence Evaluation}
 
-approximation of confidence, tends to overestimate (4\% of errors)
+The most important improvement is the confidence approximation. Authors state that during experiments with AMIE, 35\% of runtime was spent on the confidence compututation. The algorithm has to at first compute the rule's confidence and only after that the rule can be discarded when it does not the reach a $minConf$ threshold. So the algorithm can spend hundreds of milliseconds computing confidence of a rule for nothing. But instead of computing it, the confidence can be estimated, which is much faster (the authors claim 200-fold speed up). The approximation is based on statistics about predicates (functionality and inverse functionality of predicates, size of the joins betweeen predicates etc.) in the input graph, that are precomputed when the input graph is loaded into the in-memory database. 
 
-turns days runtime to minutes
+The approximation is designed to overestimate the confidence so that no high confidence rules are pruned. But the approximation does not just simply substitute the exact confidence computation. The approximation is only applied to rules that have intermediate variables (variables that do not appear in the head atom) and there exists a single path to one head variable to the other through the intermediate variables. For example the rule $(?a\hspace{0.4em}livesIn\hspace{0.4em}?b) \land (?b\hspace{0.4em}hasStreet\hspace{0.4em}?c) \Rightarrow (?a\hspace{0.4em}worksIn\hspace{0.4em}?c)$ has one intermediate variable $?b$. There is a single path of variables connecting the variables of the rule's head: $?a \rightarrow ?b \rightarrow ?c$. So this rule's confidence would be approximated instead of computed. Rules without intermediate variables are supposed to have smaller number of bindings to their body so the confidence should be quicker to computed. Confidence for ules with more than single path connecting the head variables (such as $(?a\hspace{0.4em}livesIn\hspace{0.4em}?b) \land (?b\hspace{0.4em}hasStreet\hspace{0.4em}?c) \land (?a\hspace{0.4em}bornIn\hspace{0.4em}?d) \land (?d\hspace{0.4em}hasStreet\hspace{0.4em}?c)\Rightarrow (?a\hspace{0.4em}worksIn\hspace{0.4em}?c)$ that has two paths: $?a \rightarrow ?b \rightarrow ?c$ and $?a \rightarrow ?d \rightarrow ?c$) is also thought to be easy to compute because more variable paths tend to restrict the number of head variables bindings. If the estimated value reaches the $minConf$ threshold, the exact confidence value is computed as well.
 
 \section{RDFRules}
 

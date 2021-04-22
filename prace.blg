@@ -1,18 +1,18 @@
 [0] Config.pm:312> INFO - This is Biber 2.15
 [0] Config.pm:315> INFO - Logfile is 'prace.blg'
-[68] biber:330> INFO - === Út dub 13, 2021, 13:08:24
-[80] Biber.pm:415> INFO - Reading 'prace.bcf'
-[140] Biber.pm:952> INFO - Found 7 citekeys in bib section 0
-[153] Biber.pm:4334> INFO - Processing section 0
-[162] Biber.pm:4523> INFO - Looking for bibtex format file 'literatura.bib' for section 0
-[163] bibtex.pm:1682> INFO - LaTeX decoding ...
-[177] bibtex.pm:1494> INFO - Found BibTeX data source 'literatura.bib'
-[204] Utils.pm:384> WARN - month field 'February' in entry 'rdfPrimer2004' is not an integer - this will probably not sort properly.
-[211] Utils.pm:384> WARN - month field 'February' in entry 'turtlew3c2014' is not an integer - this will probably not sort properly.
-[215] Utils.pm:384> WARN - month field 'January' in entry 'sparqlw3c2008' is not an integer - this will probably not sort properly.
-[260] UCollate.pm:68> INFO - Overriding locale 'cs_CZ' defaults 'variable = shifted' with 'variable = non-ignorable'
-[260] UCollate.pm:68> INFO - Overriding locale 'cs_CZ' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[260] Biber.pm:4162> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'cs_CZ'
-[269] bbl.pm:651> INFO - Writing 'prace.bbl' with encoding 'UTF-8'
-[273] bbl.pm:754> INFO - Output to prace.bbl
-[273] Biber.pm:128> INFO - WARNINGS: 3
+[74] biber:330> INFO - === St dub 21, 2021, 18:10:42
+[88] Biber.pm:415> INFO - Reading 'prace.bcf'
+[153] Biber.pm:952> INFO - Found 8 citekeys in bib section 0
+[166] Biber.pm:4334> INFO - Processing section 0
+[176] Biber.pm:4523> INFO - Looking for bibtex format file 'literatura.bib' for section 0
+[178] bibtex.pm:1682> INFO - LaTeX decoding ...
+[196] bibtex.pm:1494> INFO - Found BibTeX data source 'literatura.bib'
+[223] Utils.pm:384> WARN - month field 'February' in entry 'rdfPrimer2004' is not an integer - this will probably not sort properly.
+[230] Utils.pm:384> WARN - month field 'February' in entry 'turtlew3c2014' is not an integer - this will probably not sort properly.
+[235] Utils.pm:384> WARN - month field 'January' in entry 'sparqlw3c2008' is not an integer - this will probably not sort properly.
+[295] UCollate.pm:68> INFO - Overriding locale 'cs_CZ' defaults 'variable = shifted' with 'variable = non-ignorable'
+[295] UCollate.pm:68> INFO - Overriding locale 'cs_CZ' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[295] Biber.pm:4162> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'cs_CZ'
+[306] bbl.pm:651> INFO - Writing 'prace.bbl' with encoding 'UTF-8'
+[311] bbl.pm:754> INFO - Output to prace.bbl
+[311] Biber.pm:128> INFO - WARNINGS: 3

@@ -426,6 +426,12 @@ INPUT /usr/share/texmf/fonts/tfm/public/lm/lmbsy10.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr6.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmri9.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx9.tfm
+INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang3.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang3.sty
 OUTPUT /home/petnovak/github/nvkp/diploma-thesis/zaver.aux
 INPUT /home/petnovak/github/nvkp/diploma-thesis/zaver.tex
 INPUT /home/petnovak/github/nvkp/diploma-thesis/zaver.tex
@@ -436,12 +442,6 @@ INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmcsc10.tfm
 OUTPUT /home/petnovak/github/nvkp/diploma-thesis/app01.aux
 INPUT /home/petnovak/github/nvkp/diploma-thesis/app01.tex
 INPUT /home/petnovak/github/nvkp/diploma-thesis/app01.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang3.sty
-INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/lstlang3.sty
 INPUT /home/petnovak/github/nvkp/diploma-thesis/prace.aux
 INPUT /home/petnovak/github/nvkp/diploma-thesis/kapitoly/knowledgegraphs.aux
 INPUT /home/petnovak/github/nvkp/diploma-thesis/kapitoly/knowledgegraphs.aux
