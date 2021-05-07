@@ -49,7 +49,7 @@
       \strng{authornamehash}{3ef2e0fc27ba9ef984117a323472bdd3}
       \strng{authorfullhash}{d690d4ae6379f608f2fd470b87c2afe9}
       \field{sortinit}{B}
-      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{month}{2}
@@ -77,7 +77,7 @@
       \strng{authornamehash}{d469e0df304c98f67b55d087ea6187a1}
       \strng{authorfullhash}{d469e0df304c98f67b55d087ea6187a1}
       \field{sortinit}{B}
-      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Linked Data - Design Issues}
@@ -112,7 +112,7 @@
       \strng{authornamehash}{59a9966a3bbbce0087db1157ed4e216f}
       \strng{authorfullhash}{59a9966a3bbbce0087db1157ed4e216f}
       \field{sortinit}{C}
-      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{month}{1}
@@ -152,7 +152,7 @@
       \strng{authorfullhash}{557d367cdfe6429caa836dc433221721}
       \field{extraname}{1}
       \field{sortinit}{G}
-      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{The VLDB Journal}
@@ -195,7 +195,7 @@
       \strng{authorfullhash}{5c770da4ca763c325e09a0b506f3ed61}
       \field{extraname}{2}
       \field{sortinit}{G}
-      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{WWW 2013 - Proceedings of the 22nd International Conference on World Wide Web}
@@ -231,7 +231,7 @@
       \strng{authornamehash}{17ae26f2157cfb8702683fb417996e21}
       \strng{authorfullhash}{17ae26f2157cfb8702683fb417996e21}
       \field{sortinit}{H}
-      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{isbn}{9781608454303}
@@ -264,7 +264,7 @@
       \strng{authornamehash}{326a5f749f7c4fd2bc4483907da456c1}
       \strng{authorfullhash}{326a5f749f7c4fd2bc4483907da456c1}
       \field{sortinit}{M}
-      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{month}{2}
@@ -297,7 +297,7 @@
       \strng{authornamehash}{836b969fa9b2eeb117f5d2c8855d570e}
       \strng{authorfullhash}{836b969fa9b2eeb117f5d2c8855d570e}
       \field{sortinit}{P}
-      \field{sortinithash}{bb5b15f2db90f7aef79bb9e83defefcb}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{month}{1}

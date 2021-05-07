@@ -141,7 +141,19 @@ When adequately preprocced, this data can be utilized to find relations of stati
 
 % kolik je to dohromady trojic ...
 
+\section{YAGO Triples}
+
+Triples concerning the entitities of reference areas in the examined data cubes can also be found in the YAGO\footnote{\href{https://yago-knowledge.org/}{https://yago-knowledge.org/}} dataset, which extracts facts about real world entities from various sources (Wikipedia, GeoNames, WordNet etc.). For a change unlike with the Wikidata dataset, for this experiment the needed triples are not extracted according to a rigidly structured CONSTRUCT queries but with loose DESCRIBE queries returning all triples concerning the seeked entities. The used queries\footnote{\href{https://github.com/nvkp/diploma-thesis-code/tree/master/data/yago}{https://github.com/nvkp/diploma-thesis-code/tree/master/data/yago}} extract the triples containing the reference areas themselves, the entities appearing in the triples together with the reference area entities (\textit{hop~1}) and the entities appearing in the triples of those entities (\textit{hop 2}). YAGO's public SPARQL endpoint's web interface\footnote{\href{https://yago-knowledge.org/sparql}{https://yago-knowledge.org/sparql}} has trouble handling the volume of the triples returned in the latter mentioned queries so one is better off quering the endpoint directly through a HTTP client.
+
+Both districts and regions of the Czech Republic have their class\footnote{\href{http://yago-knowledge.org/resource/Districts\_of\_the_Czech\_Republic}{http://yago-knowledge.org/resource/Districts\_of\_the\_Czech\_Republic}}\footnote{\href{http://yago-knowledge.org/resource/Regions\_of\_the\_Czech\_Republic}{http://yago-knowledge.org/resource/Regions\_of\_the\_Czech\_Republic}} of which they are subclass in the YAGO dataset so the needed triples are easy to query. Total of \numprint{2992361} distinct triples was extracted, containing data about persons connected to the areas, geographical information about the areas etc.
+
+% ukázat přiklad dat, najdi z fuseki, ... describe jeden district, ...
+
+% some predicates are irrelevant: vyjmenovat, by odstranění techto triples X distinct triples remain
+
 \section{Filtering the Observations}
+
+% obecně filtering data (i KG se vyfiltrovaly, mám to rozdělit do podkapitolek?)
 
 The values for the city of Prague are duplicated. The city is assigned an entity both as a region and as a district. The administrative area of the Czech Republic's capital is given a special status by the Act No. 131/2000 Coll., on the Capital City of Prague and does not in fact fall into neighter of those categories. Nonetheless, Prague is assigned an identifier both as a district (\numprint{3100}) and as a region (\numprint{19}) in the RTIAR registry. When it comes to total population of the area (\numprint{1324227} as of 2020), it is comparable to other czech regions. The least populated is the Karlovy Vary Region with around \numprint{300000} inhabitants and the most populated: the Central Bohemian Region has around \numprint{1300000} inhabitants. Its surface area is on the other hand comparable with the districts. As the statistics about pensioners are certainly more correlated with the population rather than the surface area, the observation allocated to the dimension value of Prage as being district would be filtered out to maintain the commensurability along values measured for districts (see \ref{cssaSlicing}).
 
@@ -438,8 +450,32 @@ val partyExpenses: RulePattern = (
 \end{lstlisting}
 \end{figure}
 
-\subsection{Relation between the average salaries and the political alignment of the regional government}
+\subsection{Appending the YAGO Data Set to the CZSO Data Cubes}
 
-\subsection{Relation between the average pension amounts and the political alignment of the regional government}
+% o datasetu jaur (job applicants and unemployment rate) => že to sou spolu dost korelující measures, že jsem na to musel myslet
+
+% jaké to má dimenze, jaké hodnoty v dimenzích, jak jsem to nasekal
+
+% kde v gitu jsou rezy, kde jsou dané notebooky (jenom footnoty)
+
+% jaky pattern sem nastavil
+
+% vyšší support diskriminuje kraje, takže supportem jsem neomezoval
+
+% kolik to našlo pravidel, jak jsem si je profiltroval
+
+% jak sem si je poshlukoval
+
+% příklady pravidel, ukázat nějaké užitečné a ukázat nějaké vadné
+
+\subsection{Relation Between Measures from Different Data Cubes}
+
+% pensions-salaries
+
+% jake jsou dimenze tech ruznych rezu
+
+%\subsection{Relation between the average salaries and the political alignment of the regional government}
+
+%\subsection{Relation between the average pension amounts and the political alignment of the regional government}
 
 \section{Discussion}

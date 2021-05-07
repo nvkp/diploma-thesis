@@ -87,29 +87,31 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {7.3}Wikidata}{28}{section.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.4}Filtering the Observations}{29}{section.7.4}%
+\contentsline {section}{\numberline {7.4}YAGO Triples}{29}{section.7.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.5}Slicing the Cubes}{29}{section.7.5}%
+\contentsline {section}{\numberline {7.5}Filtering the Observations}{29}{section.7.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.6}Linking}{32}{section.7.6}%
+\contentsline {section}{\numberline {7.6}Slicing the Cubes}{30}{section.7.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.6.1}Sex Dimension Values}{32}{subsection.7.6.1}%
+\contentsline {section}{\numberline {7.7}Linking}{32}{section.7.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.6.2}Reference Periods}{32}{subsection.7.6.2}%
+\contentsline {subsection}{\numberline {7.7.1}Sex Dimension Values}{32}{subsection.7.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.6.3}Reference Areas}{33}{subsection.7.6.3}%
+\contentsline {subsection}{\numberline {7.7.2}Reference Periods}{33}{subsection.7.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.7}Discretization}{34}{section.7.7}%
+\contentsline {subsection}{\numberline {7.7.3}Reference Areas}{33}{subsection.7.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.8}Mining Tasks}{35}{section.7.8}%
+\contentsline {section}{\numberline {7.8}Discretization}{34}{section.7.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.8.1}Relation between the pension expenses and the policital alignment of the state's government}{36}{subsection.7.8.1}%
+\contentsline {section}{\numberline {7.9}Mining Tasks}{36}{section.7.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.8.2}Relation between the average salaries and the political alignment of the regional government}{40}{subsection.7.8.2}%
+\contentsline {subsection}{\numberline {7.9.1}Relation between the pension expenses and the policital alignment of the state's government}{36}{subsection.7.9.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.8.3}Relation between the average pension amounts and the political alignment of the regional government}{40}{subsection.7.8.3}%
+\contentsline {subsection}{\numberline {7.9.2}Appending the YAGO Data Set to the CZSO Data Cubes}{39}{subsection.7.9.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.9}Discussion}{40}{section.7.9}%
+\contentsline {subsection}{\numberline {7.9.3}Relation Between Measures from Different Data Cubes}{39}{subsection.7.9.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.10}Discussion}{39}{section.7.10}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{Conclusions}{41}{chapter*.34}%
 \defcounter {refsection}{0}\relax 
