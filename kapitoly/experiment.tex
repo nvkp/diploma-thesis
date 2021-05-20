@@ -135,25 +135,28 @@ wd:Q737014 rdfs:label "centre-left"@en .
 
 When adequately preprocced, this data can be utilized to find relations of statistical data described in the data cubes of CSSA and CZSO and the political cycle in the country. For example a rule can be found that states, that if in any year, the head of the Czech Republic's government was a member of a left-leaning policital party, the pension expenses for one-off allowance to pensions were above average. A query that extracts this data from the Wikidata's SPARQL endpoint is listed in \ref{wdextract}. This data, however, cannot be used for mining such rules yet. Measures in the data cubes are recorded on year to year bases. For the governmental roles and political affiliations it is only know the start date and end date. It is necessary to transform these triples into set of triples stating that a governmental role or the policital affiliation \textit{applies} for a certain year. The edge years are a bit tricky because the role or the membership was not valid for the whole year it started or ended. To facilitate the query and to generate more triples I decided to generate the triples for the edge years as well. The SPARQL query that constructs the \textit{appliesToRefPeriod} triples from the extracted data is listed in \ref{wdapplies}. The triples stating the start dates and end dates are no longer needed and do not have to be loaded into the RDFRules mining task.
 
-% todo P582 a P580 nejsou už potřeba a proto se pak smažou ...
-
-% jak jsem si to musel předzpracovat, vytvořit ty appliesTo
-
-% kolik je to dohromady trojic ...
+The triples with predicates of \verb|p:P582| and \verb|p:P580| are no longer needed and are filtered out during the preproccesing. That will leave the data with \numprint{24410} distinct triples.
 
 \section{YAGO Triples}
 
 Triples concerning the entitities of reference areas in the examined data cubes can also be found in the YAGO\footnote{\href{https://yago-knowledge.org/}{https://yago-knowledge.org/}} dataset, which extracts facts about real world entities from various sources (Wikipedia, GeoNames, WordNet etc.). For a change unlike with the Wikidata dataset, for this experiment the needed triples are not extracted according to a rigidly structured CONSTRUCT queries but with loose DESCRIBE queries returning all triples concerning the seeked entities. The used queries\footnote{\href{https://github.com/nvkp/diploma-thesis-code/tree/master/data/yago}{https://github.com/nvkp/diploma-thesis-code/tree/master/data/yago}} extract the triples containing the reference areas themselves, the entities appearing in the triples together with the reference area entities (\textit{hop~1}) and the entities appearing in the triples of those entities (\textit{hop 2}). YAGO's public SPARQL endpoint's web interface\footnote{\href{https://yago-knowledge.org/sparql}{https://yago-knowledge.org/sparql}} has trouble handling the volume of the triples returned in the latter mentioned queries so one is better off quering the endpoint directly through a HTTP client.
 
-Both districts and regions of the Czech Republic have their class\footnote{\href{http://yago-knowledge.org/resource/Districts\_of\_the_Czech\_Republic}{http://yago-knowledge.org/resource/Districts\_of\_the\_Czech\_Republic}}\footnote{\href{http://yago-knowledge.org/resource/Regions\_of\_the\_Czech\_Republic}{http://yago-knowledge.org/resource/Regions\_of\_the\_Czech\_Republic}} of which they are subclass in the YAGO dataset so the needed triples are easy to query. Total of \numprint{2992361} distinct triples was extracted, containing data about persons connected to the areas, geographical information about the areas etc.
+Both districts and regions of the Czech Republic have their class\footnote{\href{http://yago-knowledge.org/resource/Districts\_of\_the_Czech\_Republic}{http://yago-knowledge.org/resource/Districts\_of\_the\_Czech\_Republic}}\footnote{\href{http://yago-knowledge.org/resource/Regions\_of\_the\_Czech\_Republic}{http://yago-knowledge.org/resource/Regions\_of\_the\_Czech\_Republic}} of which they are subclass in the YAGO dataset so the needed triples are easy to query. Total of \numprint{2992361} distinct triples was extracted, containing data about persons connected to the areas, geographical information about the areas (for example which region contains which district) etc.
 
-% ukázat přiklad dat, najdi z fuseki, ... describe jeden district, ...
+\begin{figure}[h]
+\begin{lstlisting}[language = turtle, caption={Example of the Extracted YAGO Triples (Source: author)}, label={yagoexample},captionpos=b, escapeinside={(*@}{@*)}]
+@prefix schema: <http://schema.org/> .
+@prefix yago: <http://yago-knowledge.org/resource/> .
 
-% some predicates are irrelevant: vyjmenovat, by odstranění techto triples X distinct triples remain
+yago:Prague a yago:Capital_city .
+yago:Josef_Ji(*@ří@*)_Stankovsk(*@ý@*)_Q12026167 schema:deathPlace yago:Prague .
+yago:What_the_Old_Man_Does_is_Always_Right_Q13564487 schema:translator yago:Josef_Ji(*@ří@*)_Stankovsk(*@ý@*)_Q12026167
+\end{lstlisting}
+\end{figure}
+
+Around 62\% of the extracted triples are not relevant for the performed tasks. Their objects are literals (\verb|rdfs:label|, \verb|rdfs:comment| and \verb|schema:alternateName|) or image URLs (\verb|schema:image|). These triples are filtered out before the index data structure is constructed.
 
 \section{Filtering the Observations}
-
-% obecně filtering data (i KG se vyfiltrovaly, mám to rozdělit do podkapitolek?)
 
 The values for the city of Prague are duplicated. The city is assigned an entity both as a region and as a district. The administrative area of the Czech Republic's capital is given a special status by the Act No. 131/2000 Coll., on the Capital City of Prague and does not in fact fall into neighter of those categories. Nonetheless, Prague is assigned an identifier both as a district (\numprint{3100}) and as a region (\numprint{19}) in the RTIAR registry. When it comes to total population of the area (\numprint{1324227} as of 2020), it is comparable to other czech regions. The least populated is the Karlovy Vary Region with around \numprint{300000} inhabitants and the most populated: the Central Bohemian Region has around \numprint{1300000} inhabitants. Its surface area is on the other hand comparable with the districts. As the statistics about pensioners are certainly more correlated with the population rather than the surface area, the observation allocated to the dimension value of Prage as being district would be filtered out to maintain the commensurability along values measured for districts (see \ref{cssaSlicing}).
 
@@ -360,13 +363,13 @@ An alternative to creating subcubes based on the concept hierarchy in the master
 
 The source codes of the performed experiment are available in repository on github\footnote{\href{https://github.com/nvkp/diploma-thesis-code}{https://github.com/nvkp/diploma-thesis-code}} in the directory \textit{notebooks} in a form of jupyter\footnote{\href{https://jupyter.org/}{https://jupyter.org/}} notebooks. A Scala kernel for jupyter (eg. \textit{almond.sh}\footnote{\href{http://almond.sh/}{http://almond.sh/}}) has to be install in order to execute the code directly from the notebooks (see \textit{README.md}). Some of the notebooks are dedicated to preproccesing of a particular data set and other contain the performed mining tasks. In the preproccesing notebooks the preprocced data set is exported to a text file in the \textit{Turtle} format and also saved into a cache file from which the data set is loaded into memory before a mining task.  Github strictly enforces 100 MB size limit for each file so the cache files and \textit{Turtle} files are not pushed into the repository. In order to run the mining tasks locally one has to create the cache files by running the code in the preproccesing notebooks.
 
-\subsection{Relation between the pension expenses and the policital alignment of the state's government}
+\subsection{Relation between the pension expenses and the policital alignment of the state's government\label{expenses-wikidata}}
 
-A relation can be assumed between the expandature on pensions in a state social security system and the political ideology of the state. A left leaning governments usually tend to spend more on social welfare than the right-wing governments. In this section it is shown how this relation can be described by association rules in the spirit of \ref{asocRule} mined from the data published by CSSA and Wikidata. Data from various countries would be more appropriate for mining such relation. The available data are, however, sufficient for a simple demonstration. 
+A relation can be assumed between the expenditure on pensions in a state social security system and the political ideology of the state. A left leaning governments usually tend to spend more on social welfare than the right-wing governments. In this section it is shown how this relation can be described by association rules in the spirit of \ref{asocRule} mined from the data published by CSSA and Wikidata. Data from various countries would be more appropriate for mining such relation. The available data are, however, sufficient for a simple demonstration. 
 
-The data cube used\footnote{\href{https://data.cssz.cz/web/otevrena-data/-/vydaje-na-duchody-v-cr}{https://data.cssz.cz/web/otevrena-data/-/vydaje-na-duchody-v-cr}} is published by CSSA and contains records of total annual expenses on particular pensions. From now on it will be denoted as \textit{expenses}. The only measure of the data cube is the expendature amount in CZK. The dimensions of the data cube are the reference period with the granularity of whole years (from 2008 till 2019) and the dimension of the pension kind containing individual pension kind and also aggregated dimension values. For the year 2008 and 2009 and old pension scheme is used so the observations considering these two years were discarted. For the dimension of reference period 10 distinct values remain and the newer pension kind scheme contains also 10 distinct values. That would suggest that 100 observations remain but there are only 94. For the one-off allowance to pensions there are only 4 observations. That probably means that the expenses for this pension kind in the missing years were zero. So the missing observations with the measured value of zero were created manually.
+The data cube used\footnote{\href{https://data.cssz.cz/web/otevrena-data/-/vydaje-na-duchody-v-cr}{https://data.cssz.cz/web/otevrena-data/-/vydaje-na-duchody-v-cr}} is published by CSSA and contains records of total annual expenses on particular pensions. From now on it will be denoted as \textit{expenses}. The only measure of the data cube is the expendature amount in CZK. The dimensions of the data cube are the reference period with the granularity of whole years (from 2008 till 2019) and the dimension of the pension kind containing individual pension kind and also aggregated dimension values. For the year 2008 and 2009 and old pension scheme is used so the observations considering these two years were discarded. For the dimension of reference period 10 distinct values remain and the newer pension kind scheme contains also 10 distinct values. That would suggest that 100 observations remain but there are only 94. For the one-off allowance to pensions there are only 4 observations. That probably means that the expenses for this pension kind in the missing years were zero. So the missing observations with the measured value of zero were created manually.
 
-The original data cube was sliced into 10 subcubes (by SPARQL queries) each containing 10 observations. Each subcube is in a separate file in the folder \verb|data/expenses|. In the notebook \verb|expenses.ipynb| each subcube's measures are dicretized equifrequently (with 2 and 5 intervals) and equisizeably (with the relative support of 20, 30 and 50 percent) assigning each measurement 5 intervals.
+The original data cube was sliced into 10 subcubes (by SPARQL queries) each containing 10 observations. Each subcube is in a separate file in the folder \verb|data/expenses|. In the notebook \verb|expenses.ipynb| each subcube's measures are discretized equifrequently (with 2 and 5 intervals) and equisizeably (with the relative support of 20, 30 and 50 percent) assigning each measurement 5 intervals.
 
 The preproccesing of the Wikidata data set (notebook \verb|wikidata.ipynb|) rested in merging the triples returned by queries \ref{wdextract} and \ref{wdapplies} and removing the triples with predicates \verb|P580| and \verb|P582| as they only served to generate annual triples in the query \ref{wdapplies}.
 
@@ -409,7 +412,7 @@ val alignmentExpenses: RulePattern = (
 \end{lstlisting}
 \end{figure}
 
-This pattern was connected to the mining task definition itself. No minimal support an head coverage thresholds were set so that a maximal number of rules that can be filtered later are found. The maximal rule length set corresponds to the provided rule pattern. The mining task generated \numprint{192} rules\footnote{\href{https://raw.githubusercontent.com/nvkp/diploma-thesis-code/master/rulesets/alignmentExpensesTaskRuleset.txt}{https://raw.githubusercontent.com/nvkp/diploma-thesis-code/master/\\rulesets/alignmentExpensesTaskRuleset.txt}}. The rules with a support of 1 were filtered out and the PCA confidence, the standard confidence and lift was computed on the remaining 116 rules\footnote{\href{https://raw.githubusercontent.com/nvkp/diploma-thesis-code/master/rulesets/alignmentExpensesTaskRulesetFiltered.txt}{https://raw.githubusercontent.com/nvkp/diploma-thesis-code/master/\\rulesets/alignmentExpensesTaskRulesetFiltered.txt}}. The listing below shows two of them as they are written in the export file.
+This pattern was connected to the mining task definition itself. No minimal support an head coverage thresholds were set so that a maximal number of rules that can be filtered later are found. The maximal rule length set corresponds to the provided rule pattern. The mining task generated \numprint{192} rules\footnote{\href{https://nvkp.github.io/diploma-thesis-code/rulesets/alignmentExpensesTaskRuleset.txt}{https://nvkp.github.io/diploma-thesis-code/rulesets/alignmentExpensesTaskRuleset.txt}}. The rules with a support of 1 were filtered out and the PCA confidence, the standard confidence and lift was computed on the remaining 116 rules\footnote{\href{https://nvkp.github.io/diploma-thesis-code/rulesets/alignmentExpensesTaskRulesetFiltered.txt}{https://nvkp.github.io/diploma-thesis-code/rulesets/alignmentExpensesTaskRulesetFiltered.txt}}. The listing below shows two of them as they are written in the export file.
 
 \begin{figure}[h]
 \begin{lstlisting}[language = scala, caption={First pattern's rule sample}, label={alignmentExpensesRulesSample},captionpos=b, escapeinside={(*@}{@*)}]
@@ -450,23 +453,71 @@ val partyExpenses: RulePattern = (
 \end{lstlisting}
 \end{figure}
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{img/expenses.png}
+\caption{Expenditure of selected pension kinds over time}
+\label{qbstructureimg}
+\end{figure}
+
 \subsection{Appending the YAGO Data Set to the CZSO Data Cubes}
 
-% o datasetu jaur (job applicants and unemployment rate) => že to sou spolu dost korelující measures, že jsem na to musel myslet
+In this task the mining were performed over the CZSO's data cube \textit{Job Applicants and Unemployment Rate}, from now on denoted as \textit{JAUR}, and the triples extracted from YAGO data set. The data cube contains dimensions of reference area (89 distinct dimension values constisting of 13 regions without Prague and 76 districts without Prague, meaning there are no data concerning Prague), reference period (years 2005 to 2013) and sex (male, female and total). Each observation in the cube contains multiple measures. All observations are assigned the measures of number of available job applicants (job applicants who have no objective obstacle to taking up a job, eg enrollment in retraining courses or serving a sentence) and unemployment rate. Observations concerning both sexes also contain the measures of all job applicants and number of vacancies.
 
-% jaké to má dimenze, jaké hodnoty v dimenzích, jak jsem to nasekal
+The data cube had to be sliced along the dimensions of reference area and sex. The dimension of reference area was divided into regions and district. It was considered to divide the dimension of sex by each dimension value, but there is no significant difference between the male and female values\footnote{\href{https://nvkp.github.io/diploma-thesis-code/data/jaur/SexDimension}{https://nvkp.github.io/diploma-thesis-code/data/jaur/SexDimension}}, so the dimension was divided into \textit{total} and \textit{by-sex} part. That makes 4 slices \footnote{\href{https://nvkp.github.io/diploma-thesis-code/data/jaur/slice-queries/}{https://nvkp.github.io/diploma-thesis-code/data/jaur/slice-queries/}} with \numprint{2403} observations ($3 \times 9 \times 89$) and \numprint{6408} measured values in total. All the measured values were discretized\footnote{\href{https://nvkp.github.io/diploma-thesis-code/notebooks/jaur}{https://nvkp.github.io/diploma-thesis-code/notebooks/jaur}} equifrequently with the interval counts of 10, 30, 50 and 100 and equisizeably with the percentages of 1, 2 and 3. The notebook \verb|jaur-yago|\footnote{\href{https://nvkp.github.io/diploma-thesis-code/notebooks/jaur-yago}{https://nvkp.github.io/diploma-thesis-code/notebooks/jaur-yago}} contains the mining itself. The YAGO triples and data cube's triples were merged together with the appropriate reference area linking triples\footnote{\href{https://nvkp.github.io/diploma-thesis-code/data/linking/yagoCZSOLinking.ttl}{https://nvkp.github.io/diploma-thesis-code/data/linking/yagoCZSOLinking.ttl}}.
 
-% kde v gitu jsou rezy, kde jsou dané notebooky (jenom footnoty)
+A separate index (containing all the extracted YAGO triples, the reference area linking triples and only those triples from the \textit{JAUR} cube that belong to the subcube's observations) was created for each subcube. That way the lift measure calculated for the rules mined from the indexes is not distorted because its denominator is not increased by inappropriate observations.
 
-% jaky pattern sem nastavil
+Just as in the previous example, a pattern had to be provided to the mining tasks, that generates rules assigning a particular interval of a measure for observations satisfying the rule's body. In this pattern a variable at the position of object with the predicate of \verb|refArea| appears in an atom that is enforced to bind to triples from the YAGO data set. For the mining task working with this pattern the threshold of maximal rule's length can be declared that corresponds to the number of hops of the extracted YAGO triples (determining the maximal length of the atom \verb|chain| from YAGO) and the number of other atoms in the body and the head atom.
 
-% vyšší support diskriminuje kraje, takže supportem jsem neomezoval
+For fininishing the mining task in a reasonable time also a minimal support thresholds has to be declared. The support of the seeked rules corresponds to the number of observations for which the rule is valid. The rules have to contain an atom achoring the observations' variable to a constant of a slice by the \verb|qb:dataSet| predicate to ensure that each rule relates to one and only slice. The slices of the \textit{JAUR} data cube contain a different number of observations, so if a too high minimal support threshold is declared, the potentionally accurate rules from the a smaller slice would be discarded. In \ref{expenses-wikidata} all the slices contain the same number of observations and the whole cube so small that no minimal support threshold did not have to be used. In this mining task the problem was avoided by creating 4 distinct patterns that anchor the observations to each slice. These patterns are then appended to a separate mining task with different minimal support thresholds.
 
-% kolik to našlo pravidel, jak jsem si je profiltroval
+\begin{figure}[h]
+\begin{lstlisting}[language = scala, caption={Pattern Definition for the Slice \textit{districts-by-sex}}, label={jaurYagoPatterns},captionpos=b, escapeinside={(*@}{@*)}]
+val districtBySexPattern = (
+    AtomPattern(subject='b',graph=uri("yago"))&:
+    AtomPattern(subject='a',predicate=refArea,`object`='b',graph=uri("czso"))&:
+    AtomPattern(subject='a',predicate=qbDataSet,`object`=districtBySexSlice,graph=uri("czso"))
+    =>: 
+    AtomPattern(subject='a',predicate=oneOfMeasures, graph = uri("czso"))
+)
+\end{lstlisting}
+\end{figure}
+
+The smallest slice is \verb|jaur-regions-total| with only \numprint{117} observations (9 years of 13 regions). Let's assume there is a rule that can be infered from this data that predicts a certain measure value to be in a certain interval given a certain characteristic of the reference area of the observation. Not to describe only one specific region, there have to be at least two regions satisfying the rule. If the rule had the confidence of 1 its support would be \numprint{18} (9~years~$\times$~2~regions). A rule with confidence of 0,5 would have half the support. Less confident rules with support of 9 or higher support would \textit{cover} more regions. A minimal support for each mining task corresponding to single slice can be therefore given as the number of observations in the slice divided by number of observations for a distinct reference area. For the district slices such designated threshold would however not restrict the search space to finish the procedure in a reasonable time so for these two mining tasks with largest number of observations the number was multiplied by 3 (We demand \textit{half confident} rules to concern at least 6 districts).
+
+\begin{figure}[h]
+\begin{lstlisting}[language = scala, caption={Mining Task Definition for the Slice \textit{districts-by-sex}}, label={jaurYagoTasks},captionpos=b, escapeinside={(*@}{@*)}]
+val districtBySexTask = Amie()
+    .addThreshold(Threshold.MinSupport(minSupport(districtBySexSlice)*3))
+    .addThreshold(Threshold.MaxRuleLength(6))
+    .addConstraint(constantsOnlyAtObject)
+    .addPattern(districtBySexPattern)
+\end{lstlisting}
+\end{figure}
+
+RDFRules API provides a constraint that can be appended to the mining task that eliminates atoms with a constant at the position of subject to be considered during the rule refinement. This shrinks the task's search space and contributes to shorter runtime when such atoms are not relevant for the particular pattern. In \ref{expenses-wikidata} this constraint could not be used since the second atom pattern's subject in the rule pattern was the constant of the Czech Republic's URI. It makes sense to add the constraint now. It makes sense to add the constraint now.
+
+Folows the description of the processing of each mining task's retrieved rule set. The used patterns do not prescribe a structure for each atom in a rule. The length of the rules can vary from 4 to 6 atoms. The patterns do not prevent the refining operators from appending an atom to the rule's body, whose subject variable represents a different observation than the one in the rule's head. That practically introduces a new \textit{unclosed} cube to the rule and invalidates it.
+
+\begin{figure}[h]
+\begin{lstlisting}[language = scala, caption={XXX}, label={invalidRuleExample},captionpos=b, escapeinside={(*@}{@*)}]
+(?c czso:refPeriod <http://reference.data.gov.uk/id/gregorian-day/2006-12-31>) ^ (?c czso:refArea ?b) ^ (?b <http://schema.org/foundingDate> "2000-11-12") ^ (?a czso:refArea ?b) ^ (?a qb:dataSet <jaur-regions-total>) -> (?a czso:podilNezamestnanych <<9.01__11.47)_ef10_10/10>)
+\end{lstlisting}
+\end{figure}
+
+Atoms with a new observation variable in those rules are connected through the variable of reference area. They all contain atom with the new variable at the position of subject, reference area dimension URI at the position of predicate and the variable of reference area at the position of object. All those rules were filtered out. Only those rules in the rule set, that have exactly one atom with reference area dimension URI at the position of predicate were kept for further processing.
+
+There is apparently a correlation between the cube's measures (available applicants is a subset of all job applicants, lower unemployment rate corresponds to lower number of vacancies). The algorithm could tend to create evident rules in the sense of \textit{if there is a lower unemployment rate in the area, there is a lower number of applicants registered at the Labor Office}. Not to bother with this kind of rules, the rules with a measure URI at the position of predicate in any atom in the rule's body were filtered out as well. The lift was computed for the remaining rules in the rule sets. All rules the lift value lower than 1 were filtered out. The remaining rules were reduced by the \textit{data coverage pruning} method.
+
+TODO odkazy na výsledky \footnote{\href{https://nvkp.github.io/diploma-thesis-code/rulesets/jaur-yago/}{https://nvkp.github.io/diploma-thesis-code/rulesets/jaur-yago/}}
+%In total \numprint{1813} rules\footnote{\href{}{}} from all four rule sets remained.
+
+%The first mining task retrieved \numprint{18677} rules\footnote{\href{https://github.com/nvkp/diploma-thesis-code/blob/master/rulesets/jaurYagoRegionTaskRuleset.txt}{https://github.com/nvkp/diploma-thesis-code/blob/master/rulesets/jaurYagoRegionTaskRuleset.txt}} and the second task's ruleset contains \numprint{193770} rules\footnote{\href{https://github.com/nvkp/diploma-thesis-code/blob/master/rulesets/jaurYagoDistrictTaskRuleset.txt}{https://github.com/nvkp/diploma-thesis-code/blob/master/rulesets/jaurYagoDistrictTaskRuleset.txt}}. 
 
 % jak sem si je poshlukoval
 
-% příklady pravidel, ukázat nějaké užitečné a ukázat nějaké vadné
+TODO příklady pravidel, ukázat nějaké užitečné a ukázat nějaké vadné
 
 \subsection{Relation Between Measures from Different Data Cubes}
 

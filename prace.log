@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.22)  7 MAY 2021 17:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.22)  20 MAY 2021 22:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -916,6 +916,9 @@ LaTeX Warning: Label `discsample' multiply defined.
 
 LaTeX Warning: Label `alignmentExpensesRulesSample' multiply defined.
 
+
+LaTeX Warning: Label `qbstructureimg' multiply defined.
+
 ) (/home/petnovak/github/nvkp/diploma-thesis/zaver.aux) (/home/petnovak/github/nvkp/diploma-thesis/literatura.aux) (/home/petnovak/github/nvkp/diploma-thesis/app01.aux))
 \openout1 = `prace.aux'.
 
@@ -1196,23 +1199,22 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-] [25] [26] [27] [28] [29] [30]
+] [25] [26] [27] [28] [29]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[31]
+[30] [31] [32]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[32]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[33]
+[33] [34]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[34] [35] [36] [37] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+[35] [36] [37] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
 File: lstlang2.sty 2020/03/24 1.8d listings language file
@@ -1222,10 +1224,21 @@ File: lstlang3.sty 2020/03/24 1.8d listings language file
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [39] [40]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<img/expenses.png, id=867, 1052.93375pt x 451.6875pt>
+File: img/expenses.png Graphic file (type png)
+<use img/expenses.png>
+Package pdftex.def Info: img/expenses.png  used on input line 458.
+(pdftex.def)             Requested size: 441.01773pt x 189.19054pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[39] [40] [41 </home/petnovak/github/nvkp/diploma-thesis/img/expenses.png>] [42]) [43]
 \openout2 = `zaver.aux'.
 
- (/home/petnovak/github/nvkp/diploma-thesis/zaver.tex) [41
+ (/home/petnovak/github/nvkp/diploma-thesis/zaver.tex) [44
 
 
 
@@ -1233,12 +1246,12 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 ]
 \openout2 = `literatura.aux'.
 
- (/home/petnovak/github/nvkp/diploma-thesis/literatura.tex) [42
+ (/home/petnovak/github/nvkp/diploma-thesis/literatura.tex) [45
 
 
 
 
-] [43
+] [46
 
 
 
@@ -1247,32 +1260,32 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
  (/home/petnovak/github/nvkp/diploma-thesis/app01.tex
 Appendix A.
-[44
+[47
 
 
-] [45] [46]) [47] (/home/petnovak/github/nvkp/diploma-thesis/prace.aux (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/knowledgegraphs.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/olap.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/assocrules.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/amie.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/rdfrules.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/combining.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/experiment.aux) (/home/petnovak/github/nvkp/diploma-thesis/zaver.aux) (/home/petnovak/github/nvkp/diploma-thesis/literatura.aux) (/home/petnovak/github/nvkp/diploma-thesis/app01.aux))
+] [48] [49]) [50] (/home/petnovak/github/nvkp/diploma-thesis/prace.aux (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/knowledgegraphs.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/olap.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/assocrules.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/amie.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/rdfrules.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/combining.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/experiment.aux) (/home/petnovak/github/nvkp/diploma-thesis/zaver.aux) (/home/petnovak/github/nvkp/diploma-thesis/literatura.aux) (/home/petnovak/github/nvkp/diploma-thesis/app01.aux))
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `prace.out' has not changed.
-(rerunfilecheck)             Checksum: F330A78E36CAE553A9020CCEFC198B93;8563.
+(rerunfilecheck)             Checksum: 471C09099C5B6AECC2FFB2F8001FBE1A;8563.
 Package logreq Info: Writing requests to 'prace.run.xml'.
 \openout1 = `prace.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 29214 strings out of 479304
- 465742 string characters out of 5869779
- 1587829 words of memory out of 5000000
- 45199 multiletter control sequences out of 15000+600000
+ 29288 strings out of 479304
+ 466924 string characters out of 5869779
+ 1600236 words of memory out of 5000000
+ 45235 multiletter control sequences out of 15000+600000
  512702 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 93i,12n,93p,1686b,3618s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 93i,12n,93p,1694b,3618s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx9.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri9.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.pfb>
-Output written on /home/petnovak/github/nvkp/diploma-thesis/prace.pdf (47 pages, 693841 bytes).
+Output written on /home/petnovak/github/nvkp/diploma-thesis/prace.pdf (50 pages, 732406 bytes).
 PDF statistics:
- 1384 PDF objects out of 1440 (max. 8388607)
- 1274 compressed objects within 13 object streams
- 660 named destinations out of 1000 (max. 500000)
- 410 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1455 PDF objects out of 1728 (max. 8388607)
+ 1339 compressed objects within 14 object streams
+ 697 named destinations out of 1000 (max. 500000)
+ 415 words of extra memory for PDF output out of 10000 (max. 10000000)
 
