@@ -310,6 +310,78 @@
       \verb http://www.w3.org/TR/rdf-sparql-query/
       \endverb
     \endentry
+    \entry{Zeman2018}{article}{}
+      \name{author}{3}{}{%
+        {{hash=7c79f1f95a8fb8ee04b1860ae56498e6}{%
+           family={Zeman},
+           familyi={Z\bibinitperiod},
+           given={Václav},
+           giveni={V\bibinitperiod}}}%
+        {{hash=f7e6248d7ddfa7cae0e587c03d98953d}{%
+           family={Kliegr},
+           familyi={K\bibinitperiod},
+           given={Tomáš},
+           giveni={T\bibinitperiod}}}%
+        {{hash=e2d43731514b2552feea00471e63ce59}{%
+           family={Svátek},
+           familyi={S\bibinitperiod},
+           given={Vojtěch},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{2f07e08c26967d238d205514ecf4db2a}
+      \strng{fullhash}{2f07e08c26967d238d205514ecf4db2a}
+      \strng{bibnamehash}{2f07e08c26967d238d205514ecf4db2a}
+      \strng{authorbibnamehash}{2f07e08c26967d238d205514ecf4db2a}
+      \strng{authornamehash}{2f07e08c26967d238d205514ecf4db2a}
+      \strng{authorfullhash}{2f07e08c26967d238d205514ecf4db2a}
+      \field{extraname}{1}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{RuleML Challenge}
+      \field{title}{RDFRules Preview: Towards an Analytics Engine for Rule Mining in RDF Knowledge Graphs}
+      \field{year}{2018}
+    \endentry
+    \entry{Zeman2020}{article}{}
+      \name{author}{3}{}{%
+        {{hash=7c79f1f95a8fb8ee04b1860ae56498e6}{%
+           family={Zeman},
+           familyi={Z\bibinitperiod},
+           given={Václav},
+           giveni={V\bibinitperiod}}}%
+        {{hash=f7e6248d7ddfa7cae0e587c03d98953d}{%
+           family={Kliegr},
+           familyi={K\bibinitperiod},
+           given={Tomáš},
+           giveni={T\bibinitperiod}}}%
+        {{hash=e2d43731514b2552feea00471e63ce59}{%
+           family={Svátek},
+           familyi={S\bibinitperiod},
+           given={Vojtěch},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{2f07e08c26967d238d205514ecf4db2a}
+      \strng{fullhash}{2f07e08c26967d238d205514ecf4db2a}
+      \strng{bibnamehash}{2f07e08c26967d238d205514ecf4db2a}
+      \strng{authorbibnamehash}{2f07e08c26967d238d205514ecf4db2a}
+      \strng{authornamehash}{2f07e08c26967d238d205514ecf4db2a}
+      \strng{authorfullhash}{2f07e08c26967d238d205514ecf4db2a}
+      \field{extraname}{2}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Semantic Web Journal}
+      \field{title}{RDFRules: Making RDF Rule Mining Easier and Even More Efficient}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb http://www.semantic-web-journal.net/system/files/swj2511.pdf
+      \endverb
+      \verb{url}
+      \verb http://www.semantic-web-journal.net/system/files/swj2511.pdf
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

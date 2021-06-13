@@ -45,76 +45,64 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.2.2}Speeding Up Confidence Evaluation}{17}{subsection.4.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}RDFRules}{18}{section.4.3}%
+\contentsline {section}{\numberline {4.3}RDFRules}{17}{section.4.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.1}Limitations of AMIE+}{18}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.1}Processing of Numerical Attributes}{18}{subsection.4.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.2}Faster Projection Counting}{18}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.2}Multiple Graphs}{19}{subsection.4.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.3}Processing of Numerical Attributes}{18}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.3}Improvements to Expressivenes of Rule Patterns}{19}{subsection.4.3.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.4}Multiple Graphs}{18}{subsection.4.3.4}%
+\contentsline {subsection}{\numberline {4.3.4}Top-k Approach}{20}{subsection.4.3.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.5}Improvements to Expressivenes of Rule Patterns}{18}{subsection.4.3.5}%
+\contentsline {subsection}{\numberline {4.3.5}Support for the Lift Measure}{20}{subsection.4.3.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.6}Top-k Approach}{19}{subsection.4.3.6}%
+\contentsline {subsection}{\numberline {4.3.6}Rule Clustering and Pruning}{21}{subsection.4.3.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Top-k Confidence}{19}{section*.12}%
+\contentsline {chapter}{\numberline {5}RDFRules Reference Implementation}{23}{chapter.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.7}Support for the Lift Measure}{19}{subsection.4.3.7}%
+\contentsline {chapter}{\numberline {6}Leveraging a Combination of OLAP Cubes and Knowledge Graphs}{26}{chapter.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.8}Rule Clustering}{20}{subsection.4.3.8}%
+\contentsline {section}{\numberline {6.1}Mining from RDF representation of Data Cube}{26}{section.6.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Similarity Function of Atom Items}{20}{section*.13}%
+\contentsline {section}{\numberline {6.2}Appending RDF Data to the Data Cubes}{26}{section.6.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Similarity Function of Predicates}{20}{section*.14}%
+\contentsline {chapter}{\numberline {7}Experiment}{27}{chapter.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Similarity Function of Atoms}{20}{section*.15}%
+\contentsline {section}{\numberline {7.1}Czech Social Security Administration's Data Cubes}{27}{section.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Similarity Function of Rules}{20}{section*.16}%
+\contentsline {section}{\numberline {7.2}Czech Statistical Office's Data Cubes}{30}{section.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.9}Rule Pruning}{21}{subsection.4.3.9}%
+\contentsline {section}{\numberline {7.3}Wikidata}{31}{section.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}RDFRules Reference Implementation}{22}{chapter.5}%
+\contentsline {section}{\numberline {7.4}YAGO Triples}{32}{section.7.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Leveraging a Combination of OLAP Cubes and knowledge Graphs}{23}{chapter.6}%
+\contentsline {section}{\numberline {7.5}Filtering the Observations}{33}{section.7.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Experiment}{24}{chapter.7}%
+\contentsline {section}{\numberline {7.6}Slicing the Cubes}{33}{section.7.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Czech Social Security Administration's Data Cubes}{24}{section.7.1}%
+\contentsline {section}{\numberline {7.7}Linking}{35}{section.7.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Czech Statistical Office's Data Cubes}{27}{section.7.2}%
+\contentsline {subsection}{\numberline {7.7.1}Sex Dimension Values}{36}{subsection.7.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.3}Wikidata}{28}{section.7.3}%
+\contentsline {subsection}{\numberline {7.7.2}Reference Periods}{36}{subsection.7.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.4}YAGO Triples}{29}{section.7.4}%
+\contentsline {subsection}{\numberline {7.7.3}Reference Areas}{36}{subsection.7.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.5}Filtering the Observations}{30}{section.7.5}%
+\contentsline {section}{\numberline {7.8}Discretization}{37}{section.7.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.6}Slicing the Cubes}{30}{section.7.6}%
+\contentsline {section}{\numberline {7.9}Mining Tasks}{39}{section.7.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.7}Linking}{32}{section.7.7}%
+\contentsline {subsection}{\numberline {7.9.1}Relation between the pension expenses and the policital alignment of the state's government}{40}{subsection.7.9.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.7.1}Sex Dimension Values}{33}{subsection.7.7.1}%
+\contentsline {subsection}{\numberline {7.9.2}Appending the YAGO Data Set to the CZSO Data Cubes}{43}{subsection.7.9.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.7.2}Reference Periods}{33}{subsection.7.7.2}%
+\contentsline {subsection}{\numberline {7.9.3}Relation Between Measures from Different Data Cubes}{46}{subsection.7.9.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.7.3}Reference Areas}{33}{subsection.7.7.3}%
+\contentsline {section}{\numberline {7.10}Discussion}{46}{section.7.10}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.8}Discretization}{34}{section.7.8}%
+\contentsline {chapter}{Conclusions}{47}{chapter*.36}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.9}Mining Tasks}{36}{section.7.9}%
+\contentsline {chapter}{List of References}{48}{chapter*.37}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.9.1}Relation between the pension expenses and the policital alignment of the state's government}{37}{subsection.7.9.1}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.9.2}Appending the YAGO Data Set to the CZSO Data Cubes}{40}{subsection.7.9.2}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.9.3}Relation Between Measures from Different Data Cubes}{43}{subsection.7.9.3}%
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.10}Discussion}{43}{section.7.10}%
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Conclusions}{44}{chapter*.39}%
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of References}{45}{chapter*.40}%
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Queries and Scripts}{47}{appendix.A}%
+\contentsline {chapter}{\numberline {A}Queries and Scripts}{50}{appendix.A}%

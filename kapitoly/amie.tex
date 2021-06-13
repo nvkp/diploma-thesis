@@ -181,124 +181,91 @@ The approximation is designed to overestimate the confidence so that no high con
 
 \section{RDFRules}
 
-\subsection{Limitations of AMIE+}
+Although the AMIE+ algorithm made it possible to mine rules from large real-world knowledge bases, it lacks features that would allow it to encompass the whole mining process. It does not deal with pre-processing the input data and post-processing of the generated rules. Those tasks are assumed to be subject to other tools. Modern algoritmic frameworks for mining association rules from tabular data, such as \textit{arules} R package or Spark MLlib,however enable to deal with the whole mining process with just one tool.
 
-little attetion to data pre-processing and data post-processing
+TODO prepsat to
 
-lack of various features which were found useful for mining rules from transactional data, such as support for additional interest measures (lift)
+% TODO present a collection of enhancements
 
-does not support multiple graphs
+% TODO ale rdfrules je víc integrated approach, stejne jako arules, supports full data mining life cycle
 
-inability to process numerical data
-
-absence of the top-k approach. In top-k approach, user is only returned the k rules with the highest values of a chosen measure.
-
-coarse rule patterns. Without additional guidence by the user, the top-k approach often generates rules that reflect patterns in data that are obvious or uninteresting.
-
-repetitive calculations during refinement
-
-exhaustive calculations
-
-\subsection{Faster Projection Counting}
-
-reducing the number of calls to the binding functions
-
-% TODO vzorec? vzorce?
+% TODO enhancement of the algorithm itself plus proposed approaches for pre-processing and postprocessing (deals with high number of usually overlapping rules generated) to cover complete mining process
 
 \subsection{Processing of Numerical Attributes}
 
+AMIE+ treats numerical values (in RDF those can only appear at the position of object) just as any other distrete value. Due to the downward closure property of the algorithm (and of the association rule mining algorithms in general), where not only the whole rule but also each subset of the rule's atom have to meet the minimum support threshold, and due to the fact that the numerical attributes usually contain many distinct values, the rules concerning numerical values tend to be excluded from the generated rules.
+
+This problem can be solved by the values' discretization meaning that the continuous values are converted to a finite set of intervals. When working with transactional data such sets of intervals are created within each examined table's column which contains numerical values. For example the \textit{arules}\footnote{\href{https://www.rdocumentation.org/packages/arules/versions/1.6-8}{https://www.rdocumentation.org/packages/arules/versions/1.6-8}} R package implementing the Apriori algorithm enables discretizing\footnote{\href{https://www.rdocumentation.org/packages/arules/versions/1.6-8/topics/discretize}{https://www.rdocumentation.org/packages/arules/versions/1.6-8/topics/discretize}} the values either equidistantly (the intervals have a given fixed length), equifrequently (a given number of intervals are evenly represented in the continuous data points), by clustering the values to a given number of intervals or by stating the intervals manually.
+
+In the context of RDF the discretization entails grouping numerical values in the range of a certain predicate. This can also be done equifrequently, equidistantly etc. However, when the created intervals are too narrow, the rules containing the discretized predicates may not satisfy the minimum support or the head coverage threshold defined for the mining task. When creating too broad intervals the found rules may be unnecessarily general. That means that the discretization phase cannot easily be decoupled from the mining phase itself.
+
+In \cite{Zeman2020} the authors propose a discretization heuristic that takes into account the minimum head coverage and minimum head size thresholds to perform a specific discretization for a particular task in the pre-processing phase. For each predicate in the data set that has a numerical range a set of overlapping intervals is generated. For each interval in this set and for each predicate's triple with the number in the range of the interval a copy of the triple whose object is substituted and whose predicate is altered by a suffix of the interval set (not to modify the range of the original predicate) by the interval is added to the data set.   
+
 \subsection{Multiple Graphs}
 
-graph aware rules
+Restricting the mining task on to a single graph prevents finding relations accross multiple sources. Even though the resoures representing the identical object or a concept in the real world have a different identifier in different graphs, the identity can be easily infered from the \verb|owl:sameAs| predicate joining two identical resources.
 
 $$(?a \hspace{0.4em} \langle wasBornIn \rangle \hspace{0.4em} ?b \hspace{0.4em} \langle YAGO \rangle) \Rightarrow (?a \hspace{0.4em} dbo:deatchPlace \hspace{0.4em} ?b \hspace{0.4em} \langle DBpedia \rangle)$$
 
-extension of fact indexes
+AMIE+ does not recognize the \verb|owl:sameAs| statements and assumes that the identical resources have the same IRI. To mine from accross multiple graphs the graph would either have to be merged together and their IRIs would have to be unified or the \verb|owl:sameAs| relations would have to be explicitely stated in the rules.
 
-PG, PSG, POG, PSOG
+RDFRules natively supports \textit{quads} i.e triples enriched with IRI of their corresponding named graph. On top of the AMIE's six indeces four new ones are added (\textbf{PG}, \textbf{PSG}, \textbf{POG}, \textbf{PSOG}) that allow to check the affiliation of triples to a graph. Not only the individual triples but also the atoms in a rule can be treated as quads. The atoms can be restricted via the rule patterns (see \ref{patterns}) to be based only on triples from a certain graph. The RDFRules algorithm recognizes the \verb|owl:sameAs| triples and the resources joined this way are treated as if they had identical identifiers.
 
-\subsection{Improvements to Expressivenes of Rule Patterns}
+\subsection{Improvements to Expressivenes of Rule Patterns\label{patterns}}
+
+The association rules mining algorithms tend to create rules describing obvious and uninteresting patterns when the search space of the rules is not properly restricted. AMIE allows the user to provide a list of predicates that should be included or excluded in the rules' body and head and also to prohibit or enforce contants, so that the shape of the rules can be controlled to some extent. RDFRules offers much more profound solution in the form of a rule pattern grammar. 
+
+The user defines rule patterns which are used to prune the rules during the rule refinement. Each rule has to match at least one of the rule patterns defined for the mining task. A rule pattern consists of atom patterns corresponding to atoms of a matching rule. The rule pattern can have zero or any number of atom pattern in the body and exactly one atom pattern in its head. A rule pattern with atom patterns in the body and no atom pattern in the head is useless since the rule patterns are applied from right to left just as the rule refinement operators. An atom pattern consists of four atom item patterns that correspond to subject, predicate, object and graph of the matching rule atom. Those atom item patterns are available:
 
 \begin{description}
-\item[$?$] pattern for any symbol
+\item[$?$] pattern for any symbol at the position
 \item[$?_{v}$] pattern for any variable
 \item[$?_{c}$] pattern for any constant
-\item[$\neg$] negation
+\item[$?a$] pattern for a concrete variable written as a single alphabetic character after the symbol $?$ 
+\item[[]] collection of items where at least one has to be matched at the position, that can be also negated by the symbol $\neg$ stating that none of the items must match at the position
 \end{description}
 
-$$(?a\hspace{0.4em}\langle wasBornIn \rangle\hspace{0.4em}?b) \land (?b\hspace{0.4em}?_{c}\hspace{0.4em}?_{c} \hspace{0.4em} \langle DBpedia \rangle) \Rightarrow (?a\hspace{0.4em}[ \,\langle livesIn \rangle,\langle deadIn \rangle	] \,\hspace{0.4em}?b)$$
+Shown below is an example of a valid rule pattern and its matching rule:
 
-$$(?a\hspace{0.4em}\langle wasBornIn \rangle\hspace{0.4em}?b) \land (?b\hspace{0.4em}dbo:cityOf\hspace{0.4em}\langle USA \rangle \hspace{0.4em} \langle DBpedia \rangle) \Rightarrow (?a\hspace{0.4em} \langle deadIn \rangle\hspace{0.4em}?b)$$
+$$(?a\hspace{0.4em} rdf:type \hspace{0.4em}?_{c}) \land (?a\hspace{0.4em} ? \hspace{0.4em}?_{v}) \Rightarrow (?a\hspace{0.4em}? \hspace{0.4em}?)$$
+
+$$(?a\hspace{0.4em} rdf:type \hspace{0.4em}dbo:Scientist) \land (?a\hspace{0.4em} dbo:academicDiscipline \hspace{0.4em}?b) \Rightarrow (?a\hspace{0.4em}dbo:knownFor \hspace{0.4em}?b)$$
 
 \subsection{Top-k Approach}
 
-% TODO graf
-
-\subsubsection{Top-k Confidence}
-
-increasing minConf may speed up the confidence calculation
-
-$$conf(\vec{B}\Rightarrow H) = \frac{supp(\vec{B}\Rightarrow H)}{bsize(\vec{B}\Rightarrow H)} $$
-
-if minConf is set, this inequality must apply:
-
-$$bsize(\vec{B}\Rightarrow H) \leq \frac{supp(\vec{B} \Rightarrow H))}{minConf} $$
-
-during calculation of bsize we can stop the calculation as soon as the value is greater than the ratio.
+RDFRules algorithm offers an alternative to manually defining an interest measure (e.g. minimum support or minimum confidence) for the mining task. Instead, in the so-called \textit{top-k approach}, the user defines a maximum number of rules with the highest values of a chosen measure that should be returned by the algorithm. During the mining process, the rules are stored and sorted in a queue with a fixed length of the defined number. The head of the queue  contains a rule with the lowest value of the chosen measure. This value acts as a temporary minimum threshold. Once a rule with a higher value of the measure is found, the head rule is removed from the queue, the new rule is added to the queue and the queue is sorted again so that the head of the queue still contains the rule with the lowest value. At the end of the mining process only the rules in the queue are returned. 
 
 \subsection{Support for the Lift Measure}
 
+The lift is a measure that describes how the probability of the consequent (head) occurrence is increased given that the antecedent (body) of the rule is valid compared to its probability of occurence under a random choice in the complete dataset. RDFRules adds support for this measure. It is computed as a ratio of the rule's confidence and its \textit{head confidence}.
+
 $$lift(\vec{B} \Rightarrow H) = \frac{conf(\vec{B} \Rightarrow H)}{hconf(H)}$$
 
-hconf
-
-if $H = (?a\hspace{0.4em}p\hspace{0.4em}?b)$ then
+The formula of the head confidence depends on the type of the head atom. If the head atom contains two variables ($H = (?a\hspace{0.4em}p\hspace{0.4em}?b)$), the head confidence is computed as the ratio between the number of distinct subjects bound with the predicate in the head atom and the number of distinct subjects in the whole data set.
 
 $$hconf(\vec{B} \Rightarrow H) = \frac{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}?b) }{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}?r\hspace{0.4em}?b) }$$
 
-ratio between the number of distinct subjects bound with the predicate p and the number of distinct subjects in the whole KG.
-
-if $H = (?a\hspace{0.4em}p\hspace{0.4em}C)$ then
+If the head atom contains one variable and a constant at the position of object ($H = (?a\hspace{0.4em}p\hspace{0.4em}C)$), then the head confidence is computed as the ratio between the number of distinct subjects bound with the predicate in the head atom and with the constant in the head atom and the number of distinct subjects in the whole data set.
 
 $$hconf(\vec{B} \Rightarrow H) = \frac{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}C) }{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}?b) }$$
 
-if $H = (C\hspace{0.4em}p\hspace{0.4em}?a)$ then
+If the head atom contains a constant at the position of subject ($H = (C\hspace{0.4em}p\hspace{0.4em}?a)$), the formula goes as the ratio of between the number of distinct objects bound with the predicate in the head atom and with the constant in the head atom and the number of distinct subjects in the whole data set.
 
 $$hconf(\vec{B} \Rightarrow H) = \frac{\# s: \exists \langle s,p,o\rangle \prec (C\hspace{0.4em}p\hspace{0.4em}?a) }{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}?b) }$$
 
-\subsection{Rule Clustering}
+\subsection{Rule Clustering and Pruning}
 
-$$sim(r_{1}, r{2}) = \sum_{i = 1}^m w_{i} * sim_{i}(R_{1,i}, R_{2,i})$$
+When an association rule mining algorithm generates a high number of overlapping rules, a clustering algorithm can be used to group the rules, so that the rules can be presented in a more compact and organized way e.g. as a result of an exploratory analysis. In \cite{Zeman2020} propose an approach to determine the similarity of two rules based on their content and their interest measures. When comparing the content similarity of rules $U$ and $V$, where $|U| \geq |V|$ the similarity is computed as the maximum average of atom similarities between atoms of the rule $V$ and a $k$-permutation of the atoms from the rule $U$ where $k = |V|$.
 
-$$\sum_{i = 1}^m w_{i} = 1$$
+$$sim_{c}(U,V) = \dfrac{1}{|V|} \max\limits_{T\in P(U,|V|)}\sum_{i = 1}^{|T|} sim_{a}(t_{i},v_{i})$$
 
-\subsubsection{Similarity Function of Atom Items}
-
-\textit{s} can be substituted by \textit{o}
-
-$$sim ( \langle s_{1}, p_{1} \rangle, \langle s_{2}, p_{2} \rangle ) = $$
-
-%% TODO
-
-\subsubsection{Similarity Function of Predicates}
-
-\subsubsection{Similarity Function of Atoms}
+The similarity of two atoms is based on the similarities between their subjects, predicates and objects.
 
 $$sim_a(A_{1}, A_{2}) = \frac{1}{3} [ \, sim(\langle s_{1}, p_{1} \rangle, \langle s_{2}, p_{2} \rangle) + sim(\langle o_{1}, p_{1} \rangle, \langle o_{2}, p_{2} \rangle) + sim(p_{1}, p_{2}) ] \,$$
 
-\subsubsection{Similarity Function of Rules}
+The similarity function comparing two predicates returns the value $1$ if the predicates are identical and $0$ otherwise. The similarity function comparing two subjects (and objects analogously) returns the value $1$ either if the subjects are identical and they are not variables or if they are both variables and the predicates of the two rules are identical, it returns the value $0.5$ if the subjects are not identical, however the predicates are identical and exactly of the the subjects is a variable, and it returns $0$ otherwise.
 
-$$|r_{1}| \geq |r_{2}|$$
-
-$$ sim_{r}(r_{1}, r_{2}) = \frac{1}{r_{1}} \sum_{i = 1}^{|r_{1}|} max(sim_{a}(A_{i}^{r_{1}}, A_{1}^{r_{2}}), \ldots, sim_{a}(A_{i}^{r_{1}}, A_{|r_{2}|}^{r_{2}}))  $$
-
-\subsection{Rule Pruning}
-
-data coverage pruning
-
-ranking (order in which the rules enter the data coverage pruning algorithm)
-
-Rule A is ranked higher than B if:
+To avoid a situation where a single triple in the data set is covered by multiple rules returned by the algorithm, the authors of RDFRules suggest adapting the \textit{data coverage pruning} in the post-processing phase. The rules are ranked based on the following criteria:
 
 \begin{enumerate}
     \item $conf(A) > conf(B)$
@@ -306,8 +273,4 @@ Rule A is ranked higher than B if:
     \item rule A has a shorter body than the rule B
 \end{enumerate}
 
-For each rule, the algorithm checks whether the rule correctly classifies at least one triple in the input KG
-
-In AMIE+, it is often the case that a single triple is covered by multiple rules.
-
-
+Then for each rule starting with the highest ranked to the lowest ranked rule it is checked whether the rule covers at least one triple (i.e. any atom in the rule can be instantiated by the triple) that the previous rules did not and only those rule which satisfy the conditions are kept. That way the new set of rules covers exactly the same set of triples in the data set.
