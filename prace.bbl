@@ -244,6 +244,95 @@
       \verb http://linkeddatabook.com/
       \endverb
     \endentry
+    \entry{Chudan2015}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=99de6bdffb6445dad42c2990135af76c}{%
+           family={CHUDÁN},
+           familyi={C\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Vysoká škola ekonomická v Praze, Praha}%
+      }
+      \strng{namehash}{99de6bdffb6445dad42c2990135af76c}
+      \strng{fullhash}{99de6bdffb6445dad42c2990135af76c}
+      \strng{bibnamehash}{99de6bdffb6445dad42c2990135af76c}
+      \strng{authorbibnamehash}{99de6bdffb6445dad42c2990135af76c}
+      \strng{authornamehash}{99de6bdffb6445dad42c2990135af76c}
+      \strng{authorfullhash}{99de6bdffb6445dad42c2990135af76c}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Association rule mining as a support for OLAP [online]}
+      \field{type}{phdthesis}
+      \field{year}{2015 [cit. 2020-10-10]}
+      \verb{urlraw}
+      \verb https://insis.vse.cz/zp/portal_zp.pl?prehled=vyhledavani;podrobnosti_zp=25910;zp=25910;download_prace=1
+      \endverb
+      \verb{url}
+      \verb https://insis.vse.cz/zp/portal_zp.pl?prehled=vyhledavani;podrobnosti_zp=25910;zp=25910;download_prace=1
+      \endverb
+    \endentry
+    \entry{Kämpgen2011}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=fbf61ba8af1e6e4c171c99e89869eb6e}{%
+           family={Kämpgen},
+           familyi={K\bibinitperiod},
+           given={Benedikt},
+           giveni={B\bibinitperiod}}}%
+        {{hash=c825103009ba7f981a3bc9ecebf016d3}{%
+           family={Harth},
+           familyi={H\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{f915f0098b0ddeb2fe105cb7d7ca3f57}
+      \strng{fullhash}{f915f0098b0ddeb2fe105cb7d7ca3f57}
+      \strng{bibnamehash}{f915f0098b0ddeb2fe105cb7d7ca3f57}
+      \strng{authorbibnamehash}{f915f0098b0ddeb2fe105cb7d7ca3f57}
+      \strng{authornamehash}{f915f0098b0ddeb2fe105cb7d7ca3f57}
+      \strng{authorfullhash}{f915f0098b0ddeb2fe105cb7d7ca3f57}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ACM International Conference Proceeding Series}
+      \field{month}{09}
+      \field{title}{Transforming statistical linked data for use in OLAP systems}
+      \field{year}{2011}
+      \field{pages}{33\bibrangedash 40}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1145/2063518.2063523
+      \endverb
+    \endentry
+    \entry{Koukal2017}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=c349837a3d2da3d41f29c0402fb85823}{%
+           family={Koukal},
+           familyi={K\bibinitperiod},
+           given={Bohuslav},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Vysoká škola ekonomická v Praze, Praha}%
+      }
+      \strng{namehash}{c349837a3d2da3d41f29c0402fb85823}
+      \strng{fullhash}{c349837a3d2da3d41f29c0402fb85823}
+      \strng{bibnamehash}{c349837a3d2da3d41f29c0402fb85823}
+      \strng{authorbibnamehash}{c349837a3d2da3d41f29c0402fb85823}
+      \strng{authornamehash}{c349837a3d2da3d41f29c0402fb85823}
+      \strng{authorfullhash}{c349837a3d2da3d41f29c0402fb85823}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{OLAP Recommender: Supporting Navigation in Data Cubes Using Association Rule Mining}
+      \field{type}{mathesis}
+      \field{year}{2017}
+    \endentry
     \entry{rdfPrimer2004}{misc}{}
       \name{author}{2}{}{%
         {{hash=f0d8c4e9bebfe5c0a01bde2d9a6a5ea6}{%
@@ -308,6 +397,79 @@
       \endverb
       \verb{url}
       \verb http://www.w3.org/TR/rdf-sparql-query/
+      \endverb
+    \endentry
+    \entry{Rauch2017}{article}{}
+      \name{author}{2}{}{%
+        {{hash=b9afb85d9cdd772790ae879cbf00fae7}{%
+           family={Rauch},
+           familyi={R\bibinitperiod},
+           given={Jan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=4d639d1839a1e0e76b8324231fd6aac1}{%
+           family={Šimůnek},
+           familyi={Š\bibinitperiod},
+           given={Milan},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{bc8fcb3ac50ae16d2af25d14b4711a83}
+      \strng{fullhash}{bc8fcb3ac50ae16d2af25d14b4711a83}
+      \strng{bibnamehash}{bc8fcb3ac50ae16d2af25d14b4711a83}
+      \strng{authorbibnamehash}{bc8fcb3ac50ae16d2af25d14b4711a83}
+      \strng{authornamehash}{bc8fcb3ac50ae16d2af25d14b4711a83}
+      \strng{authorfullhash}{bc8fcb3ac50ae16d2af25d14b4711a83}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Intelligent Data Analysis}
+      \field{month}{08}
+      \field{title}{Apriori and GUHA – Comparing two approaches to data mining with association rules}
+      \field{volume}{21}
+      \field{year}{2017}
+      \field{pages}{981\bibrangedash 1013}
+      \range{pages}{33}
+      \verb{doi}
+      \verb 10.3233/IDA-160069
+      \endverb
+    \endentry
+    \entry{Capadisli2013}{article}{}
+      \name{author}{3}{}{%
+        {{hash=a3c4eae032fae7cabc1b005284b17359}{%
+           family={Sarven},
+           familyi={S\bibinitperiod},
+           given={Capadisli},
+           giveni={C\bibinitperiod}}}%
+        {{hash=74de32830575f67e1479f58f47d2111d}{%
+           family={Auer},
+           familyi={A\bibinitperiod},
+           given={Sören},
+           giveni={S\bibinitperiod}}}%
+        {{hash=b986199bdcfcc6fe8e274602715439ed}{%
+           family={Riedl},
+           familyi={R\bibinitperiod},
+           given={Reinhard},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{3b720ac820323429238ac09b90b05838}
+      \strng{fullhash}{3b720ac820323429238ac09b90b05838}
+      \strng{bibnamehash}{3b720ac820323429238ac09b90b05838}
+      \strng{authorbibnamehash}{3b720ac820323429238ac09b90b05838}
+      \strng{authornamehash}{3b720ac820323429238ac09b90b05838}
+      \strng{authorfullhash}{3b720ac820323429238ac09b90b05838}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journalsubtitle}{Proceedings of the 1st International Workshop on Semantic Statistics}
+      \field{journaltitle}{CEUR (Central Europe workshop proceedings)}
+      \field{title}{Towards Linked Statistical Data Analysis}
+      \field{year}{2013}
+      \verb{urlraw}
+      \verb http://csarven.ca/linked-statistical-data-analysis
+      \endverb
+      \verb{url}
+      \verb http://csarven.ca/linked-statistical-data-analysis
       \endverb
     \endentry
     \entry{Zeman2018}{article}{}

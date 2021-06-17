@@ -1,27 +1,356 @@
 \chapter{Leveraging a Combination of OLAP Cubes and Knowledge Graphs}
 
-% TODO popřemýšlet o jiném názvu
+OLAP analysis and graphical visualisation suggest itself as natural ways of analyzing statistical linked data. Section \ref{dcv} describes how the statistical data can be represented as RDF using the Data Cube Vocabulary. The effort of anylyzing the statistical RDF data is focused on making use of the \textit{open} rather than \textit{linked} nature of Linked Open Data. Available RDF data is extracted as is and either loaded into an OLAP system  and treated as any other OLAP data \cite{Kämpgen2011} or it is analyzed by SPARQL queries.\cite{Capadisli2013} 
 
-% TODO co je v zadání od Svátka
+In \cite{Chudan2015} the application of GUHA \cite{Rauch2017} association rules for mining over the aggregated data was suggested as a complement to the standard OLAP analysis. The aggregated observations are treated as individual transactions in tabular data. The mined rules describe strong relations in the cube and can serve as a guide unusual trends that would be otherwise hard to find by manually browsing the OLAP cube.
 
-% k hodnotám dimenzí datové kostky se můžou z verejných zdrojů napojit nové vlastnosti, RDF dovoluje snadnou integraci, RDFRules rozpoznává equals
+The following text builds on the idea that some trends in OLAP cube can be expressed in as association rules and elaborates the possibilities of mining association rules by the AMIE algorithm over aggregated data in a form of a data cube. The AMIE algorithm mines rules directly over RDF data which can therefore be enriched by another relations describing the cube's dimension values extractable from other LOD sources so that the \textit{linked} nature of LOD is exploited as well.
 
 \section{Mining from RDF representation of Data Cube}
 
-% TODO že se dají kostky reprezentovat slovnikem data cube vocabulary viz ...
+We are going to aim to mine association rules that describe how a certain measure's values are determined by values of one or more dimensions meaning that the observations of the examined cube corresponding to fixed values of some dimensions (slicing and dicing) tend to contain a measure values with a certain characteristic. Those rules are a subject to the language bias described in \ref{languagebias}. The antecedent of the rule would basicaly specify a certain slice (a subset of observations) of the examined cube in which the measured values deviate from the whole and the consequent of the rule would describe the nature of this deviation.
 
-% TODO souměřitelnost -> způsoby řešení, rozsekání, clustering, viz Chudán
+\subsection{Rules's Bias}
 
-% TODO problémy s mírami 1) nesouměřitelnost 2) více různé datasety stejná míra !!! (ukázat priklady)
+Such a rule (the predicted characteristic of the subset of observations) has to be deducible by the algorithm so its head atom has to be \textit{instantiatable} by triples contained in the examined data set so the head's predicate will be one of the cube's measure, the head's subject will be a variable representing observations for which the rule's antecedent is valid and the head's object will be a specific constant of a discrete measure's value, that is predicted to be associated with all the observations that satisfy the antecedent. For example imagine a very small data cube which arose from a survey on the life satisfaction among men and women in several european countries. In each country a male and a female responsdent was asked to rank their life satisfaction either as \textit{low}, \textit{moderate} or \textit{high}. So the resulting data cube contains two dimensions of \textit{sex} and \textit{country} and a single measure of life satisfaction. Each respondent in the survey corresponds to one observation. 
 
-% TODO že se musí diskrezitovat, jaké jsou způsoby diskretizace, jaký to má vliv na measures: lift, HC, support, když se to disktretizuje určitým způsobem, toto rozvést víc a uvést klidně i nějaký příklad (chtel VS) 
+\begin{table}[h]
+\centering
+\begin{tabular}{l|lllll}
+    & France & Germany & Poland & Slovakia & Austria  \\ 
+\hline
+Men   & moderate     & high       & moderate      & high        & high        \\
+Women & low      & moderate       & high      & low        & low       
+\end{tabular}
+\end{table}
 
-% TODO zmínit Chudána
 
-% TODO chudán 4.1 Combining OLAP and association rules
+Based on the results of the survey in the table above we could determine that men accross the countries tend to a high life satisfaction. This fact can be expressed as an association rule that is deducible by the AMIE algorithm.
+
+$$ 
+(?o\hspace{0.4em}sex\hspace{0.4em}Male) \Rightarrow (?o\hspace{0.4em}lifeSatisfaction\hspace{0.4em}High) 
+$$
+
+We can calculate measures of significance of this rule from the values in the table. Since the object in the rule's head is a constant, the support of the rule corresponds only to the distinct observations that belong to men and have the correct measure value, i.e. \numprint{3}. The head coverage is calculated as support divided by the number of distinct triples with the head's predicate, which is equivalent to the number of distinct observations in the cube (in this example $3 \div 10 =0.\overline{3}$) which \textbf{would be constant for all found rules} so the head coverage does not convey any new information than the support measure when minig such rules from data cubes. 
+
+More interesting is an expression of the prediction's quality. That lead us to the measures of confidence. The standard confidence of the rules would be deducted from the ratio of men that said that they are highly satisfied with their life on all men that participated in the survey. If we assume that all observations are assigned the same number of measures, then the PCA confidence is equivalent to the standard confidence, because all observations satisfying the rule's body would be assigned any constant of the measure appearing in the rule's head. The confidence of the rule above equal to $3 \div 5 = 0.\overline{6}$.
+
+If the cube has more than one measure, one of the measures can be used in the rule's body to further specify the subset of the observations. Let's extend the survey by another question. The respondents also had to rank their salary as either \textit{low}, \textit{decent} or \textit{high}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ll|lllll}
+                                 &       & France   & Germany  & Poland   & Slovakia & Austria  \\ 
+\hline
+\multirow{2}{*}{lifeExpectation} & Men   & moderate & high     & moderate & high     & high     \\
+                                     & Women & low      & moderate & high     & low      & low      \\ 
+\hline
+\multirow{2}{*}{salary}          & Men   & low      & decent   & low      & decent   & decent     \\
+                                     & Women & low      & high     & decent   & low      & decent  
+\end{tabular}
+\end{table}
+
+Now if the rule's body contains a new atom demanding a certain value of the new measure for the observations:
+
+$$ 
+(?o\hspace{0.4em}sex\hspace{0.4em}Male) \land (?o\hspace{0.4em}salary\hspace{0.4em}Decent)  \Rightarrow (?o\hspace{0.4em}lifeSatisfaction\hspace{0.4em}High) 
+$$
+
+The value of support does not change. Now there are only \numprint{3} observations valid for the rule's body (Men of Germany, Slovakia and Austria) and all those observations are valid for the rule's head as well so the confidence of this rule is equal to \numprint{1}.
+
+\subsection{Commensurability}
+
+In the previous example, the measured values were discrete but data cube usually contain continuos numerical values on which aggregation operations (sum average etc.) are possible. In order to ensure, that the rules can achieve a reasonable support, the numerical values have to be discretized (see \ref{numericalattributes}) and replaced by intervals. But one cannost simply discretize all measure's values at once. The dimension values can be structured into a hierarchy so the measures belonging to dimension values of different levels in the hierarchy are not comparable.\cite{Chudan2015} Irrespective to a chosen discretization approach, it is inadmissible to discretize values belonging to different disproportionate contexts.
+
+One way to solve this to dice a cube having disproportionate dimension values into a set of smaller subcubes, in which the dimension values belong to the same level of a concept hierarchy. Measured values can be then discretized into intervals in each subcube separately. Number of subcubes that the main cube has to be divided into depends on the number dimensions and the number of levels in each dimension’s hierarchies. It assumes that the information about the structure of the hierarchy is available. The rules would be mined either separately on each subcube or for each observation a triple with the assignment of the observation to its subcube would have to be added into to the data set and this assignment would have to be stated in the body of the rules.
+
+An alternative to this proposed in \cite{Koukal2017} could be to cluster the values of each measure in the whole cube by the k-means algorithm a then to create equifrequent intervals inside those clusters. This would be useful when there is a significant difference in measurements belonging to the same level of hierarchy for a dimension. \cite{Koukal2017} gives an example of sales distribution among different products in a hypermarket. The number of sales of bakery will be incomparable to number of sales of electric razors. In the context of the AMIE algorithm, the assignment of each observation to each measure's cluster would have to be added to the data set and then expressed in the rule's body, otherwise also the observations belonging to different clusters would be considered counterexamples and the confidence would not be computed properly. One disadvatage of this approach is that there is no clear interpretation of the generated subcubes. Their observations can belong to different levels of the concept hierarchy in a dimension. Unlike with the previous approach where a generated subcube could be described as for example \textit{population in districts by age category}.
+
+
+The following example explains the first approach. Adam and Beatrice work as food delivery persons. Data about the amount of their delivered orders in 2020 is entered in a data cube with two dimensions of the person delivering and the time interval to which the number of delivered orders relates. The length of time intervals varies. They are either whole weeks or whole months.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l|llllll}
+         & 1st Week & 2nd Week & 3rd Week & January & February & March  \\ 
+\hline
+Adam     & 50               & 55               & 40               & 150     & 250      & 200    \\
+Beatrice & 30               & 40               & 20               & 100     & 120      & 130   
+\end{tabular}
+\end{table}
+
+The values belonging to weeks are not comparable with the values belonging to months. The cube will be sliced into two cubes, with one containing the observations of week and the second with observations of months. Values will be then discretized in both cubes separately. For the sake of simplicity, the values will be discretized into two equifrequent intervals.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l|llllll}
+             & 1st Week & 2nd Week & 3rd Week & January  & February & March     \\ 
+\hline
+Adam     & ef2/2\_1 & ef2/2\_1 & ef1/2\_1 & ef2/2\_2 & ef2/2\_2 & ef2/2\_2  \\
+Beatrice & ef1/2\_1 & ef1/2\_1 & ef1/2\_1 & ef1/2\_2 & ef1/2\_2 & ef1/2\_2 
+\end{tabular}
+\end{table}
+
+Let's have a rule stating that Beatrice's weekly delivered orders \textit{are low} (in the lower of the two equifrequent intervals). The assignment of the valid observations to the correct subcube has to be part of the body so that the Beatrice's montly order values are not considered counterexamples. In Data Cube Vocabulary, this assignment is provided by the $qb:dataSet$ property.
+
+$$ 
+(?o\hspace{0.4em}person\hspace{0.4em}Beatrice) \land (?o\hspace{0.4em}qb:dataSet\hspace{0.4em}Week)  \Rightarrow (?o\hspace{0.4em}orders\hspace{0.4em}ef1/2\_1) 
+$$
+
+The question is to how many intervals the measures should be discretized into. If creating too many intervals, more specific rules should be found but they happen to have a lower support. When performing the equifrequent discretization, coarser rules are found for lower number of intervals. To avoid guessing which discretization parameters suit best the data, multiple discretizations can be performed with different parameters for various discretization algorithms. As it was already mentioned, the preprocessed cube should to be cut into subcubes with commensurable observations, measures in theses subcube have to be discretized separately and only after that the triples can be merged and performed the mining tasks on.
+
+\begin{figure}[h]
+\begin{lstlisting}[language = turtle, caption={Observations example}, label={obsexample},captionpos=b escapeinside={(*@}{@*)}]
+@prefix qb: <http://purl.org/linked-data/cube#> .
+
+<o1> qb:dataSet <original-dataset> ;
+    <dimension1> <dimension1value1> ; <dimension2> <dimension2value1> ;
+    <measure1> 25000 ;
+    <measure2> 3 .
+    
+<o2> qb:dataSet <original-dataset> ;
+    <dimension1> <dimension1value2> ; <dimension2> <dimension2value2> ;
+    <measure1> 10000 ;
+    <measure2> 10 .
+\end{lstlisting}
+\end{figure}
+
+That means that the number of overall \textit{measurements} multiplies by the number of distinct discretizations. A situation has to be avoided, when the instantiations of variable representing observations are involving observations not only from various subcubes but also those observations are assigned measurements from dijunct sets of intervals (distinct discretizations). The result of a approach (let's call it style $A$) to solve this problem on the sample data in \ref{obsexample} is shown in \ref{discsample}.
+
+\begin{figure}[h]
+\begin{lstlisting}[language = turtle, caption={Discretization example}, label={discsample},captionpos=b escapeinside={(*@}{@*)}]
+@prefix qb: <http://purl.org/linked-data/cube#> .
+            
+<o1> qb:dataSet <subcube1> ;
+    <dimension1> <dimension1value1> ; <dimension2> <dimension2value1> ;
+    <measure1> <subcube1_ef3_measure1_3>, <subcube1_ef10_measure1_2> ;
+    <measure2> <subcube1_ef3_measure2_2>, <subcube1_ef10_measure2_1> .
+   
+<o2> qb:dataSet <subcube2> ;
+    <dimension1> <dimension1value2> ; <dimension2> <dimension2value2> ;
+    <measure1> <subcube2_ef3_measure1_3> , <subcube2_ef10_measure1_2> ;
+    <measure2> <subcube2_ef3_measure2_1> ,<subcube2_ef10_measure2_1> .
+\end{lstlisting}
+\end{figure}
+
+Each application of a discretization algorithm will create a new measurement triple for each measure and observation with an object of the assigned interval based on the discretization algorithm and the parameter. The objects in triples assigning the observations to a data set will be changed to point to the particular subcube. In the example two discretizations for each measure were performed on the two observations. In the example the same pair of discretizations were performed on the two distinct measures, but that does not have to be so. Assigning multiple triples of the same measure is fine as far as the measure is differently discretized.
+
+In each rule it has to be ensured, that the set of observations is limited to a certain subcube. For each cube in a rule the body of a rule has to contain an atom of a pattern $(?o\hspace{0.4em}qb:dataSet\hspace{0.4em}AnyConstant)$. The discretized subcubes can be either be performed mining tasks on separately or they could remain as a singe data set. The second option is less demanding. A single index is created from which a single rule set is generated. It distorts the lift measure though, because it increases the denominator of the head confidence. To show the effect let's return to the example of Adam and Beatrice and let's compute the head confidence\footnote{We calculate on the head confidence as the denominator of the lift formula since the formula's numerator (confidence) does not change.} of the rule first for the case when the subcubes\footnote{That means one subcube of the weekly order amounts and one subcube of the monthly order amounts.} are mined on seperately. The examined rules would be contained in the rule set generated from mining the \textit{weekly} subcube.
+
+$$hconf(\vec{B} \Rightarrow H) = \frac{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}C) }{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}?b)} = \frac{3}{6} = \frac{1}{2}$$
+
+If we mined over the whole cube, the head confidence's denominator would consider all observations in the cube.
+
+$$hconf(\vec{B} \Rightarrow H) = \frac{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}C) }{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}?b)} = \frac{3}{12} = \frac{1}{4}$$
+
+The head coverage is disorted both by mining over multiple subcubes and by performing multiple discretization of the same measure, because its denominator as the number of triples with the head's predicate, named head size. Each performed discretization over a measure increases this number by the number of observations and so does the inclusion of triples with observations not compatible with a rule. Let's compute the head size of the above mentioned rule when mined only from the \textit{weekly} subcube.
+
+$$
+hsize(\vec{B} \Rightarrow (s\hspace{0.4em}p\hspace{0.4em}o)) = \# \langle s,p,o\rangle \in KG: \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}?b) = 6 
+$$
+
+Since there are only 6 observations in the whole mined data set. Let's perform a second discretization over Adam's and Beatrice's data cube and also mine over the whole cube. 
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l|llllll}
+                          & 1st Week & 2nd Week & 3rd Week & January  & February & March     \\ 
+\hline
+\multirow{2}{*}{Adam}     & ef2/2\_1 & ef2/2\_1 & ef1/2\_1 & ef2/2\_2 & ef2/2\_2 & ef2/2\_2  \\
+                          & ef3/3\_1 & ef3/3\_1 & ef2/3\_1 & ef2/3\_2 & ef3/3\_2 & ef3/3\_2  \\
+\multirow{2}{*}{Beatrice} & ef1/2\_1 & ef1/2\_1 & ef1/2\_1 & ef1/2\_2 & ef1/2\_2 & ef1/2\_2  \\
+                          & ef1/3\_1 & ef2/3\_1 & ef1/3\_1 & ef1/3\_2 & ef1/3\_2 & ef2/3\_2 
+\end{tabular}
+\end{table}
+
+Now the head size will be higher because all 12 observations are considered plus their count is multiplied by the number of performed observations.
+
+$$
+hsize(\vec{B} \Rightarrow (s\hspace{0.4em}p\hspace{0.4em}o)) = \# \langle s,p,o\rangle \in KG: \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}?b) = 12 * 2 = 24
+$$
+
+A different way of structuring the discretized measures (let's call it style $B$) within the observations would remove both distortions while also permitting to mine over the whole original cube. Each performed discretization would introduce a new derived measure whose name could be chosen as the name of the original measure suffixed by type of discretization with its parameters and the observation's subcube.
+
+\begin{figure}[h]
+\begin{lstlisting}[language = turtle, caption={Discretization example 2}, label={discsample},captionpos=b escapeinside={(*@}{@*)}]
+@prefix qb: <http://purl.org/linked-data/cube#> .
+                
+<o1> qb:dataSet <subcube1> ;
+    <dimension1> <dimension1value1> ; <dimension2> <dimension2value1> ;
+    <subcube1_ef3_measure1> <subcube1_ef3_measure1_3> ;
+    <subcube1_ef10_measure1> <subcube1_ef10_measure1_2> ;
+    <subcube1_ef3_measure2> <subcube1_ef3_measure2_2> ; 
+    <subcube1_ef10_measure2> <subcube1_ef10_measure2_1> .
+       
+<o2> qb:dataSet <subcube2> ;
+    <dimension1> <dimension1value2> ; <dimension2> <dimension2value2> ;
+    <subcube2_ef3_measure1> <subcube2_ef3_measure1_3> ;
+    <subcube2_ef10_measure1> <subcube2_ef10_measure1_2> ;
+    <subcube2_ef3_measure2> <subcube2_ef3_measure2_1> ;
+    <subcube2_ef10_measure2> <subcube2_ef10_measure2_1> .
+\end{lstlisting}
+\end{figure}
+
+The head coverage of a rule generated from such data can be then interpreted as the ratio of the rule's support and the number of appropriate observations regardless of whether the whole cube is mined at once or the subcubes are mined separately because the predicate of the rule will be anchored both to the appropriate subcube and to a single performed discretization. This would however disadvantage finer discretizations because they would tend to have lower and support while the head size would be constant accross all rules with associated with the same subcube and the same original measure.
+
+The support of a rule is affected by the number of observations of the subcube to which the rule is anchored. The rules generated for a bigger subcube will tend to have a higher support compared to rules from a smaller subcubes because there will be more observations that can meet the condition of the rule's body. But this effect is cancelled out in the head coverage because with more observations its numerator (support) grows but its denominator grows as well. So for a cube constisting of a high number of subcubes it can be suggested to use the style B of expressing the discretized measures and mined the cube at once with a defined head coverage parameter. A low number of subcubes could be mined separately with a custom minimum support threshold defined for each subcube to tweak each subcube's rule set. And since the separate mining of each subcube solves the lift distortion by itself and a minimum support threshold would be used instead of a minimum head coverage, the measure expression style $A$ could be used because it's propably easier to perform.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l|ll}
+                           & style A                       & style B                  \\ 
+\hline
+mining the whole cube      &                               & high no. of subcubes  \\
+mining subcubes separately & manageable no. of subcubes &                         
+\end{tabular}
+\end{table}
 
 \section{Appending RDF Data to the Data Cubes}
 
-% TODO že se to napojuje k hodnotám dimenzí, které jsou v té kostce (že se dá třeba připojit něco k času, nebo k dimenzi zákazník, oblast)
+So far the showed rules specified the subset of observations only by exactly one value for a dimension, just as e.g. the Apriori algorithm's rules contain only one category for each atribute. Slicing the subset of observations just by one value per dimension would yield just a contrained set of rules. The language bias of the AMIE algorithm does not allow a collection (disjunction) of values in the atom's object. It can be either a constant or a variable. But a variable can appear in another atom in which it is attributed a \textit{property}. That way the variable acts as a collection of entities sharing this property.
 
-% TODO moje výstupy
+If the dimension values represent a real-world entities such as geographical areas, persons, organizations etc., such properties can be found in the form of RDF triples published in public knowledge graphs. Those triples can enter the algorithm together with the triples describing the data cube. Let's continue with the example of Adam and Beatrice. Table below shows a simple data cube containing the numbers of their daily delivered orders from July 14th to 17th. Each cells contains the original value of daily orders plus its interval after the equifrequent discretization into four intervals.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l|llll}
+Orders                    & 07-14 & 07-15 & 07-16 & 07-17  \\ 
+\hline
+\multirow{2}{*}{Adam}     & 10    & 7     & 6     & 0      \\
+                         & ef4/4 & ef3/4 & ef2/4 & ef1/4  \\
+\multirow{2}{*}{Beatrice} & 9     & 0     & 8     & 4      \\
+                          & ef4/4 & ef1/4 & ef3/4 & ef2/4 
+\end{tabular}
+\end{table}
+
+Both also publish their personal information as RDF with the \textit{FOAF} Vocabulary\footnote{\href{http://www.foaf-project.org/}{http://www.foaf-project.org/}} on their blogs. The listing \ref{foafexample} shows a deluge of both person's information.
+
+\begin{figure}[h]
+\begin{lstlisting}[language = turtle, caption={RDF data published on Adam's and Beatrice's personal blogs}, label={foafexample},captionpos=b escapeinside={(*@}{@*)}]
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+<http://adamsmith.xyz/#me>
+    a foaf:Person ;
+    foaf:name "Adam Smith" ;
+    foaf:givenname "Adam" ;
+    foaf:family_name "Smith" ;
+    foaf:birthday "07-17"^^xsd:string ;
+    foaf:homepage <http://www.adamsmith.xyz> .
+      
+<http://beatricet.com/#me>
+    a foaf:Person ;
+    foaf:name "Beatrice Taylor" ;
+    foaf:givenname "Beatrice" ;
+    foaf:family_name "Taylor" ;
+    foaf:birthday "07-15"^^xsd:string ;
+    foaf:homepage <http://www.beatricet.com> .
+\end{lstlisting}
+\end{figure}
+
+If this data is merged with the data cube, one of the rules found by AMIE algorithm would be a rule stating that a when a person has a birth day, their number of delivered orders in that day is in the lowest of four equifrequent intervals. For this simple example it could also predict the exact zero. Probably because when someone has a birth day, they have a party with friends or with family and they do not bother with delivering meals.
+
+$$
+(?o\hspace{0.4em}day\hspace{0.4em}?b) \land (?p\hspace{0.4em}foaf:birthday\hspace{0.4em}?b)
+$$
+$$ 
+\land (?o\hspace{0.4em}person\hspace{0.4em}?p) \land (?o\hspace{0.4em}qb:dataSet\hspace{0.4em}Day)  \Rightarrow (?o\hspace{0.4em}orders\hspace{0.4em}ef1/4) 
+$$
+
+This example is simplified in the way that it assumes that the IRIs representing Adam and Beatrice in the data cube are identical to the IRIs they assigned to themselves and also that the data cube uses the same date format as the \textit{FOAF} Vocabulary suggests. Which would not because the cube's dates represent actual days, whereas birth day is just a combination of month and day repeating every year, so this relation would have to be inferred by another triples whose atom would have to be in the rule. The dimension values do not just have to be \textit{described} directly. The rule can contain a \textit{chain} of atoms not instantiated by the cube's triples starting with the dimension value's variable.
+
+Real-world entities or concepts can be assigned multiple identifiers in the LOD environment. In order to the AMIE algorithm to make the right connection between the dimension values and triples from other sources describing them, the identifiers have to either be unified or triples stating their equivalence e.g. with the \textit{owl:sameAs} predicate have to be added into the data set and those connections have to be part of the rules.
+
+\section{Finding Rules Concerning Multiple Cubes}
+
+The same dimension values of a data cube can be present in other data cubes either with the same or a different identifier. For example both a cube containing procurement statistics of a country and a cube containing demography statistics of the country would have a dimension of the reference areas in the country. The measures attributed a dimension value in a data cube can be considered properties describing the dimension value, therefore there is a possibility to use it to specify the subset of observations in an examined cube just as the RDF data from public knowledge graphs. But one has to remember that the measures are given in the context of all dimensions in the cube. 
+
+Let's have a first example of two small data cubes. One contains averages salary statistics by region, year and sex. The second cube contains average pension statistics by region and year.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ll|lll|lll}
+\multicolumn{2}{l|}{\multirow{2}{*}{Dimensions}} & \multicolumn{3}{c|}{Salaries}                                                   & \multicolumn{3}{c}{Pensions}                                                    \\
+\multicolumn{2}{l|}{}                            & \multicolumn{1}{c}{2010} & \multicolumn{1}{c}{2011} & \multicolumn{1}{c|}{2012} & \multicolumn{1}{c}{2010} & \multicolumn{1}{c}{2011} & \multicolumn{1}{c}{2012}  \\ 
+\hline
+\multirow{2}{*}{Region 1} & Male                 & High                     & High                     & High                      & \multirow{2}{*}{Medium}  & \multirow{2}{*}{High}    & \multirow{2}{*}{High}     \\
+                          & Female               & Medium                   & Medium                   & High                     &                          &                          &                           \\
+\multirow{2}{*}{Region 1} & Male                 & Low                      & Medium                   & High                      & \multirow{2}{*}{Low}     & \multirow{2}{*}{Low}     & \multirow{2}{*}{Low}      \\
+                          & Female               & Low                      & Low                      & Low                       &                          &                          &                          
+\end{tabular}
+\end{table}
+
+The cubes vary in the number of dimensions but they share the dimensions of region and year. We can imagine this rule generated by AMIE algorithm:
+
+$$
+(?o1\hspace{0.4em}qb:dataSet\hspace{0.4em}Salaries) \land (?o1\hspace{0.4em}salary\hspace{0.4em}High) \land (?o1\hspace{0.4em}sex\hspace{0.4em}Male)
+$$
+$$
+\land (?o2\hspace{0.4em}region\hspace{0.4em}?r) \land (?o1\hspace{0.4em}region\hspace{0.4em}?r) \land (?o1\hspace{0.4em}year\hspace{0.4em}?y)
+$$
+$$
+\land (?o2\hspace{0.4em}year\hspace{0.4em}?y) \land (?o2\hspace{0.4em}qb:dataSet\hspace{0.4em}Pensions) \Rightarrow (?o2\hspace{0.4em}pension\hspace{0.4em}High)
+$$
+
+which states that if there is an observation in the \textit{Salaries} cube assigned to Males and to some region and year and this observation's measure for average salary reads \textit{High}, then all observations from the \textit{Pensions} cube assigned to the same region and year have the average pension measure value of \textit{High}. This can be paraphrased as: \textit{People in regions where men have high salaries have high pensions.} For each observation from the \textit{Salaries} cube that satisfies the rule's there is exactly one observation from the \textit{Pensions} cube that does as well given that the ranges of the region and year dimensions in the \textit{Salaries} cube are subsets or identical sets of the the same dimensions in the \textit{Pensions} cube. 
+
+Let's refer to the cubes whose observations are instantiated in the variable that appears in a rule's head as \textit{head cubes} and the cubes whose observation are instantiated in the variable that appears only in a rule's body as \textit{body cubes}. There can be one or more body cube and exactly one head cube in a rule. The \textit{Salaries} cube in the rule above is a body cube and the \textit{Pensions} cube is a head cube. If a cube's dimension appears in the rule, let's refer to the cube's dimension as \textit{closed} for the rule and it does not appear in the rule, let's refer to the dimension as \textit{open}. All the \textit{Salaries} cube's dimension in the rule above are closed and so are all the dimensions of the \textit{Pensions} cube.
+
+If one or more dimensions of a body cube are open in a rule, then the interpretation of the becomes complicated. The rule below was mined from the same cubes with the same structure, but the \textit{Salaries} cube has open dimension (sex) in the rule.
+
+$$
+(?o1\hspace{0.4em}qb:dataSet\hspace{0.4em}Salaries) \land (?o1\hspace{0.4em}salary\hspace{0.4em}High) \land (?o2\hspace{0.4em}region\hspace{0.4em}?r)
+$$
+$$
+\land (?o1\hspace{0.4em}region\hspace{0.4em}?r) \land (?o1\hspace{0.4em}year\hspace{0.4em}?y) \land (?o2\hspace{0.4em}year\hspace{0.4em}?y)
+$$
+$$
+\land (?o2\hspace{0.4em}qb:dataSet\hspace{0.4em}Pensions) \Rightarrow (?o2\hspace{0.4em}pension\hspace{0.4em}High)
+$$
+
+This rule states that if either men or women have high salary in a region then people have high pensions in the region. If there is an open dimension of a body cube, it adds an \textit{or} statement into the rule's interpretation for each distinct value of the open dimension. Therefore open dimensions in the body cubes should be avoided unless the number of distinct values of an open dimension is very low. Following example shows how the interpretability of a rule is affected when all body cubes have only closed dimensions but one head cube's dimension is open. The cubes have now a different structure.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{ll|lll|lll}
+\multicolumn{2}{l|}{\multirow{2}{*}{Dimensions}} & \multicolumn{3}{c|}{Salaries}                                                   & \multicolumn{3}{c}{Pensions}                                                    \\
+\multicolumn{2}{l|}{}                            & \multicolumn{1}{c}{2010} & \multicolumn{1}{c}{2011} & \multicolumn{1}{c|}{2012} & \multicolumn{1}{c}{2010} & \multicolumn{1}{c}{2011} & \multicolumn{1}{c}{2012}  \\ 
+\hline
+\multirow{2}{*}{Region 1} & Male                 & \multirow{2}{*}{Medium}  & \multirow{2}{*}{High}    & \multirow{2}{*}{High}     & Medium                   & High                     & High                      \\
+                          & Female               &                          &                          &                           & Medium                   & Medium                   & Medium                    \\
+\multirow{2}{*}{Region 1} & Male                 & \multirow{2}{*}{Low}     & \multirow{2}{*}{Medium}  & \multirow{2}{*}{High}     & Low                      & Low                      & Low                       \\
+                          & Female               &                          &                          &                           & Medium                   & Low                      & Low                      
+\end{tabular}
+\end{table}
+
+The \textit{Salaries} cube has the dimensions of region and year and the \textit{Pensions} cube has the dimensions of region, year and sex. In the rule below the head cube has one open dimension of sex. In the context of the cubes' structure the rule would be interpreted as \textit{if in any year the salaries in a region are high then the male pensions and female pensions are high in this region that year}. For each \dots
+
+% todo for each ...
+
+\begin{minipage}{\textwidth}
+$$
+(?o1\hspace{0.4em}qb:dataSet\hspace{0.4em}Salaries) \land (?o1\hspace{0.4em}salary\hspace{0.4em}High) \land (?o2\hspace{0.4em}region\hspace{0.4em}?r)
+$$
+$$
+\land (?o1\hspace{0.4em}region\hspace{0.4em}?r) \land (?o1\hspace{0.4em}year\hspace{0.4em}?y) \land (?o2\hspace{0.4em}year\hspace{0.4em}?y)
+$$
+$$
+\land (?o2\hspace{0.4em}qb:dataSet\hspace{0.4em}Pensions) \Rightarrow (?o2\hspace{0.4em}pension\hspace{0.4em}High)
+$$
+\end{minipage}
+
+If there is an open dimension of the head cube, it adds an \textit{and} statement into the rule's interpretation for each distinct value of the open dimension.
+
+% že to tolik nevadí??
+% consistent over
+
+\section{Note to the Rule's Atom Order}
+
+% could be more human readable if the 
+
+% tyto výskyty v jiných kostkách ; measures prisouzene tem dimension values se dají povazovat za jejich properties a se dají taky použít taky pro specifikaci subsetu observation in an examined cube
+
+
+
+% ten subset se dá omezit i informacemi v jiné kostce
+
+% linking musí fungovat mezi kostkama

@@ -17,7 +17,7 @@ $$
 
 This rule states that any person lives in a place his or her company's headquaters. Length of this rule is 3 since it has two body atoms. The rule has 3 variables. When we substitute the variables by constants present in the examined data set, we get an \textit{instantiation} of the rule. If all atoms of the instantiated rule appear in the data set, the head atom of the instantiation is one the \textit{predictions} of the rule. Number of all instantiations of an atom that appear in the data set is called \textit{size} of the atom.
 
-\subsection{Language Bias}
+\subsection{Language Bias\label{languagebias}}
 
 In order to efficiently traverse the search space, AMIE subjects the rules to a particular language bias. Only the rules comforming the conditions stated below can be generated and further refined.
 
@@ -181,17 +181,13 @@ The approximation is designed to overestimate the confidence so that no high con
 
 \section{RDFRules}
 
-Although the AMIE+ algorithm made it possible to mine rules from large real-world knowledge bases, it lacks features that would allow it to encompass the whole mining process. It does not deal with pre-processing the input data and post-processing of the generated rules. Those tasks are assumed to be subject to other tools. Modern algoritmic frameworks for mining association rules from tabular data, such as \textit{arules} R package or Spark MLlib,however enable to deal with the whole mining process with just one tool.
+Although the AMIE+ algorithm made it possible to mine rules from large knowledge bases, its use would have to be combined with other tools when deployed on real-world knowledge bases, since it does not deal with preprocessing the input data (e.g. unifying IRIs for identical resources, treatment of numerical values) and subsequent analysis of the generated rules. An extension of the AMIE+ algorithm under the name of \textit{RDFRules} was presented in \cite{Zeman2020}. Beside enhancements to the algorithm itself (faster projection counting pruning by used specified \textit{rule patterns}), several other techniques were proposed to be integrated with the algorithm to cover complete mining process.
 
-TODO prepsat to
+% \subsection{Faster Projection Counting}
 
-% TODO present a collection of enhancements
+% TODO
 
-% TODO ale rdfrules je víc integrated approach, stejne jako arules, supports full data mining life cycle
-
-% TODO enhancement of the algorithm itself plus proposed approaches for pre-processing and postprocessing (deals with high number of usually overlapping rules generated) to cover complete mining process
-
-\subsection{Processing of Numerical Attributes}
+\subsection{Processing of Numerical Attributes\label{numericalattributes}}
 
 AMIE+ treats numerical values (in RDF those can only appear at the position of object) just as any other distrete value. Due to the downward closure property of the algorithm (and of the association rule mining algorithms in general), where not only the whole rule but also each subset of the rule's atom have to meet the minimum support threshold, and due to the fact that the numerical attributes usually contain many distinct values, the rules concerning numerical values tend to be excluded from the generated rules.
 
@@ -247,7 +243,7 @@ $$hconf(\vec{B} \Rightarrow H) = \frac{\# s: \exists \langle s,p,o\rangle \prec 
 
 If the head atom contains one variable and a constant at the position of object ($H = (?a\hspace{0.4em}p\hspace{0.4em}C)$), then the head confidence is computed as the ratio between the number of distinct subjects bound with the predicate in the head atom and with the constant in the head atom and the number of distinct subjects in the whole data set.
 
-$$hconf(\vec{B} \Rightarrow H) = \frac{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}C) }{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}?b) }$$
+$$hconf(\vec{B} \Rightarrow H) = \frac{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}C) }{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}?b) }$$\label{hconf2}
 
 If the head atom contains a constant at the position of subject ($H = (C\hspace{0.4em}p\hspace{0.4em}?a)$), the formula goes as the ratio of between the number of distinct objects bound with the predicate in the head atom and with the constant in the head atom and the number of distinct subjects in the whole data set.
 

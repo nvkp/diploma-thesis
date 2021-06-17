@@ -61,48 +61,60 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {5}RDFRules Reference Implementation}{23}{chapter.5}%
 \defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.1}Interfaces}{23}{section.5.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.2}Data Structures}{24}{section.5.2}%
+\defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {6}Leveraging a Combination of OLAP Cubes and Knowledge Graphs}{26}{chapter.6}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {6.1}Mining from RDF representation of Data Cube}{26}{section.6.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}Appending RDF Data to the Data Cubes}{26}{section.6.2}%
+\contentsline {subsection}{\numberline {6.1.1}Rules's Bias}{26}{subsection.6.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Experiment}{27}{chapter.7}%
+\contentsline {subsection}{\numberline {6.1.2}Commensurability}{28}{subsection.6.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Czech Social Security Administration's Data Cubes}{27}{section.7.1}%
+\contentsline {section}{\numberline {6.2}Appending RDF Data to the Data Cubes}{32}{section.6.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Czech Statistical Office's Data Cubes}{30}{section.7.2}%
+\contentsline {section}{\numberline {6.3}Finding Rules Concerning Multiple Cubes}{34}{section.6.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.3}Wikidata}{31}{section.7.3}%
+\contentsline {section}{\numberline {6.4}Note to the Rule's Atom Order}{36}{section.6.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.4}YAGO Triples}{32}{section.7.4}%
+\contentsline {chapter}{\numberline {7}Experiment}{37}{chapter.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.5}Filtering the Observations}{33}{section.7.5}%
+\contentsline {section}{\numberline {7.1}Czech Social Security Administration's Data Cubes}{37}{section.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.6}Slicing the Cubes}{33}{section.7.6}%
+\contentsline {section}{\numberline {7.2}Czech Statistical Office's Data Cubes}{40}{section.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.7}Linking}{35}{section.7.7}%
+\contentsline {section}{\numberline {7.3}Wikidata}{41}{section.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.7.1}Sex Dimension Values}{36}{subsection.7.7.1}%
+\contentsline {section}{\numberline {7.4}YAGO Triples}{42}{section.7.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.7.2}Reference Periods}{36}{subsection.7.7.2}%
+\contentsline {section}{\numberline {7.5}Filtering the Observations}{43}{section.7.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.7.3}Reference Areas}{36}{subsection.7.7.3}%
+\contentsline {section}{\numberline {7.6}Slicing the Cubes}{43}{section.7.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.8}Discretization}{37}{section.7.8}%
+\contentsline {section}{\numberline {7.7}Linking}{45}{section.7.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.9}Mining Tasks}{39}{section.7.9}%
+\contentsline {subsection}{\numberline {7.7.1}Sex Dimension Values}{46}{subsection.7.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.9.1}Relation between the pension expenses and the policital alignment of the state's government}{40}{subsection.7.9.1}%
+\contentsline {subsection}{\numberline {7.7.2}Reference Periods}{46}{subsection.7.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.9.2}Appending the YAGO Data Set to the CZSO Data Cubes}{43}{subsection.7.9.2}%
+\contentsline {subsection}{\numberline {7.7.3}Reference Areas}{46}{subsection.7.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.9.3}Relation Between Measures from Different Data Cubes}{46}{subsection.7.9.3}%
+\contentsline {section}{\numberline {7.8}Discretization}{47}{section.7.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.10}Discussion}{46}{section.7.10}%
+\contentsline {section}{\numberline {7.9}Mining Tasks}{49}{section.7.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Conclusions}{47}{chapter*.36}%
+\contentsline {subsection}{\numberline {7.9.1}Relation between the pension expenses and the policital alignment of the state's government}{50}{subsection.7.9.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of References}{48}{chapter*.37}%
+\contentsline {subsection}{\numberline {7.9.2}Appending the YAGO Data Set to the CZSO Data Cubes}{53}{subsection.7.9.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Queries and Scripts}{50}{appendix.A}%
+\contentsline {subsection}{\numberline {7.9.3}Relation Between Measures from Different Data Cubes}{56}{subsection.7.9.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.10}Discussion}{56}{section.7.10}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Conclusions}{57}{chapter*.49}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{List of References}{58}{chapter*.50}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Queries and Scripts}{61}{appendix.A}%
