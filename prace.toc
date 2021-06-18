@@ -77,44 +77,44 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {6.3}Finding Rules Concerning Multiple Cubes}{34}{section.6.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.4}Note to the Rule's Atom Order}{36}{section.6.4}%
+\contentsline {subsection}{\numberline {6.3.1}Note to the Rule Atoms Order}{36}{subsection.6.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Experiment}{37}{chapter.7}%
+\contentsline {chapter}{\numberline {7}Experiment}{38}{chapter.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Czech Social Security Administration's Data Cubes}{37}{section.7.1}%
+\contentsline {section}{\numberline {7.1}Czech Social Security Administration's Data Cubes}{38}{section.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Czech Statistical Office's Data Cubes}{40}{section.7.2}%
+\contentsline {section}{\numberline {7.2}Czech Statistical Office's Data Cubes}{41}{section.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.3}Wikidata}{41}{section.7.3}%
+\contentsline {section}{\numberline {7.3}Wikidata}{42}{section.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.4}YAGO Triples}{42}{section.7.4}%
+\contentsline {section}{\numberline {7.4}YAGO Triples}{43}{section.7.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.5}Filtering the Observations}{43}{section.7.5}%
+\contentsline {section}{\numberline {7.5}Filtering the Observations}{44}{section.7.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.6}Slicing the Cubes}{43}{section.7.6}%
+\contentsline {section}{\numberline {7.6}Slicing the Cubes}{44}{section.7.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.7}Linking}{45}{section.7.7}%
+\contentsline {section}{\numberline {7.7}Linking}{46}{section.7.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.7.1}Sex Dimension Values}{46}{subsection.7.7.1}%
+\contentsline {subsection}{\numberline {7.7.1}Sex Dimension Values}{47}{subsection.7.7.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.7.2}Reference Periods}{46}{subsection.7.7.2}%
+\contentsline {subsection}{\numberline {7.7.2}Reference Periods}{47}{subsection.7.7.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.7.3}Reference Areas}{46}{subsection.7.7.3}%
+\contentsline {subsection}{\numberline {7.7.3}Reference Areas}{47}{subsection.7.7.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.8}Discretization}{47}{section.7.8}%
+\contentsline {section}{\numberline {7.8}Discretization}{48}{section.7.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.9}Mining Tasks}{49}{section.7.9}%
+\contentsline {section}{\numberline {7.9}Mining Tasks}{50}{section.7.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.9.1}Relation between the pension expenses and the policital alignment of the state's government}{50}{subsection.7.9.1}%
+\contentsline {subsection}{\numberline {7.9.1}Relation between the pension expenses and the policital alignment of the state's government}{51}{subsection.7.9.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.9.2}Appending the YAGO Data Set to the CZSO Data Cubes}{53}{subsection.7.9.2}%
+\contentsline {subsection}{\numberline {7.9.2}Appending the YAGO Data Set to the CZSO Data Cubes}{54}{subsection.7.9.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.9.3}Relation Between Measures from Different Data Cubes}{56}{subsection.7.9.3}%
+\contentsline {subsection}{\numberline {7.9.3}Relation Between Measures from Different Data Cubes}{57}{subsection.7.9.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.10}Discussion}{56}{section.7.10}%
+\contentsline {section}{\numberline {7.10}Discussion}{57}{section.7.10}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Conclusions}{57}{chapter*.49}%
+\contentsline {chapter}{Conclusions}{58}{chapter*.49}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{List of References}{58}{chapter*.50}%
+\contentsline {chapter}{List of References}{59}{chapter*.50}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Queries and Scripts}{61}{appendix.A}%
+\contentsline {chapter}{\numberline {A}Queries and Scripts}{62}{appendix.A}%
