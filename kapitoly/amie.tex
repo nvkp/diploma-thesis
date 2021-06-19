@@ -38,7 +38,7 @@ $$ supp(\vec{B} \Rightarrow r(x,y)) := \# (x,y): \exists z_{1}\ldots z_{n}: \vec
 
 \subsubsection{Head Coverage}
 
-Since the support is an absolute number, so the size of the examined data set has to be taken into account while defining this threshold. Plus If the defined support value is greater than a number of distint triples containing a certain predicate, any rule containing this predicate in the head atom would be disregarded. Head Coverage is the relative expression of support. It is defined as support of a rule over the size of its head atom.
+Since the support is an absolute number, so the size of the examined data set has to be taken into account while defining this threshold. Plus If the defined support value is greater than a number of distint triples containing a certain predicate, any rule containing this predicate in the head atom would be disregarded. Head Coverage is the relative expression of support. It is defined as support of a rule over the numbers of triples with the head's predicate, so-called \textit{head size}.
 
 $$ hc(\vec{B} \Rightarrow r(x,y)) := \frac{supp(\vec{B} \Rightarrow r(x,y))}{size(r)}  $$
 

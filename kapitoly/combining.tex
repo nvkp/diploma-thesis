@@ -58,7 +58,7 @@ $$
 
 The value of support does not change. Now there are only \numprint{3} observations valid for the rule's body (Men of Germany, Slovakia and Austria) and all those observations are valid for the rule's head as well so the confidence of this rule is equal to \numprint{1}.
 
-\subsection{Commensurability}
+\subsection{Commensurability\label{commensurability}}
 
 In the previous example, the measured values were discrete but data cube usually contain continuos numerical values on which aggregation operations (sum average etc.) are possible. In order to ensure, that the rules can achieve a reasonable support, the numerical values have to be discretized (see \ref{numericalattributes}) and replaced by intervals. But one cannost simply discretize all measure's values at once. The dimension values can be structured into a hierarchy so the measures belonging to dimension values of different levels in the hierarchy are not comparable.\cite{Chudan2015} Irrespective to a chosen discretization approach, it is inadmissible to discretize values belonging to different disproportionate contexts.
 
@@ -118,7 +118,7 @@ The question is to how many intervals the measures should be discretized into. I
 That means that the number of overall \textit{measurements} multiplies by the number of distinct discretizations. A situation has to be avoided, when the instantiations of variable representing observations are involving observations not only from various subcubes but also those observations are assigned measurements from dijunct sets of intervals (distinct discretizations). The result of a approach (let's call it style $A$) to solve this problem on the sample data in \ref{obsexample} is shown in \ref{discsample}.
 
 \begin{figure}[h]
-\begin{lstlisting}[language = turtle, caption={Discretization example}, label={discsample},captionpos=b escapeinside={(*@}{@*)}]
+\begin{lstlisting}[language = turtle, caption={Discretization style A}, label={discsample},captionpos=b escapeinside={(*@}{@*)}]
 @prefix qb: <http://purl.org/linked-data/cube#> .
             
 <o1> qb:dataSet <subcube1> ;
@@ -143,7 +143,7 @@ If we mined over the whole cube, the head confidence's denominator would conside
 
 $$hconf(\vec{B} \Rightarrow H) = \frac{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}C) }{\# s: \exists \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}?b)} = \frac{3}{12} = \frac{1}{4}$$
 
-The head coverage is disorted both by mining over multiple subcubes and by performing multiple discretization of the same measure, because its denominator as the number of triples with the head's predicate, named head size. Each performed discretization over a measure increases this number by the number of observations and so does the inclusion of triples with observations not compatible with a rule. Let's compute the head size of the above mentioned rule when mined only from the \textit{weekly} subcube.
+The head coverage is disorted both by mining over multiple subcubes and by performing multiple discretization of the same measure, because of its denominator as the number of triples with the head's predicate, i.e. head size. Each performed discretization over a measure increases this number by the number of observations and so does the inclusion of triples with observations not compatible with a rule. Let's compute the head size of the above mentioned rule when mined only from the \textit{weekly} subcube.
 
 $$
 hsize(\vec{B} \Rightarrow (s\hspace{0.4em}p\hspace{0.4em}o)) = \# \langle s,p,o\rangle \in KG: \langle s,p,o\rangle \prec (?a\hspace{0.4em}p\hspace{0.4em}?b) = 6 
@@ -172,7 +172,7 @@ $$
 A different way of structuring the discretized measures (let's call it style $B$) within the observations would remove both distortions while also permitting to mine over the whole original cube. Each performed discretization would introduce a new derived measure whose name could be chosen as the name of the original measure suffixed by type of discretization with its parameters and the observation's subcube.
 
 \begin{figure}[h]
-\begin{lstlisting}[language = turtle, caption={Discretization example 2}, label={discsample},captionpos=b escapeinside={(*@}{@*)}]
+\begin{lstlisting}[language = turtle, caption={Discretization style B}, label={discsample},captionpos=b escapeinside={(*@}{@*)}]
 @prefix qb: <http://purl.org/linked-data/cube#> .
                 
 <o1> qb:dataSet <subcube1> ;
@@ -193,17 +193,19 @@ A different way of structuring the discretized measures (let's call it style $B$
 
 The head coverage of a rule generated from such data can be then interpreted as the ratio of the rule's support and the number of appropriate observations regardless of whether the whole cube is mined at once or the subcubes are mined separately because the predicate of the rule will be anchored both to the appropriate subcube and to a single performed discretization. This would however disadvantage finer discretizations because they would tend to have lower and support while the head size would be constant accross all rules with associated with the same subcube and the same original measure.
 
-The support of a rule is affected by the number of observations of the subcube to which the rule is anchored. The rules generated for a bigger subcube will tend to have a higher support compared to rules from a smaller subcubes because there will be more observations that can meet the condition of the rule's body. But this effect is cancelled out in the head coverage because with more observations its numerator (support) grows but its denominator grows as well. So for a cube constisting of a high number of subcubes it can be suggested to use the style B of expressing the discretized measures and mined the cube at once with a defined head coverage parameter. A low number of subcubes could be mined separately with a custom minimum support threshold defined for each subcube to tweak each subcube's rule set. And since the separate mining of each subcube solves the lift distortion by itself and a minimum support threshold would be used instead of a minimum head coverage, the measure expression style $A$ could be used because it's propably easier to perform.
+The support of a rule is affected by the number of observations of the subcube to which the rule is anchored. The rules generated for a bigger subcube will tend to have a higher support compared to rules from a smaller subcubes because there will be more observations that can meet the condition of the rule's body. But this effect is cancelled out in the head coverage because with more observations its numerator (support) grows but its denominator grows as well. So for a cube constisting of a high number of subcubes it can be suggested to use the style B of expressing the discretized measures and mined the cube at once with a defined head coverage parameter. A low number of subcubes could be mined separately with a custom minimum support threshold defined for each subcube to tweak each subcube's rule set. And since the separate mining of each subcube solves the lift distortion by itself and a minimum support threshold would be used instead of a minimum head coverage, the measure expression style $A$ could be used because it's propably easier to perform. If the subcubes have an uniform number of observations, then the head coverage does not provide any advantage over support, so the style $A$ is sufficient.
 
 \begin{table}[h]
 \centering
 \begin{tabular}{l|ll}
                            & style A                       & style B                  \\ 
 \hline
-mining the whole cube      &                               & high no. of subcubes  \\
+mining the whole cube      & uniform size of subcubes                              & high no. of subcubes  \\
 mining subcubes separately & manageable no. of subcubes &                         
 \end{tabular}
 \end{table}
+
+The style $B$ has one side effect and that is that the new derived measures become correlated, e.g. when a measure value belongs to the lowest of 10 intervals then it surely belongs to the lowest of 3 intervals. That would make it hard to mine rules which specify the subset of observations also by one of the measures of the observations, because a rule pattern that allows or even enforces an atom with a measure predicate in the rule's would be matched with those correlations.
 
 \section{Appending RDF Data to the Data Cubes}
 

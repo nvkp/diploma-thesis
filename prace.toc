@@ -73,7 +73,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {6.1.2}Commensurability}{28}{subsection.6.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}Appending RDF Data to the Data Cubes}{32}{section.6.2}%
+\contentsline {section}{\numberline {6.2}Appending RDF Data to the Data Cubes}{33}{section.6.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {6.3}Finding Rules Concerning Multiple Cubes}{34}{section.6.3}%
 \defcounter {refsection}{0}\relax 
@@ -103,11 +103,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {7.8}Discretization}{48}{section.7.8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.9}Mining Tasks}{50}{section.7.9}%
+\contentsline {section}{\numberline {7.9}Mining Tasks}{49}{section.7.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.9.1}Relation between the pension expenses and the policital alignment of the state's government}{51}{subsection.7.9.1}%
+\contentsline {subsection}{\numberline {7.9.1}Relation between the pension expenses and the policital alignment of the state's government}{50}{subsection.7.9.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.9.2}Appending the YAGO Data Set to the CZSO Data Cubes}{54}{subsection.7.9.2}%
+\contentsline {subsection}{\numberline {7.9.2}Appending the YAGO Data Set to the CZSO Data Cubes}{53}{subsection.7.9.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {7.9.3}Relation Between Measures from Different Data Cubes}{57}{subsection.7.9.3}%
 \defcounter {refsection}{0}\relax 

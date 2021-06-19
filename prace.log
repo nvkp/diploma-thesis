@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.22)  18 JUN 2021 12:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.22)  19 JUN 2021 21:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -924,13 +924,7 @@ LaTeX Warning: Label `turtleexample' multiply defined.
 LaTeX Warning: Label `sparqlexample' multiply defined.
 
 
-LaTeX Warning: Label `sexlinkextract' multiply defined.
-
-
-LaTeX Warning: Label `discsample' multiply defined.
-
-
-LaTeX Warning: Label `discsample' multiply defined.
+LaTeX Warning: Label `refarealinking' multiply defined.
 
 
 LaTeX Warning: Label `alignmentExpensesRulesSample' multiply defined.
@@ -1266,11 +1260,11 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[31] [32] [33] [34]
+[31] [32] [33]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[35] [36]) [37]
+[34] [35] [36]) [37]
 \openout2 = `kapitoly/experiment.aux'.
 
  (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/experiment.tex
@@ -1294,29 +1288,21 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+[47]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[47] [48]
+[48] [49] [50]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[49] [50] [51] [52]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<img/expenses.png, id=1100, 1052.93375pt x 451.6875pt>
+[51] [52]
+<img/expenses.png, id=1119, 1052.93375pt x 451.6875pt>
 File: img/expenses.png Graphic file (type png)
 <use img/expenses.png>
-Package pdftex.def Info: img/expenses.png  used on input line 458.
+Package pdftex.def Info: img/expenses.png  used on input line 444.
 (pdftex.def)             Requested size: 441.01773pt x 189.19054pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[53] [54] [55 </home/petnovak/github/nvkp/diploma-thesis/img/expenses.png>] [56]) [57]
+ [53 </home/petnovak/github/nvkp/diploma-thesis/img/expenses.png>] [54] [55]) [56] [57]
 \openout2 = `zaver.aux'.
 
  (/home/petnovak/github/nvkp/diploma-thesis/zaver.tex)
@@ -1379,18 +1365,18 @@ Package logreq Info: Writing requests to 'prace.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 29588 strings out of 479304
- 471872 string characters out of 5869779
- 1604516 words of memory out of 5000000
- 45404 multiletter control sequences out of 15000+600000
+ 29606 strings out of 479304
+ 472217 string characters out of 5869779
+ 1588807 words of memory out of 5000000
+ 45418 multiletter control sequences out of 15000+600000
  512702 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 93i,12n,93p,1694b,3620s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 93i,12n,93p,1686b,3620s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx9.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri9.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.pfb>
-Output written on /home/petnovak/github/nvkp/diploma-thesis/prace.pdf (65 pages, 949506 bytes).
+Output written on /home/petnovak/github/nvkp/diploma-thesis/prace.pdf (65 pages, 949004 bytes).
 PDF statistics:
- 1723 PDF objects out of 1728 (max. 8388607)
- 1584 compressed objects within 16 object streams
- 816 named destinations out of 1000 (max. 500000)
+ 1729 PDF objects out of 2073 (max. 8388607)
+ 1590 compressed objects within 16 object streams
+ 820 named destinations out of 1000 (max. 500000)
  465 words of extra memory for PDF output out of 10000 (max. 10000000)
 
