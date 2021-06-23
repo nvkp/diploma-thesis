@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.22)  23 JUN 2021 23:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.22)  23 JUN 2021 23:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -912,11 +912,7 @@ File: l3backend-pdftex.def 2020-01-29 L3 backend support: PDF output (pdfTeX)
 
 LaTeX Warning: Label `turtleexample' multiply defined.
 
-) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/assocrules.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/amie.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/rdfrules.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/combining.aux
-
-LaTeX Warning: Label `discsample' multiply defined.
-
-) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/experiment.aux
+) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/assocrules.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/amie.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/rdfrules.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/combining.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/experiment.aux
 
 LaTeX Warning: Label `turtleexample' multiply defined.
 
@@ -1429,15 +1425,15 @@ Package logreq Info: Writing requests to 'prace.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 29704 strings out of 479304
- 474317 string characters out of 5869779
- 1688801 words of memory out of 5000000
- 45481 multiletter control sequences out of 15000+600000
+ 29705 strings out of 479304
+ 474330 string characters out of 5869779
+ 1688849 words of memory out of 5000000
+ 45482 multiletter control sequences out of 15000+600000
  527753 words of font info for 106 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  93i,12n,93p,1877b,3621s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx9.pfb></usr/share/texmf/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri9.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.pfb>
-Output written on /home/petnovak/github/nvkp/diploma-thesis/prace.pdf (78 pages, 1110764 bytes).
+Output written on /home/petnovak/github/nvkp/diploma-thesis/prace.pdf (78 pages, 1110765 bytes).
 PDF statistics:
  1951 PDF objects out of 2073 (max. 8388607)
  1786 compressed objects within 18 object streams
