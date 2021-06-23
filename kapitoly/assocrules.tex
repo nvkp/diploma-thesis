@@ -1,3 +1,53 @@
-\chapter{Association Rules}
+\chapter{Association Rules\label{assocrules}}
+
+Association rules are one of the machine learning methods. The method lies in finding often repeating constructions in the analyzed data, which is mostly in the form of a table, where each row represents a \textit{transaction} which is described by values in the table's columns.\cite{Agrawal1993} A found association rule states that the transactions with a certain set of properties, called \textit{antecedent}, are associated with a different set of properties called \textit{consequent}. 
+
+$$
+antecedent \implies consequent
+$$
+
+An example of an association rule can be a statement, that the customers of a bookstore often buy a book from the self help section together with a book from the esoteric section. Such rule can be found in a table where each rows represents one order of a customer in the bookstore, each column represents a book available in the store and the values express whether the particular book is a part of the particular order.
+
+\section{Interest Measures}
+
+The relation between the antecedent and consequent in the analyzed data is often represented in the form of a four-field table. It is a \textit{2 x 2} matrix, where the rows represent the antecedent and its negation and the columns represent the consequent and its negation. The numerical values in the matrix state the number of transactions corresponding to the properties in their row and column. These values are denoted as \textit{a, b, c, d}.
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{l|c|c}
+& \multicolumn{1}{l|}{\textbf{Consequent}} & \multicolumn{1}{l}{\textbf{¬ Consequent}} \\ \hline
+\textbf{Antecedent} & \textit{a} & \textit{b} \\ \hline
+\textbf{¬ Antecedent} & \textit{c} & \textit{d}
+\end{tabular}
+\end{center}
+\caption{Four-field table of association rule}
+\label{4ft}
+\end{table}
+
+The strength of the association is expressed by the \textit{interest measures}, also called the \textit{measures of significance}. The found association rules can be compared based those interest measures. The interest measures are computed by a formula from the values in the rule's four-field table.
+
+\begin{description}
+\item [Confidence] states the ratio of number of the transactions satisfying both the antecedent and the consequent of the rule over the number of transactions that satisfy the antecedent of the rule.
+$$
+    confidence = \dfrac{a}{a + b}
+$$
+\item [Support] is the number of transactions satisfying both antecedent and consequent i.e the transaction for which the rule is valid. It is also possible to define it as a relative support, where the number of valid transactions is divided by the number of all transactions in the data.
+$$
+    relSupport = \dfrac{a}{a + b + c + d}
+$$
+\item [Lift] represents the degree by which the probability of the right prediction of the set of properties in the consequent is improved by the validity of the antecedent in a transaction.
+$$
+    lift = \dfrac{\dfrac{a}{a + b}}{\dfrac{a + c}{a + b + c + d}} = \frac{a * (a + b + c + d)}{(a + b) * (a + c)}
+$$
+
+\item [Coverage] represents the conditional probability that the antecedent of the rule is valid given that the consequent is valid for the transaction. In other worlds it expresses the ratio of positive examples in the data \textit{covered} by the rule.
+$$
+    lift = \dfrac{a}{a + c}
+$$
+\end{description}
+
+% apriori ?
+
+% guha ?
 
 %TODO chudán 3.6 Association rules

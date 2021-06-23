@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.22)  19 JUN 2021 21:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.22)  23 JUN 2021 23:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -908,7 +908,7 @@ Package csquotes Info: ... found 'babel' package.
 File: l3backend-pdftex.def 2020-01-29 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count462
 \l__pdf_internal_box=\box102
-) (/home/petnovak/github/nvkp/diploma-thesis/prace.aux (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/knowledgegraphs.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/olap.aux
+) (/home/petnovak/github/nvkp/diploma-thesis/prace.aux (/home/petnovak/github/nvkp/diploma-thesis/zacatek.aux) (/home/petnovak/github/nvkp/diploma-thesis/uvod.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/knowledgegraphs.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/olap.aux
 
 LaTeX Warning: Label `turtleexample' multiply defined.
 
@@ -932,11 +932,10 @@ LaTeX Warning: Label `alignmentExpensesRulesSample' multiply defined.
 
 LaTeX Warning: Label `qbstructureimg' multiply defined.
 
-) (/home/petnovak/github/nvkp/diploma-thesis/zaver.aux) (/home/petnovak/github/nvkp/diploma-thesis/literatura.aux) (/home/petnovak/github/nvkp/diploma-thesis/app01.aux
 
-LaTeX Warning: Label `scalascript' multiply defined.
+LaTeX Warning: Label `jaurYagoPatterns' multiply defined.
 
-))
+) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/discussion.aux) (/home/petnovak/github/nvkp/diploma-thesis/zaver.aux) (/home/petnovak/github/nvkp/diploma-thesis/literatura.aux) (/home/petnovak/github/nvkp/diploma-thesis/app01.aux))
 \openout1 = `prace.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
@@ -1070,50 +1069,97 @@ Package biblatex Info: Reference segment=0 on input line 67.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 73.
+\openout2 = `zacatek.aux'.
+
+ (/home/petnovak/github/nvkp/diploma-thesis/zacatek.tex
+Package hyperref Info: Option `pageanchor' set `false' on input line 6.
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 9.
  (/usr/share/texmf/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) (/home/petnovak/github/nvkp/diploma-thesis/prace.toc
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 4.
- (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
+)
+
+pdfTeX warning: pdflatex (file /home/petnovak/github/nvkp/diploma-thesis/img/logo-FIS.pdf): PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
+<img/logo-FIS.pdf, id=272, 359.37662pt x 358.38483pt>
+File: img/logo-FIS.pdf Graphic file (type pdf)
+<use img/logo-FIS.pdf>
+Package pdftex.def Info: img/logo-FIS.pdf  used on input line 15.
+(pdftex.def)             Requested size: 132.30666pt x 131.93861pt.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 26.
+(/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 4.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 26.
  (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 4.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 26.
  (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 4.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 26.
  (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 4.
+(Font)              <12> on input line 26.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 4.
+(Font)              <8> on input line 26.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 4.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 4.
+(Font)              <6> on input line 26.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 26.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 4.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+Package hyperref Info: Option `pageanchor' set `true' on input line 46.
+ [1
+
+
+ </home/petnovak/github/nvkp/diploma-thesis/img/logo-FIS.pdf>]
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 48.
+
+[2
+
+
+] [3
+
+]) (/home/petnovak/github/nvkp/diploma-thesis/prace.toc
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 4.
+
 
 Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 86.
 
-[1
+[4
+
+
 
 ])
 \tf@toc=\write6
 \openout6 = `prace.toc'.
 
- [2]
+ [5]
+\openout2 = `uvod.aux'.
+
+ (/home/petnovak/github/nvkp/diploma-thesis/uvod.tex
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 12.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 12.
+
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 13.
+
+[6
+
+
+
+
+] [7]) [8]
 \openout2 = `kapitoly/knowledgegraphs.aux'.
 
  (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/knowledgegraphs.tex
@@ -1125,7 +1171,7 @@ File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
 Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 20.
 
-[3
+[9
 
 
 
@@ -1145,44 +1191,47 @@ File: lstlang1.sty 2020/03/24 1.8d listings language file
 File: lstlang2.sty 2020/03/24 1.8d listings language file
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang3.sty
 File: lstlang3.sty 2020/03/24 1.8d listings language file
-) [4]
+) [10]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [5] [6]
+[11]) [12]
 \openout2 = `kapitoly/olap.aux'.
 
  (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/olap.tex
 Chapter 2.
 
-Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 21.
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 23.
 
-[7
+[13
 
 
 
 
 ]
-<img/qbstructure.png, id=375, 803.0pt x 548.0475pt>
+<img/qbstructure.png, id=530, 803.0pt x 548.0475pt>
 File: img/qbstructure.png Graphic file (type png)
 <use img/qbstructure.png>
-Package pdftex.def Info: img/qbstructure.png  used on input line 24.
+Package pdftex.def Info: img/qbstructure.png  used on input line 30.
 (pdftex.def)             Requested size: 352.81552pt x 240.79878pt.
-) [8 </home/petnovak/github/nvkp/diploma-thesis/img/qbstructure.png (PNG copy)>]
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) [14 </home/petnovak/github/nvkp/diploma-thesis/img/qbstructure.png (PNG copy)>] [15]
 \openout2 = `kapitoly/assocrules.aux'.
 
  (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/assocrules.tex
 Chapter 3.
-)
 
-Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 95.
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 35.
 
-[9
-
+[16
 
 
 
-]
+
+]) [17]
 \openout2 = `kapitoly/amie.aux'.
 
  (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/amie.tex
@@ -1190,24 +1239,19 @@ Chapter 4.
 
 Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 23.
 
-[10
+[18
 
 
 
 
-] [11] [12]
+] [19] [20]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 80.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 83.
- [13] [14] [15] [16] [17]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 194.
- [18] [19] [20] [21]) [22]
+ [21] [22] [23] [24] [25] [26] [27] [28] [29]) [30]
 \openout2 = `kapitoly/rdfrules.aux'.
 
  (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/rdfrules.tex
 Chapter 5.
-<img/gui-getrules.png, id=506, 1359.0775pt x 787.94376pt>
+<img/gui-getrules.png, id=665, 1359.0775pt x 787.94376pt>
 File: img/gui-getrules.png Graphic file (type png)
 <use img/gui-getrules.png>
 Package pdftex.def Info: img/gui-getrules.png  used on input line 11.
@@ -1215,24 +1259,24 @@ Package pdftex.def Info: img/gui-getrules.png  used on input line 11.
 
 Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 19.
 
-[23
+[31
 
 
 
 
  </home/petnovak/github/nvkp/diploma-thesis/img/gui-getrules.png>]
-<img/rdfrules-abstractions.png, id=522, 750.805pt x 562.1pt>
+<img/rdfrules-abstractions.png, id=682, 750.805pt x 562.1pt>
 File: img/rdfrules-abstractions.png Graphic file (type png)
 <use img/rdfrules-abstractions.png>
 Package pdftex.def Info: img/rdfrules-abstractions.png  used on input line 24.
 (pdftex.def)             Requested size: 264.61333pt x 198.11026pt.
- [24 </home/petnovak/github/nvkp/diploma-thesis/img/rdfrules-abstractions.png>] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+ [32 </home/petnovak/github/nvkp/diploma-thesis/img/rdfrules-abstractions.png>] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
 File: lstlang2.sty 2020/03/24 1.8d listings language file
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang3.sty
 File: lstlang3.sty 2020/03/24 1.8d listings language file
-) [25])
+) [33])
 \openout2 = `kapitoly/combining.aux'.
 
  (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/combining.tex
@@ -1240,31 +1284,20 @@ Chapter 6.
 
 Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 16.
 
-[26
+[34
 
 
 
 
-]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[27] [28]
+] [35] [36] [37]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+[38] [39] [40] [41]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[29] [30]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[31] [32] [33]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[34] [35] [36]) [37]
+[42] [43] [44] [45] [46]) [47]
 \openout2 = `kapitoly/experiment.aux'.
 
  (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/experiment.tex
@@ -1275,41 +1308,67 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 36.
 
-[38
+[48
 
 
 
 
-] [39] [40] [41] [42] [43]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[44] [45] [46]
+] [49] [50] [51] [52] [53]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[47]
+[54] [55] [56]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[48] [49] [50]
+[57]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[51] [52]
-<img/expenses.png, id=1119, 1052.93375pt x 451.6875pt>
+[58] [59] [60]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[61]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<img/expenses.png, id=1292, 1052.93375pt x 451.6875pt>
 File: img/expenses.png Graphic file (type png)
 <use img/expenses.png>
 Package pdftex.def Info: img/expenses.png  used on input line 444.
 (pdftex.def)             Requested size: 441.01773pt x 189.19054pt.
- [53 </home/petnovak/github/nvkp/diploma-thesis/img/expenses.png>] [54] [55]) [56] [57]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[62] [63] [64 </home/petnovak/github/nvkp/diploma-thesis/img/expenses.png>] [65] [66] [67]pdfTeX warning (ext4): destination with the same identifier (name{lstnumber.\\z@\040.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.530     =>
+            : [68] [69]) [70]
+\openout2 = `kapitoly/discussion.aux'.
+
+ (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/discussion.tex
+Chapter 8.
+
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 14.
+
+[71
+
+
+
+
+]) [72]
 \openout2 = `zaver.aux'.
 
  (/home/petnovak/github/nvkp/diploma-thesis/zaver.tex)
 
-Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 100.
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 101.
 
-[58
+[73
 
 
 
@@ -1318,6 +1377,11 @@ Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is usel
 \openout2 = `literatura.aux'.
 
  (/home/petnovak/github/nvkp/diploma-thesis/literatura.tex
+Overfull \hbox (7.79482pt too wide) in paragraph at lines 1--1
+\T1/lmr/m/n/10.95 tween sets of items in large databases'. In: vol. 22. 1993-01, pp. 207^^U216. \T1/lmr/m/sc/10.95 isbn\T1/lmr/m/n/10.95 : 0897915925.|
+ []
+
+
 Overfull \hbox (13.97035pt too wide) in paragraph at lines 1--1
 \T1/lmr/m/n/10.95 men-da-tion. https://www.w3.org/TR/2014/REC-vocab-data-cube-20140116/. W3C, 2014-|
  []
@@ -1330,16 +1394,16 @@ Overfull \hbox (0.3718pt too wide) in paragraph at lines 1--1
 
 Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 1.
 
-[59
+[74
 
 
 
 
-]) [60]
+]) [75]
 
-Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 110.
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 111.
 
-[61
+[76
 
 
 
@@ -1349,34 +1413,34 @@ Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is usel
  (/home/petnovak/github/nvkp/diploma-thesis/app01.tex
 Appendix A.
 
-Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 60.
+Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is useless on input line 64.
 
-[62
+[77
 
 
-] [63] [64]) [65] (/home/petnovak/github/nvkp/diploma-thesis/prace.aux (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/knowledgegraphs.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/olap.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/assocrules.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/amie.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/rdfrules.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/combining.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/experiment.aux) (/home/petnovak/github/nvkp/diploma-thesis/zaver.aux) (/home/petnovak/github/nvkp/diploma-thesis/literatura.aux) (/home/petnovak/github/nvkp/diploma-thesis/app01.aux))
+]) [78] (/home/petnovak/github/nvkp/diploma-thesis/prace.aux (/home/petnovak/github/nvkp/diploma-thesis/zacatek.aux) (/home/petnovak/github/nvkp/diploma-thesis/uvod.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/knowledgegraphs.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/olap.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/assocrules.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/amie.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/rdfrules.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/combining.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/experiment.aux) (/home/petnovak/github/nvkp/diploma-thesis/kapitoly/discussion.aux) (/home/petnovak/github/nvkp/diploma-thesis/zaver.aux) (/home/petnovak/github/nvkp/diploma-thesis/literatura.aux) (/home/petnovak/github/nvkp/diploma-thesis/app01.aux))
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `prace.out' has not changed.
-(rerunfilecheck)             Checksum: 59D664566DA76C963C58B22621EA3DC9;9663.
+(rerunfilecheck)             Checksum: 5C06BDC71AC31E0532DFEC51932CA32F;11506.
 Package logreq Info: Writing requests to 'prace.run.xml'.
 \openout1 = `prace.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 29606 strings out of 479304
- 472217 string characters out of 5869779
- 1588807 words of memory out of 5000000
- 45418 multiletter control sequences out of 15000+600000
- 512702 words of font info for 95 fonts, out of 8000000 for 9000
+ 29704 strings out of 479304
+ 474317 string characters out of 5869779
+ 1688801 words of memory out of 5000000
+ 45481 multiletter control sequences out of 15000+600000
+ 527753 words of font info for 106 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 93i,12n,93p,1686b,3620s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx9.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri9.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.pfb>
-Output written on /home/petnovak/github/nvkp/diploma-thesis/prace.pdf (65 pages, 949004 bytes).
+ 93i,12n,93p,1877b,3621s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx9.pfb></usr/share/texmf/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri9.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt8.pfb>
+Output written on /home/petnovak/github/nvkp/diploma-thesis/prace.pdf (78 pages, 1110764 bytes).
 PDF statistics:
- 1729 PDF objects out of 2073 (max. 8388607)
- 1590 compressed objects within 16 object streams
- 820 named destinations out of 1000 (max. 500000)
- 465 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1951 PDF objects out of 2073 (max. 8388607)
+ 1786 compressed objects within 18 object streams
+ 827 named destinations out of 1000 (max. 500000)
+ 566 words of extra memory for PDF output out of 10000 (max. 10000000)
 

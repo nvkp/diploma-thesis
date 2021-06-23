@@ -1,19 +1,20 @@
 [0] Config.pm:311> INFO - This is Biber 2.16
 [0] Config.pm:314> INFO - Logfile is 'prace.blg'
-[77] biber:340> INFO - === So čen 19, 2021, 18:14:42
-[97] Biber.pm:415> INFO - Reading 'prace.bcf'
-[160] Biber.pm:952> INFO - Found 15 citekeys in bib section 0
-[177] Biber.pm:4340> INFO - Processing section 0
-[189] Biber.pm:4531> INFO - Looking for bibtex format file 'literatura.bib' for section 0
-[190] bibtex.pm:1689> INFO - LaTeX decoding ...
-[209] bibtex.pm:1494> INFO - Found BibTeX data source 'literatura.bib'
-[244] Utils.pm:384> WARN - legacy month field 'February' in entry 'rdfPrimer2004' is not an integer - this will probably not sort properly.
-[251] Utils.pm:384> WARN - legacy month field 'February' in entry 'turtlew3c2014' is not an integer - this will probably not sort properly.
-[255] Utils.pm:384> WARN - legacy month field 'January' in entry 'sparqlw3c2008' is not an integer - this will probably not sort properly.
-[317] Utils.pm:384> WARN - legacy year field '2015 [cit. 2020-10-10]' in entry 'Chudan2015' is not an integer - this will probably not sort properly.
-[347] UCollate.pm:68> INFO - Overriding locale 'cs_CZ' defaults 'variable = shifted' with 'variable = non-ignorable'
-[347] UCollate.pm:68> INFO - Overriding locale 'cs_CZ' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[347] Biber.pm:4168> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'cs_CZ'
-[365] bbl.pm:654> INFO - Writing 'prace.bbl' with encoding 'UTF-8'
-[373] bbl.pm:757> INFO - Output to prace.bbl
-[373] Biber.pm:128> INFO - WARNINGS: 4
+[73] biber:340> INFO - === St čen 23, 2021, 20:30:01
+[87] Biber.pm:415> INFO - Reading 'prace.bcf'
+[154] Biber.pm:952> INFO - Found 22 citekeys in bib section 0
+[168] Biber.pm:4340> INFO - Processing section 0
+[177] Biber.pm:4531> INFO - Looking for bibtex format file 'literatura.bib' for section 0
+[178] bibtex.pm:1689> INFO - LaTeX decoding ...
+[201] bibtex.pm:1494> INFO - Found BibTeX data source 'literatura.bib'
+[236] Utils.pm:384> WARN - legacy year field '2015 [cit. 2020-10-10]' in entry 'Chudan2015' is not an integer - this will probably not sort properly.
+[284] Utils.pm:384> WARN - legacy month field 'May' in entry 'gdpr162_2020' is not an integer - this will probably not sort properly.
+[298] Utils.pm:384> WARN - legacy month field 'February' in entry 'rdfPrimer2004' is not an integer - this will probably not sort properly.
+[304] Utils.pm:384> WARN - legacy month field 'February' in entry 'turtlew3c2014' is not an integer - this will probably not sort properly.
+[308] Utils.pm:384> WARN - legacy month field 'January' in entry 'sparqlw3c2008' is not an integer - this will probably not sort properly.
+[375] UCollate.pm:68> INFO - Overriding locale 'cs_CZ' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[375] UCollate.pm:68> INFO - Overriding locale 'cs_CZ' defaults 'variable = shifted' with 'variable = non-ignorable'
+[375] Biber.pm:4168> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'cs_CZ'
+[397] bbl.pm:654> INFO - Writing 'prace.bbl' with encoding 'UTF-8'
+[408] bbl.pm:757> INFO - Output to prace.bbl
+[408] Biber.pm:128> INFO - WARNINGS: 5

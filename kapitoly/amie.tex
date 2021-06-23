@@ -1,12 +1,12 @@
-\chapter{AMIE Algorithm and Its Derivatives}
+\chapter{AMIE Algorithm and Its Derivatives\label{amieandits}}
 
 Finding association rules in knowledge bases can serve several purposes. New facts that are not yet present in the dataset can be derived from the found regularities described by the rules. From such rules opposing facts present in the dataset can be deduced to be wrong. Mined rules can also help to understand the data better.
 
-For mining rules from a graph database such as LOD datasets, Inductive Logic Programming (ILP) can be used. ILP work under the Closed World Assumtion (CWA) meaning it supposed that both negative and positive statements are present in the data. However LOD operates under the Open World Assumption (OWA) ie. if a statement is not present in the data, it does not mean that this statement does not correspond to reality. Rules mined by ILP would not reflect this matter. Moreover ILP are not observed to be efficient over large datasets in the order of millions of statements, making it not a viable way to mine rules over real-world knowledge bases such as YAGO or Wikidata.
+For mining rules from a graph database such as LOD datasets, Inductive Logic Programming (ILP) can be used. ILP works under the Closed World Assumtion (CWA) meaning it supposed that both negative and positive statements are present in the data. However LOD operates under the Open World Assumption (OWA) ie. if a statement is not present in the data, it does not mean that this statement does not correspond to reality. Rules mined by ILP would not reflect this matter. Moreover ILP are not observed to be efficient over large datasets in the order of millions of statements, making it not a viable way to mine rules over real-world knowledge bases such as YAGO or Wikidata.
 
 \section{AMIE\label{amie}}
 
-An algorithm that is specifically designed to mine rules from data operating under OWA and constisting of binary predicates (just as Linked Data) is AMIE (\textbf{A}ssociation Rule \textbf{M}ining under \textbf{I}ncomplete \textbf{E}vidence).\cite{Galarraga2013} AMIE mines rules in the form of Horn rule. Horn rule is an implication with conjunction of atoms on the left side, called body and a single atom on right side call head. We can imagine an atom as an RDF triple, where subject and object can be replaced by variables. Number of atoms in a rule indicates the length of the rule. In this work rules are represented with an infix notation. The AMIE literature use the Datalog notation commonly used in ILP domain. An example of a rule AMIE seeks to discover is shown below. 
+An algorithm that is specifically designed to mine rules from data operating under OWA and constisting of binary predicates (just as Linked Data) is AMIE.\cite{Galarraga2013} AMIE mines rules in the form of Horn rule. Horn rule is an implication with conjunction of atoms on the left side, called body and a single atom on right side call head. We can imagine an atom as an RDF triple, where subject and object can be replaced by variables. Number of atoms in a rule indicates the length of the rule. In this work rules are represented with an infix notation. The AMIE literature use the Datalog notation commonly used in ILP domain. An example of a rule AMIE seeks to discover is shown below. 
 
 \label{asocRule}
 $$
@@ -48,7 +48,7 @@ The above-mentioned measures describe a quantitative significance of the rule in
 
 \subsubsection{CWA and Standard Confidence}
 
-Standard confidence considers every fact that is not present in the examined dataset a false fact and thus a counterexample when predicted by a rule. Facts predicted by a rule is either present in the data set or it is not. Therefore the standard confidence is defined as the ratio of the number of true predictions of the rule to the number of all predictions of the rule.
+Standard confidence considers every fact that is not present in the examined dataset a false fact and thus a counterexample when predicted by a rule. A fact predicted by a rule is either present in the data set or it is not. Therefore the standard confidence is defined as the ratio of the number of true predictions of the rule to the number of all predictions of the rule.
 
 $$ conf(\vec{B} \Rightarrow r(x,y)) := \frac{supp(\vec{B} \Rightarrow r(x,y))}{\# (x,y): \exists z_{1}\ldots z_{n}: \vec{B}} $$
 
@@ -199,7 +199,7 @@ In \cite{Zeman2020} the authors propose a discretization heuristic that takes in
 
 \subsection{Multiple Graphs}
 
-Restricting the mining task on to a single graph prevents finding relations accross multiple sources. Even though the resoures representing the identical object or a concept in the real world have a different identifier in different graphs, the identity can be easily infered from the \verb|owl:sameAs| predicate joining two identical resources.
+Restricting the mining task on to a single graph prevents finding relations accross multiple sources. Even though the resources representing the identical object or a concept in the real world have a different identifier in different graphs, the identity can be easily infered from the \verb|owl:sameAs| predicate joining two identical resources.
 
 $$(?a \hspace{0.4em} \langle wasBornIn \rangle \hspace{0.4em} ?b \hspace{0.4em} \langle YAGO \rangle) \Rightarrow (?a \hspace{0.4em} dbo:deatchPlace \hspace{0.4em} ?b \hspace{0.4em} \langle DBpedia \rangle)$$
 
@@ -265,8 +265,8 @@ To avoid a situation where a single triple in the data set is covered by multipl
 
 \begin{enumerate}
     \item $conf(A) > conf(B)$
-    \item $conf(A) = conf(B) and hc(A) > hc(B)$
-    \item rule A has a shorter body than the rule B
+    \item $conf(A) = conf(B)$ and $hc(A) > hc(B)$
+    \item rule $A$ has a shorter body than the rule $B$
 \end{enumerate}
 
 Then for each rule starting with the highest ranked to the lowest ranked rule it is checked whether the rule covers at least one triple (i.e. any atom in the rule can be instantiated by the triple) that the previous rules did not and only those rule which satisfy the conditions are kept. That way the new set of rules covers exactly the same set of triples in the data set.

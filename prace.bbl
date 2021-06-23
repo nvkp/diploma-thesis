@@ -19,6 +19,46 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{Agrawal1993}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=4b876a40aac16cd3d6b0278b1154b9da}{%
+           family={Agrawal},
+           familyi={A\bibinitperiod},
+           given={Rakesh},
+           giveni={R\bibinitperiod}}}%
+        {{hash=ec3d19d169936a8bd7f29d45d202079a}{%
+           family={Imieli'nski},
+           familyi={I\bibinitperiod},
+           given={Tomasz},
+           giveni={T\bibinitperiod}}}%
+        {{hash=64a439d13c6d223424a43f495d60cd29}{%
+           family={Swami},
+           familyi={S\bibinitperiod},
+           given={Arun},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{755fe49edf6c42135f9ccf8385d6c2cf}
+      \strng{fullhash}{755fe49edf6c42135f9ccf8385d6c2cf}
+      \strng{bibnamehash}{755fe49edf6c42135f9ccf8385d6c2cf}
+      \strng{authorbibnamehash}{755fe49edf6c42135f9ccf8385d6c2cf}
+      \strng{authornamehash}{755fe49edf6c42135f9ccf8385d6c2cf}
+      \strng{authorfullhash}{755fe49edf6c42135f9ccf8385d6c2cf}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{0897915925}
+      \field{journaltitle}{ACM SIGMOD Rec}
+      \field{month}{01}
+      \field{title}{Mining association rules between sets of items in large databases}
+      \field{volume}{22}
+      \field{year}{1993}
+      \field{pages}{207\bibrangedash 216}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1145/170035.170072
+      \endverb
+    \endentry
     \entry{turtlew3c2014}{misc}{}
       \name{author}{4}{}{%
         {{hash=06ed14a914d8fa6ae59d8979736418d1}{%
@@ -89,7 +129,34 @@
       \verb http://www.w3.org/DesignIssues/LinkedData.html
       \endverb
     \endentry
-    \entry{Cyganiak:14:TRD}{report}{}
+    \entry{berson1997}{article}{}
+      \name{author}{2}{}{%
+        {{hash=0b5518c4feb53f211a28c433c3428884}{%
+           family={Berson},
+           familyi={B\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=6ef2d018d4b323b3c4320fffb42ddded}{%
+           family={Smith},
+           familyi={S\bibinitperiod},
+           given={S.J.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{a20dede408780333c78b4b42eddbc0c2}
+      \strng{fullhash}{a20dede408780333c78b4b42eddbc0c2}
+      \strng{bibnamehash}{a20dede408780333c78b4b42eddbc0c2}
+      \strng{authorbibnamehash}{a20dede408780333c78b4b42eddbc0c2}
+      \strng{authornamehash}{a20dede408780333c78b4b42eddbc0c2}
+      \strng{authorfullhash}{a20dede408780333c78b4b42eddbc0c2}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{00-7006-272-2}
+      \field{title}{Data Warehousing, Data Mining, and OLAP}
+      \field{year}{1997}
+    \endentry
+    \entry{dcv2014}{report}{}
       \name{author}{2}{}{%
         {{hash=ff065518eacac535eec041c322c21896}{%
            family={Cyganiak},
@@ -206,6 +273,45 @@
       \range{pages}{10}
       \verb{doi}
       \verb 10.1145/2488388.2488425
+      \endverb
+    \endentry
+    \entry{hajek1966}{article}{}
+      \name{author}{3}{}{%
+        {{hash=b8482978a873fd500b3bbf6cfb9a124f}{%
+           family={Hájek},
+           familyi={H\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=34005fb9f1fc2567567fcebce5e0aa7d}{%
+           family={Havel},
+           familyi={H\bibinitperiod},
+           given={I.},
+           giveni={I\bibinitperiod}}}%
+        {{hash=cdacda1b12c13abf8339af3c4f0d85ff}{%
+           family={Chytil},
+           familyi={C\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{af480f36acbd7e804b1c062b0bb8cdbf}
+      \strng{fullhash}{af480f36acbd7e804b1c062b0bb8cdbf}
+      \strng{bibnamehash}{af480f36acbd7e804b1c062b0bb8cdbf}
+      \strng{authorbibnamehash}{af480f36acbd7e804b1c062b0bb8cdbf}
+      \strng{authornamehash}{af480f36acbd7e804b1c062b0bb8cdbf}
+      \strng{authorfullhash}{af480f36acbd7e804b1c062b0bb8cdbf}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Computing}
+      \field{month}{12}
+      \field{title}{The GUHA method of automatic hypotheses determination}
+      \field{volume}{1}
+      \field{year}{1966}
+      \field{pages}{293\bibrangedash 308}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1007/BF02345483
       \endverb
     \endentry
     \entry{Heath2011}{book}{}
@@ -333,6 +439,44 @@
       \field{type}{mathesis}
       \field{year}{2017}
     \endentry
+    \entry{Galarraga2020}{inbook}{}
+      \name{author}{3}{}{%
+        {{hash=2a8f83e81f75fafad957e06443d29780}{%
+           family={Lajus},
+           familyi={L\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=37684d86bd145fd2fb544c3944a76464}{%
+           family={Galárraga},
+           familyi={G\bibinitperiod},
+           given={Luis},
+           giveni={L\bibinitperiod}}}%
+        {{hash=55d7f682b85e1f9066365cc900f8331c}{%
+           family={Suchanek},
+           familyi={S\bibinitperiod},
+           given={Fabian},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{dcaa833e739bf8047adf70dd6c1f6d45}
+      \strng{fullhash}{dcaa833e739bf8047adf70dd6c1f6d45}
+      \strng{bibnamehash}{dcaa833e739bf8047adf70dd6c1f6d45}
+      \strng{authorbibnamehash}{dcaa833e739bf8047adf70dd6c1f6d45}
+      \strng{authornamehash}{dcaa833e739bf8047adf70dd6c1f6d45}
+      \strng{authorfullhash}{dcaa833e739bf8047adf70dd6c1f6d45}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-030-49460-5}
+      \field{month}{05}
+      \field{title}{Fast and Exact Rule Mining with AMIE 3}
+      \field{year}{2020}
+      \field{pages}{36\bibrangedash 52}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1007/978-3-030-49461-2_3
+      \endverb
+    \endentry
     \entry{rdfPrimer2004}{misc}{}
       \name{author}{2}{}{%
         {{hash=f0d8c4e9bebfe5c0a01bde2d9a6a5ea6}{%
@@ -433,6 +577,20 @@
       \verb 10.3233/IDA-160069
       \endverb
     \endentry
+    \entry{gdpr162_2020}{misc}{}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labeltitlesource}{title}
+      \field{month}{5}
+      \field{title}{Recital 162 EU General Data Protection Regulation (EU-GDPR)}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb https://www.privacy-regulation.eu/en/recital-162-GDPR.htm
+      \endverb
+      \verb{url}
+      \verb https://www.privacy-regulation.eu/en/recital-162-GDPR.htm
+      \endverb
+    \endentry
     \entry{Capadisli2013}{article}{}
       \name{author}{3}{}{%
         {{hash=a3c4eae032fae7cabc1b005284b17359}{%
@@ -470,6 +628,73 @@
       \endverb
       \verb{url}
       \verb http://csarven.ca/linked-statistical-data-analysis
+      \endverb
+    \endentry
+    \entry{Sheth2013}{inbook}{}
+      \name{author}{3}{}{%
+        {{hash=44ce79da77c0a025945bff1cb198c1e1}{%
+           family={Sheth},
+           familyi={S\bibinitperiod},
+           given={Amit},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a770e70cf91876b089ba7200c430a39c}{%
+           family={Ferraram},
+           familyi={F\bibinitperiod},
+           given={Alfio},
+           giveni={A\bibinitperiod}}}%
+        {{hash=9e5e734876e9a404245b5545136f1781}{%
+           family={Nikolov},
+           familyi={N\bibinitperiod},
+           given={Andriy},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{a4439cafccf34c9705c4262d63b22b45}
+      \strng{fullhash}{a4439cafccf34c9705c4262d63b22b45}
+      \strng{bibnamehash}{a4439cafccf34c9705c4262d63b22b45}
+      \strng{authorbibnamehash}{a4439cafccf34c9705c4262d63b22b45}
+      \strng{authornamehash}{a4439cafccf34c9705c4262d63b22b45}
+      \strng{authorfullhash}{a4439cafccf34c9705c4262d63b22b45}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{01}
+      \field{title}{Data Linking for the Semantic Web}
+      \field{year}{2013}
+      \field{pages}{169\bibrangedash 200}
+      \range{pages}{32}
+      \verb{doi}
+      \verb 10.4018/978-1-4666-3610-1.ch008
+      \endverb
+    \endentry
+    \entry{Vanhoof2010}{article}{}
+      \name{author}{2}{}{%
+        {{hash=3a4b585f50b3da157d4ee42c5899634c}{%
+           family={Vanhoof},
+           familyi={V\bibinitperiod},
+           given={Koen},
+           giveni={K\bibinitperiod}}}%
+        {{hash=640542d855fc92e7dfa67f84a67327fc}{%
+           family={Depaire},
+           familyi={D\bibinitperiod},
+           given={Benoît},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{7b00a3a50dd196b6a5ba7dbc43360d0a}
+      \strng{fullhash}{7b00a3a50dd196b6a5ba7dbc43360d0a}
+      \strng{bibnamehash}{7b00a3a50dd196b6a5ba7dbc43360d0a}
+      \strng{authorbibnamehash}{7b00a3a50dd196b6a5ba7dbc43360d0a}
+      \strng{authornamehash}{7b00a3a50dd196b6a5ba7dbc43360d0a}
+      \strng{authorfullhash}{7b00a3a50dd196b6a5ba7dbc43360d0a}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{11}
+      \field{title}{Structure of association rule classifiers: A review}
+      \field{year}{2010}
+      \verb{doi}
+      \verb 10.1109/ISKE.2010.5680784
       \endverb
     \endentry
     \entry{Zeman2018}{article}{}

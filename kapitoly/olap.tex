@@ -1,10 +1,16 @@
-\chapter{Data Cubes}
+\chapter{Data Cubes\label{datacubes}}
 
-While relational databases with highly normalized data models fit well to situations where data is frequently modified, they can be quite cumbersome when being performed complex aggregating queries. Online Analytical Processing (OLAP) system fits better these purposes. In an OLAP system, numerical data is stored in a multidimensional data structure. The structure is comprised of hypothetical cells, which are identified by their assigned set of dimension values from each dimension of the structure. Each cell can contain zero to many numerical values, so-called measurements. The structure is referred to as OLAP Cube or Data Cube. The word \textit{cube} implies exactly three dimensions, but its purpose is only to illustrate the multidimensionality of the structure.
+While relational databases with highly normalized data models fit well to situations where data is frequently modified, they can be quite cumbersome when being performed complex aggregating queries. Online Analytical Processing (OLAP) system fits better these purposes. 
 
-Distinct values of a dimension can be organized into a hierarchy, where a parent value is assigned to summarized measurements throughout its child values. An example of such a hierarchy could be a relationship of a product category and specific products belonging to this category. The depth of a dimension value in its hierarchy then determines the level of granularity the measurement values in a cell assigned to the dimension value are associated with. A cell with all dimension values at the lowest level in their hierarchies or in no hierarchy at all has the finest level of granularity. In a Data Cube consisting of only one cell, meaning each dimension of the cube has only one distinct value, the cell has the coarsest level of granularity.
+\section{Terminology}
 
-Several operation can be performed on a Data Cube:
+In an OLAP system, numerical data is stored in a multidimensional data structure. The structure is comprised of hypothetical cells, called \textit{observations}, which are identified by their assigned set of \textit{dimension} values from each dimension of the structure. Each observation can contain zero to many numerical values, so-called \textit{measurements}. The meaning of the measurements is reffered to as \textit{measure}. In the OLAP context the units of measure are called \textit{attributes}. The structure is referred to as OLAP Cube or Data Cube. The word \textit{cube} implies exactly three dimensions, but its purpose is only to illustrate the multidimensionality of the structure.
+
+Distinct values of a dimension can be organized into a hierarchy, where the parent value is assigned to summarized measurements throughout its child values for each measure. An example of such a hierarchy could be a relationship of a product category and specific products belonging to this category. The depth of a dimension value in its hierarchy then determines the level of granularity the measurement values in a cell assigned to the dimension value are associated with. A cell with all dimension values at the lowest level in their hierarchies or in no hierarchy at all has the finest level of granularity. In a Data Cube consisting of only one cell, meaning each dimension of the cube has only one distinct value, the cell has the coarsest level of granularity.
+
+\section{Operations}
+
+Several operations can be performed on a Data Cube:
 
 \begin{description}
     \item[roll-up] This operation aggregates data either by reduction of one or more dimensions or by climbing up a concept hierarchy for a dimension.
@@ -17,12 +23,12 @@ If the values contained in the cube have an additive character (e.g. sales amoun
 
 \section{The Data Cube Vocabulary\label{dcv}}
 
-The principle of dimensions, measures and attributes are the basic building blocks of the standards and guidelines presented by the SDMX (Statistical Data and Metadata eXchange) initiative, that tries to standardise and modernise the exchange of statistical data. The World Wide Web Consortium's recommendation for representing multi-dimensional data in RDF is the Data Cube vocabulary. This vocabulary underlies the standards and guidelines of the SDMX initiative. It allows to publish the content of the cube together with information about its structure and its metadata. The structure of the vocabulary is shown in the picture \ref{qbstructureimg}.
+The principle of dimensions, measures and attributes are the basic building blocks of the standards and guidelines presented by the SDMX (Statistical Data and Metadata eXchange) initiative, that tries to standardise and modernise the exchange of statistical data. The World Wide Web Consortium's recommendation for representing multi-dimensional data in RDF is the Data Cube vocabulary.\cite{dcv2014} This vocabulary underlies the standards and guidelines of the SDMX initiative. It allows to publish the content of the cube together with information about its structure and its metadata. The structure of the vocabulary is shown in the picture \ref{qbstructureimg}.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.8\textwidth]{img/qbstructure.png}
-\caption{The Data Cube Vocabulary structure (Source: \cite{Cyganiak:14:TRD})}
+\caption{The Data Cube Vocabulary structure (Source: \cite{dcv2014})}
 \label{qbstructureimg}
 \end{figure}
 

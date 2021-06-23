@@ -1,4 +1,4 @@
-\chapter{Linked Data}
+\chapter{Linked Data\label{linkeddata}}
 
 Linked Data is a set of best practices for publishing and connecting data on the Web structured in such a way that it is usable not only for human processing but also processable by machines. It builds upon the general architecture of the World Wide Web. Instead of creating links between particular documents from different sources in the case of the classic Web of documents, the Linked Data connects the representations of real-world objects or abstract concepts. Tim Berners-Lee expressed these best practises in four principles, known as the Linked Data principles.\cite{bernersLee2006}
 
@@ -70,6 +70,8 @@ The first activities with the goal of starting the publication of Linked Data on
 
 The content of the LOD spans across multiple domains. The website \href{http://lod-cloud.net}{lod-cloud.net} tracks the current state of published LOD data sets and divides the data sets into these categories, so-called subclouds: Cross-Domain, Geography, Government, Life Sciences, Linquistics, Media, Publications, Social Networking and User-Generated. A data set can fall into more than one category. Cross-Domain, general knowledge data sets play an important role of an intermediary through which unrelated data sets can be connected. 
 
+\subsection{Wikidata}
+
 One of those data sets is Wikidata. It is a sister project of Wikipedia, founded and hosted by the Wikimedia Foundation. The data set is managed in an open an collaborative way. Everybody who is interested in expanding the knowledge base can create an account and start contributing. The website of the project provides an intuitive user interface for editing and creating data, so no technical skills beyond common usage of the Internet is needed. The data set currently contains over 93 million items edited by over 26 thousand active contributors. Every item of the dataset is allocated an unique identifier prefixed by the letter \textbf{Q}, so-called QID or Q number. The items are described by their statements corresponding to RDF triples. Predicates are in the context of Wikidata called properties and are prefixed by letter \textbf{P} similar to items. A sample of the triples contained in Wikidata in Turtle syntax shows listing \ref{wikidataexample}.
 
 \begin{figure}[h]
@@ -86,6 +88,25 @@ wd:Q111 wdt:P361 wd:Q7879772
 \end{figure}
 
 An different approach is taken by the DBpedia project. Instead of relying on manual contribution of volunteers, DBpedias data comes from an application of NLP extraction algorithms over plain text of Wikipedia's articles. 
+
+% Proto si tento způsob osvojili nejen komercní subjekty, které si od toho slibují ... ale i subjekty verejného sektoru, kteri disponují disponují takovými daty a bud jsou povinni, nebo poznaly uzitek v tom taková data publikovat pro verejnost
+
+% odkazy na data.gov a data.gov.uk
+
+\cite{gdpr162_2020}
+
+% jedním zpusobem jak takova data publikovat je ve forme RDF
+
+\subsection{YAGO}
+
+
+
+
+
+
+
+
+
 
 % The facts of an RDF KB can usually be divided into an A-Box and a T-Box. While the A-Box contains instance data, the T-Box is the subset of facts that define classes, domains, ranges for predicates, and the class hierarchy.
 
