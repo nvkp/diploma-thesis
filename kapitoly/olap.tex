@@ -4,7 +4,7 @@ While relational databases with highly normalized data models fit well to situat
 
 \section{Terminology}
 
-In an OLAP system, numerical data is stored in a multidimensional data structure. The structure is comprised of hypothetical cells, called \textit{observations}, which are identified by their assigned set of \textit{dimension} values from each dimension of the structure. Each observation can contain zero to many numerical values, so-called \textit{measurements}. The meaning of the measurements is reffered to as \textit{measure}. In the OLAP context the units of measure are called \textit{attributes}. The structure is referred to as OLAP Cube or Data Cube. The word \textit{cube} implies exactly three dimensions, but its purpose is only to illustrate the multidimensionality of the structure.
+In an OLAP system, numerical data is stored in a multidimensional data structure. The structure is comprised of hypothetical cells, called \textit{observations}, which are identified by their assigned set of \textit{dimension} values from each dimension of the structure. Each observation can contain zero to many numerical values, so-called \textit{measurements}. The meaning of the measurements is referred to as \textit{measure}. In the OLAP context the units of measure are called \textit{attributes}. The structure is referred to as OLAP Cube or Data Cube. The word \textit{cube} implies exactly three dimensions, but its purpose is only to illustrate the multidimensionality of the structure.
 
 Distinct values of a dimension can be organized into a hierarchy, where the parent value is assigned to summarized measurements throughout its child values for each measure. An example of such a hierarchy could be a relationship of a product category and specific products belonging to this category. The depth of a dimension value in its hierarchy then determines the level of granularity the measurement values in a cell assigned to the dimension value are associated with. A cell with all dimension values at the lowest level in their hierarchies or in no hierarchy at all has the finest level of granularity. In a Data Cube consisting of only one cell, meaning each dimension of the cube has only one distinct value, the cell has the coarsest level of granularity.
 
@@ -23,7 +23,7 @@ If the values contained in the cube have an additive character (e.g. sales amoun
 
 \section{The Data Cube Vocabulary\label{dcv}}
 
-The principle of dimensions, measures and attributes are the basic building blocks of the standards and guidelines presented by the SDMX (Statistical Data and Metadata eXchange) initiative, that tries to standardise and modernise the exchange of statistical data. The World Wide Web Consortium's recommendation for representing multi-dimensional data in RDF is the Data Cube vocabulary.\cite{dcv2014} This vocabulary underlies the standards and guidelines of the SDMX initiative. It allows to publish the content of the cube together with information about its structure and its metadata. The structure of the vocabulary is shown in the picture \ref{qbstructureimg}.
+The principle of dimensions, measures and attributes are the basic building blocks of the standards and guidelines presented by the SDMX (Statistical Data and Metadata eXchange) initiative, that tries to standardize and modernize the exchange of statistical data. The World Wide Web Consortium's recommendation for representing multi-dimensional data in RDF is the Data Cube vocabulary.\cite{dcv2014} This vocabulary underlies the standards and guidelines of the SDMX initiative. It allows to publish the content of the cube together with information about its structure and its metadata. The structure of the vocabulary is shown in the picture \ref{qbstructureimg}.
 
 \begin{figure}[h]
 \centering
@@ -32,24 +32,53 @@ The principle of dimensions, measures and attributes are the basic building bloc
 \label{qbstructureimg}
 \end{figure}
 
-TODO příklad konkrétního pozorování
-
-TODO SKOS
-
-% The SKOS Simple Knowledge Organization System is the most reused LOD vocabulary for representation of code lists and hierarchies
-% especially fitting for representing possible dimension values
-
-% There are two main building blocks in SKOS. First, there is the skos:ConceptScheme class, representing the code list itself. Then, there is the skos:Concept class, representing the individual code list items.
+The listing \ref{dcvobs1} shows an example of an observation represented with the Data Cube Vocabulary. The observation has a property $qb:dataSet$ which links it to the entity of the whole cube. The observation is assigned two measures $measure1$ and $measure2$ and is associated with dimension values of two cube's dimensions.
 
 \begin{figure}[h]
-\begin{lstlisting}[language = turtle, caption={SKOS}, label={turtleexample},captionpos=b ,escapeinside={(*@}{@*)}]
-pk:PensionKindScheme a skos:ConceptScheme ; 
-    skos:prefLabel "Kinds of pensions"@en .
-pkr:PK_VM a skos:Concept, pk:PensionKind ;
-    skos:prefLabel "widower's pension"@en ;
-    skos:inScheme pk:PensionKindScheme ;
-    skos:notation "PK_VM" ;
-    skos:altLabel "VM"@cs .
+\begin{lstlisting}[language = turtle, caption={Data Cube Vocabulary observations example 1}, label={dcvobs1},captionpos=b escapeinside={(*@}{@*)}]
+@prefix qb: <http://purl.org/linked-data/cube#> .
+    
+<o1> qb:dataSet <dataset1> ;
+    <dimension1> <value1> ; <dimension2> <value2> ;
+    <measure1> 12030 ;
+    <measure2> 3 .
+\end{lstlisting}
+\end{figure}
+
+When the cube has to capture more than one measure, the observations can be either structured as in the listing \ref{dcvobs1} or each measurement of a measure can be associated with a different observation. Those observations than share the dimension values.
+
+\begin{figure}[h]
+\begin{lstlisting}[language = turtle, caption={Data Cube Vocabulary observations example 2}, label={dcvobs2},captionpos=b escapeinside={(*@}{@*)}]
+@prefix qb: <http://purl.org/linked-data/cube#> .
+    
+<o1> qb:dataSet <dataset1> ;
+    <dimension1> <value1> ; <dimension2> <value2> ;
+    <measure1> 12030 ;
+        
+<o2> qb:dataSet <dataset1> ;
+    <dimension1> <value1> ; <dimension2> <value2> ;
+    <measure2> 3 .
+\end{lstlisting}
+\end{figure}
+
+\section{Simple Knowledge Organization System\label{skos}}
+
+Simple Knowledge Organization System (SKOS) is a model and an RDF vocabulary for expressing the basic structure and content of concept schemes.\cite{skos} It is the most reused LOD vocabulary for the representation of code lists and hierarchies. That is why it is especially fitting for representing possible dimension values. There are two main building blocks in SKOS. The $skos:ConceptScheme$ class represents the code list itself. The $skos:Concept$ class represents the individual code list items.
+
+\begin{figure}[h]
+\begin{lstlisting}[language = turtle, caption={Example of a SKOS concept scheme}, label={turtleexample},captionpos=b ,escapeinside={(*@}{@*)}]
+@prefix eg: <http://example.com/skos#> .
+
+eg:thingsILike a skos:ConceptScheme ; 
+    skos:prefLabel "Things I like"@en .
+
+eg:Food a skos:Concept;
+    skos:prefLabel "food"@en ; skos:inScheme eg:thingsILike ;
+    skos:notation "FOOD" ; skos:altLabel "j(*@í@*)dlo"@cs .
+
+eg:Sleep a skos:Concept;
+    skos:prefLabel "sleep"@en ; skos:inScheme eg:thingsILike ;
+    skos:notation "SLEEP" ; skos:altLabel "s(*@á@*)nek"@cs .
 \end{lstlisting}
 \end{figure}
 

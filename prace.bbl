@@ -19,6 +19,17 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{skos}{misc}{}
+      \field{sortinit}{}
+      \field{sortinithash}{495dc9894017a8b12cafa9c619d10c0c}
+      \field{journaltitle}{SKOS Core Vocabulary Specification}
+      \verb{urlraw}
+      \verb https://www.w3.org/TR/swbp-skos-core-spec/
+      \endverb
+      \verb{url}
+      \verb https://www.w3.org/TR/swbp-skos-core-spec/
+      \endverb
+    \endentry
     \entry{Agrawal1993}{inproceedings}{}
       \name{author}{3}{}{%
         {{hash=4b876a40aac16cd3d6b0278b1154b9da}{%
@@ -50,7 +61,7 @@
       \field{isbn}{0897915925}
       \field{journaltitle}{ACM SIGMOD Rec}
       \field{month}{01}
-      \field{title}{Mining association rules between sets of items in large databases}
+      \field{title}{Mining association rules between sets of items in large databases\par}
       \field{volume}{22}
       \field{year}{1993}
       \field{pages}{207\bibrangedash 216}
@@ -183,7 +194,7 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{month}{1}
-      \field{note}{https://www.w3.org/TR/2014/REC-vocab-data-cube-20140116/}
+      \field{note}{https://www.w3.org/TR/2014/REC-vocab-data-cube-20140116/\par}
       \field{title}{The {RDF} Data Cube Vocabulary}
       \field{type}{{W3C} Recommendation}
       \field{year}{2014}
@@ -267,7 +278,7 @@
       \field{labeltitlesource}{title}
       \field{journaltitle}{WWW 2013 - Proceedings of the 22nd International Conference on World Wide Web}
       \field{month}{05}
-      \field{title}{AMIE: Association rule mining under incomplete evidence in ontological knowledge bases}
+      \field{title}{AMIE: Association rule mining under incomplete evidence in ontological knowledge bases\par}
       \field{year}{2013}
       \field{pages}{413\bibrangedash 422}
       \range{pages}{10}
@@ -313,6 +324,38 @@
       \verb{doi}
       \verb 10.1007/BF02345483
       \endverb
+    \endentry
+    \entry{hand2001}{book}{}
+      \name{author}{3}{}{%
+        {{hash=1e7099776b747f80443896d8c665ca51}{%
+           family={Hand},
+           familyi={H\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=197ad495b7480642c417d5d4694c0618}{%
+           family={Mannila},
+           familyi={M\bibinitperiod},
+           given={Heikki},
+           giveni={H\bibinitperiod}}}%
+        {{hash=4940852a16a84802eb98552d6deace24}{%
+           family={Smyth},
+           familyi={S\bibinitperiod},
+           given={Padhraic},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{787c3a569e6d5d90baf0b1d8aa56b460}
+      \strng{fullhash}{787c3a569e6d5d90baf0b1d8aa56b460}
+      \strng{bibnamehash}{787c3a569e6d5d90baf0b1d8aa56b460}
+      \strng{authorbibnamehash}{787c3a569e6d5d90baf0b1d8aa56b460}
+      \strng{authornamehash}{787c3a569e6d5d90baf0b1d8aa56b460}
+      \strng{authorfullhash}{787c3a569e6d5d90baf0b1d8aa56b460}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{01}
+      \field{title}{Principles of Data Mining}
+      \field{year}{2001}
     \endentry
     \entry{Heath2011}{book}{}
       \name{author}{2}{}{%
@@ -436,7 +479,7 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{OLAP Recommender: Supporting Navigation in Data Cubes Using Association Rule Mining}
-      \field{type}{mathesis}
+      \field{type}{MSc. Thesis}
       \field{year}{2017}
     \endentry
     \entry{Galarraga2020}{inbook}{}
@@ -667,6 +710,44 @@
       \verb 10.4018/978-1-4666-3610-1.ch008
       \endverb
     \endentry
+    \entry{yago4}{inbook}{}
+      \name{author}{3}{}{%
+        {{hash=1fc36dbaa38fc2228fb2121bab42ae9c}{%
+           family={Tanon},
+           familyi={T\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=e47f9d085c16045a5911784850208ada}{%
+           family={Weikum},
+           familyi={W\bibinitperiod},
+           given={Gerhard},
+           giveni={G\bibinitperiod}}}%
+        {{hash=55d7f682b85e1f9066365cc900f8331c}{%
+           family={Suchanek},
+           familyi={S\bibinitperiod},
+           given={Fabian},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{b889cd13417f07b3a218f756a5c42c15}
+      \strng{fullhash}{b889cd13417f07b3a218f756a5c42c15}
+      \strng{bibnamehash}{b889cd13417f07b3a218f756a5c42c15}
+      \strng{authorbibnamehash}{b889cd13417f07b3a218f756a5c42c15}
+      \strng{authornamehash}{b889cd13417f07b3a218f756a5c42c15}
+      \strng{authorfullhash}{b889cd13417f07b3a218f756a5c42c15}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-030-49460-5}
+      \field{month}{05}
+      \field{title}{YAGO 4: A Reason-able Knowledge Base}
+      \field{year}{2020}
+      \field{pages}{583\bibrangedash 596}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1007/978-3-030-49461-2_34
+      \endverb
+    \endentry
     \entry{Vanhoof2010}{article}{}
       \name{author}{2}{}{%
         {{hash=3a4b585f50b3da157d4ee42c5899634c}{%
@@ -695,6 +776,19 @@
       \field{year}{2010}
       \verb{doi}
       \verb 10.1109/ISKE.2010.5680784
+      \endverb
+    \endentry
+    \entry{yagoweb}{misc}{}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Yago Project - Select Knowledge}
+      \field{title}{YAGO: A High-Quality Knowledge Base}
+      \verb{urlraw}
+      \verb https://yago-knowledge.org/
+      \endverb
+      \verb{url}
+      \verb https://yago-knowledge.org/
       \endverb
     \endentry
     \entry{Zeman2018}{article}{}
@@ -759,9 +853,10 @@
       \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Semantic Web Journal}
+      \field{journaltitle}{Semantic Web}
       \field{title}{RDFRules: Making RDF Rule Mining Easier and Even More Efficient}
-      \field{year}{2020}
+      \field{volume}{12}
+      \field{year}{2021}
       \verb{urlraw}
       \verb http://www.semantic-web-journal.net/system/files/swj2511.pdf
       \endverb

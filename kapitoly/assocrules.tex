@@ -1,12 +1,12 @@
 \chapter{Association Rules\label{assocrules}}
 
-Association rules are one of the machine learning methods. The method lies in finding often repeating constructions in the analyzed data, which is mostly in the form of a table, where each row represents a \textit{transaction} which is described by values in the table's columns.\cite{Agrawal1993} A found association rule states that the transactions with a certain set of properties, called \textit{antecedent}, are associated with a different set of properties called \textit{consequent}. 
+Association rules are one of the machine learning methods. The method lies in finding often repeating constructions in the analyzed data, which is mostly in the form of a table, where each row represents a \textit{transaction} which is described by values in the table's columns.\cite{Agrawal1993} A found association rule states that the transactions with a certain set of properties, called \textit{antecedent}, are associated with a different set of properties called the \textit{consequent}. 
 
 $$
 antecedent \implies consequent
 $$
 
-An example of an association rule can be a statement, that the customers of a bookstore often buy a book from the self help section together with a book from the esoteric section. Such rule can be found in a table where each rows represents one order of a customer in the bookstore, each column represents a book available in the store and the values express whether the particular book is a part of the particular order.
+An example of an association rule can be a statement, that the customers of a bookstore often buy a book from the self-help section together with a book from the esoteric section. Such rule can be found in a table where each row represents one order of a customer in the bookstore, each column represents a book available in the store, and the values express whether the particular book is a part of the particular order.
 
 \section{Interest Measures}
 
@@ -24,14 +24,14 @@ The relation between the antecedent and consequent in the analyzed data is often
 \label{4ft}
 \end{table}
 
-The strength of the association is expressed by the \textit{interest measures}, also called the \textit{measures of significance}. The found association rules can be compared based those interest measures. The interest measures are computed by a formula from the values in the rule's four-field table.
+The strength of the association is expressed by the \textit{interest measures}, also called the \textit{measures of significance}. The found association rules can be compared based on those interest measures. The interest measures are computed by a formula from the values in the rule's four-field table.
 
 \begin{description}
-\item [Confidence] states the ratio of number of the transactions satisfying both the antecedent and the consequent of the rule over the number of transactions that satisfy the antecedent of the rule.
+\item [Confidence] states the ratio of the number of transactions satisfying both the antecedent and the consequent of the rule over the number of transactions that satisfy the antecedent of the rule.
 $$
     confidence = \dfrac{a}{a + b}
 $$
-\item [Support] is the number of transactions satisfying both antecedent and consequent i.e the transaction for which the rule is valid. It is also possible to define it as a relative support, where the number of valid transactions is divided by the number of all transactions in the data.
+\item [Support] is the number of transactions satisfying both antecedent and consequent i.e the transaction for which the rule is valid. It is also possible to define it as relative support, where the number of valid transactions is divided by the number of all transactions in the data.
 $$
     relSupport = \dfrac{a}{a + b + c + d}
 $$
@@ -40,7 +40,7 @@ $$
     lift = \dfrac{\dfrac{a}{a + b}}{\dfrac{a + c}{a + b + c + d}} = \frac{a * (a + b + c + d)}{(a + b) * (a + c)}
 $$
 
-\item [Coverage] represents the conditional probability that the antecedent of the rule is valid given that the consequent is valid for the transaction. In other worlds it expresses the ratio of positive examples in the data \textit{covered} by the rule.
+\item [Coverage] represents the conditional probability that the antecedent of the rule is valid given that the consequent is valid for the transaction. In other words, it expresses the ratio of positive examples in the data \textit{covered} by the rule.
 $$
     lift = \dfrac{a}{a + c}
 $$

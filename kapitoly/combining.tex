@@ -8,7 +8,7 @@ The following text builds on the idea that some trends in OLAP cube can be expre
 
 \section{Mining from RDF representation of Data Cube}
 
-We are going to aim to mine association rules that describe how a certain measure's values are determined by values of one or more dimensions meaning that the observations of the examined cube corresponding to fixed values of some dimensions (slicing and dicing) tend to contain a measure values with a certain characteristic. Those rules are a subject to the language bias described in \ref{languagebias}. The antecedent of the rule would basicaly specify a certain slice (a subset of observations) of the examined cube in which the measured values deviate from the whole and the consequent of the rule would describe the nature of this deviation.
+We are going to aim to mine association rules that describe how a certain measure's values are determined by values of one or more dimensions meaning that the observations of the examined cube corresponding to fixed values of some dimensions (slicing and dicing) tend to contain a measure values with a certain characteristic. The antecedent of the rule would basicaly specify a certain slice (a subset of observations) of the examined cube in which the measured values deviate from the whole and the consequent of the rule would describe the nature of this deviation.
 
 \subsection{Basic Shape of the Rules}
 
@@ -26,15 +26,13 @@ Women & low      & moderate       & high      & low        & low
 \end{table}
 
 
-Based on the results of the survey in the table above we could determine that men accross the countries tend to have a high life satisfaction. This fact can be expressed as an association rule that is deducible by the AMIE algorithm.
+Based on the results of the survey in the table above we could determine that men across the countries tend to have a high life satisfaction. This fact can be expressed as an association rule that is deducible by the AMIE algorithm.
 
 \begin{equation}\label{rule1}
     (?o\hspace{0.4em}sex\hspace{0.4em}Male) \Rightarrow (?o\hspace{0.4em}lifeSatisfaction\hspace{0.4em}High) 
 \end{equation}
 
 We can calculate measures of significance of this rule from the values in the table. Let's calculate the support for now. Since the object in the rule's head is a constant, the support of the rule corresponds only to the distinct observations that belong to men and have the correct measure value, i.e. \numprint{3}. 
-
-
 
 \subsection{Measures in the Body}
 
@@ -70,7 +68,7 @@ The PCA confidence would not consider the observations of average salary the cou
 
 \subsection{Commensurability\label{commensurability}}
 
-In the previous examples, the measured values were discrete but data cubes usually contain continuous numerical values on which aggregation operations (sum average etc.) are possible. In order to ensure, that the rules can achieve a reasonable support, the numerical values have to be discretized (see \ref{numericalattributes}) and replaced by intervals. But one cannot simply discretize all measure's values at once. The dimension values can be structured into a hierarchy so the measures belonging to dimension values of different levels in the hierarchy are not comparable.\cite{Chudan2015} Irrespective to a chosen discretization approach, it is inadmissible to discretize values belonging to different disproportionate contexts.
+In the previous examples, the measured values were discrete but data cubes usually contain continuous numerical values on which aggregation operations (sum, average, etc.) are possible. In order to ensure, that the rules can achieve a reasonable support, the numerical values have to be discretized (see \ref{numericalattributes}) and replaced by intervals. But one cannot simply discretize all measure's values at once. The dimension values can be structured into a hierarchy so the measures belonging to dimension values of different levels in the hierarchy are not comparable.\cite{Chudan2015} Irrespective to a chosen discretization approach, it is inadmissible to discretize values belonging to different disproportionate contexts.
 
 One way (style $H$) to solve this is to dice the cube having disproportionate dimension values into a set of smaller subcubes, in which the dimension values belong to the same level of a concept hierarchy. Measured values can be then discretized into intervals in each subcube separately. Number of subcubes that the main cube has to be divided into depends on the number dimensions and the number of levels in each dimension’s hierarchies. The rules would be mined either separately on each subcube or for each observation a triple with the assignment of the observation to its subcube would have to be added into the data set and this assignment would have to be stated in the body of the rules.
 
@@ -114,7 +112,7 @@ Let's have a rule \ref{rule3} stating that Beatrice's weekly delivered orders \t
 
 The question is to how many intervals the measures should be discretized into. If creating too many intervals, more specific rules should be found but they happen to have a lower support. When performing the equifrequent discretization, coarser rules are found for lower number of intervals. To avoid guessing which discretization parameters suit best the data, multiple discretizations can be performed with different parameters for various discretization algorithms.
 
-As it was already mentioned, the preprocessed cube should to be cut into subcubes with commensurable observations, measures in theses subcubes have to be discretized separately and only after that the triples can be merged and performed the mining tasks on.
+As it was already mentioned, the preprocessed cube should to be cut into subcubes with commensurable observations, measures in these subcubes have to be discretized separately and only after that the triples can be merged and performed the mining tasks on.
 
 \begin{figure}[h]
 \begin{lstlisting}[language = turtle, caption={Observations example}, label={obsexample},captionpos=b escapeinside={(*@}{@*)}]
@@ -234,7 +232,7 @@ $$
 
 When using the structure style B, the measure URI for each performed discretization is different so the head coverage of a rule generated from such data can be interpreted as the ratio of the rule's support and the number of appropriate observations regardless of whether the whole cube is mined at once or the subcubes are mined separately because the predicate of the rule will be anchored both to the appropriate subcube and to a single performed discretization.
 
-Just as with the support, that would still disadvantage finer discretizations because they would tend to have lower and support while the head size would be constant accross all rules with associated with the same subcube and the same original measure.
+Just as with the support, that would still disadvantage finer discretizations because they would tend to have lower and support while the head size would be constant across all rules with associated with the same subcube and the same original measure.
 
 The support of a rule is also affected by the number of observations of the subcube to which the rule is anchored. The rules generated for a bigger subcube will tend to have a higher support compared to rules from a smaller subcubes because there will be more observations that can meet the condition of the rule's body. But this effect is cancelled out in the head coverage because with more observations its numerator (support) grows but its denominator grows as well. 
 
@@ -257,7 +255,7 @@ mining subcubes separately & manageable no. of subcubes &
 
 So far the showed rules specified the subset of observations only by exactly one value for a dimension, just as e.g. the Apriori algorithm's rules contain only one category for each atribute. Slicing the subset of observations just by one value per dimension would yield just a contrained set of rules. The language bias of the AMIE algorithm does not allow a collection (disjunction) of values in the atom's object. It can either be a constant or a variable. But a variable can appear in another atom in which it is attributed a \textit{property}. That way the variable acts as a collection of entities sharing this property.
 
-If the dimension values represent real-world entities such as geographical areas, persons, organizations etc., such properties can be found in the form of RDF triples published in public knowledge graphs. Those triples can enter the algorithm together with the triples describing the data cube. Let's continue with the example of Adam and Beatrice. Table \ref{table7} shows a simple data cube containing the numbers of their daily delivered orders from July 14th to 17th. Each cells contains the original value of daily orders plus its interval after the equifrequent discretization into four intervals.
+If the dimension values represent real-world entities such as geographical areas, persons, organizations, etc., such properties can be found in the form of RDF triples published in public knowledge graphs. Those triples can enter the algorithm together with the triples describing the data cube. Let's continue with the example of Adam and Beatrice. Table \ref{table7} shows a simple data cube containing the numbers of their daily delivered orders from July 14th to 17th. Each cells contains the original value of daily orders plus its interval after the equifrequent discretization into four intervals.
 
 \begin{table}[h]
 \centering

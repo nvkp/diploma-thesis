@@ -12,55 +12,56 @@
 \input{makra}
 
 %%% DEFINICE ZÁKLADNÍCH PROMĚNNÝCH
-\def\TypPrace{BP}                % bakalářská práce/bachelor thesis
-%\def\TypPrace{DP}               % diplomová práce/master thesis
+%\def\TypPrace{BP}                % bakalářská práce/bachelor thesis
+\def\TypPrace{DP}               % diplomová práce/master thesis
 %\def\Jazyk{cze}                  % čeština/czech
 %\def\Jazyk{slo}                 % slovenština/slovak
 \def\Jazyk{eng}                 % angličtina/english
 
 %%% Název práce v jazyce práce (přesně podle zadání)
 %%% Title of the thesis in the language used in the text (exact according to assignment)
-\def\NazevPrace{Název práce}
+\def\NazevPrace{Experiment with rule mining from linked government data}
 
 \input{makra.txt}
 
 %%% Jméno autora
 %%% Author's name - First name Surname
-\def\AutorPrace{Jméno Příjmení}
+\def\AutorPrace{Bc. Petr Novák}
 
 %%% Rok odevzdání a měsíc (slovně)
 %%% Year of surrender and month (verbally) - month YYYY
-\def\DatumOdevzdani{měsíc RRRR}
+\def\DatumOdevzdani{June 2021}
 
 %%% Vedoucí práce: Jméno a příjmení s~tituly
 %%% Supervisor: First name and surname with titles
-\def\Vedouci{Vedoucí práce}
+\def\Vedouci{prof. Ing. Vojtěch Svátek, Dr.}
 
 %%% Studijní program
 %%% Study program
-\def\StudijniProgram{studijní program}
+\def\StudijniProgram{Applied Informatics}
 
 %%% Studijní obor
 %%% Field of study
-\def\StudijniObor{studijní obor}
+\def\StudijniObor{Knowledge and Web Technologies}
 
 %%% Nepovinné poděkování (vedoucímu práce, konzultantovi, tomu, kdo zapůjčil software, literaturu apod.)
 %%% Optional thanks (the supervisor, the consultant, the borrower of software, literature, etc.)
 \def\Podekovani{%
-Poděkování.
+Thank you to prof. Ing. Vojtěch Svátek, Dr. for the factual advice and professional guidance of this
+work.
 }
 
 %%% Abstrakt (doporučený rozsah cca 150-250 slov; nejedná se o zadání práce)
 \def\Abstrakt{%
-Abstrakt.
+Některé organizace veřejného sektoru a vládní orgány zveřejňují svá data jako LOD datové kostky. Vzájemně propojená povaha LOD vybízí k tomu, aby byly tyto datové kostky obohaceny o další informace dostupné z jiných zdrojů publikovaných také jako RDF. Tyto nové informace ve formě binárních vztahů obsažené v těchto znalostních grafech lze použít při těžbě asociačních pravidel nad těmito kostkami, což může vést k nalezení vztahů, které nelze najít v kostkách samotných. Těžba asociačních pravidel nad daty RDF a zároveň v jejich agregované podobě je dosud neprozkoumanou oblastí a nalezení smysluplných interpretovatelných pravidel, která přinášejí nové poznatky, není dosud vyřešeným problémem. Tato práce zkoumá možnosti obohacení RDF datové kostky strukturované slovníkem Data Cube Vocabulary o data ze znalostních grafů a těžby těchto dat pomocí algoritmu AMIE a jeho jiných variant. Zjištění jsou demonstrována na provedeném experimentu těžby asociačních pravidel s frameworkem RDFRules na datasetech České správy sociálního zabezpečení, Českého statistického úřadu, Wikidata a YAGO.
 }
 \def\AbstraktEN{%
-Abstract.
+Some public-sector organizations and governmental bodies are publishing their data as LOD data cubes. The interlinked nature of LOD encourages the published data cubes to be enriched with additional information available from other sources published as RDF as well. This new information in the form of binary relationships contained in these knowledge graphs can be used when mining association rules over the aggregated data, which can lead to finding relationships that cannot be found in the cubes themselves. Mining of association rules over RDF data and at the same time in their aggregated form is a not yet explored area and achieving the generation of meaningful interpretable rules that bring new knowledge is not yet a solved problem. This work explores the possibilities of enriching the RDF data cube structured by the Data Cube vocabulary with the data from general knowledge graphs and of mining such data by the AMIE algorithm or its derivatives. The findings are demonstrated in a performed experiment of mining association rules with the RDFRules framework over the data sets of the Czech Social Security Administration, Czech statistical office, Wikidata, and YAGO.
 }
 
 %%% 3 až 5 klíčových slov (doporučeno)
-\def\KlicovaSlova{klíčové slovo, další pojem, jiný důležitý termín, a ještě jeden}
-\def\KlicovaSlovaEN{keyword, important term, another topic, and another one}
+\def\KlicovaSlova{Data mining, OLAP, RDFRules, AMIE, Propojená data, RDF, Asociační pravidla}
+\def\KlicovaSlovaEN{Data Mining, OLAP, RDFRules, AMIE, Linked Data, RDF, Association Rules}
 
 %%% Titulní strana a různé povinné informativní strany
 %%% Title page and various mandatory information pages

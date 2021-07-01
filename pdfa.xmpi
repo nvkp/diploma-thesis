@@ -62,13 +62,17 @@
   </rdf:Description> 
   <rdf:Description rdf:about="" xmlns:dc="http://purl.org/dc/elements/1.1/"> 
    <dc:format>application/pdf</dc:format> 
-   <dc:title><rdf:Alt><rdf:li xml:lang="x-default">Název práce</rdf:li></rdf:Alt></dc:title>
-   <dc:creator><rdf:Seq><rdf:li>Jméno Příjmení</rdf:li></rdf:Seq></dc:creator>
-   <dc:publisher><rdf:Bag><rdf:li>Vysoká škola ekonomická v Praze, fakulta informatiky a statistiky</rdf:li></rdf:Bag></dc:publisher>
-   <dc:description><rdf:Alt><rdf:li xml:lang="x-default">Abstrakt práce</rdf:li></rdf:Alt></dc:description>
-   <dc:subject><rdf:Bag><rdf:li>klíčová slova</rdf:li>
-     <rdf:li>další taková</rdf:li>
-     <rdf:li>ještě jiná</rdf:li></rdf:Bag></dc:subject>
+   <dc:title><rdf:Alt><rdf:li xml:lang="x-default">Experiment with rule mining from linked government data</rdf:li></rdf:Alt></dc:title>
+   <dc:creator><rdf:Seq><rdf:li>Petr Novák</rdf:li></rdf:Seq></dc:creator>
+   <dc:publisher><rdf:Bag><rdf:li>Prague University of Economics and Business Faculty of Informatics and Statistics</rdf:li></rdf:Bag></dc:publisher>
+   <dc:description><rdf:Alt><rdf:li xml:lang="x-default">Some public-sector organizations and governmental bodies are publishing their data as LOD data cubes. The interlinked nature of LOD encourages the published data cubes to be enriched with additional information available from other sources published as RDF as well. This new information in the form of binary relationships contained in these knowledge graphs can be used when mining association rules over the aggregated data, which can lead to finding relationships that cannot be found in the cubes themselves. Mining of association rules over RDF data and at the same time in their aggregated form is a not yet explored area and achieving the generation of meaningful interpretable rules that bring new knowledge is not yet a solved problem. This work explores the possibilities of enriching the RDF data cube structured by the Data Cube vocabulary with the data from general knowledge graphs and of mining such data by the AMIE algorithm or its derivatives. The findings are demonstrated in a performed experiment of mining association rules with the RDFRules framework over the data sets of the Czech Social Security Administration, Czech statistical office, Wikidata, and YAGO.</rdf:li></rdf:Alt></dc:description>
+   <dc:subject><rdf:Bag><rdf:li>Data Mining</rdf:li>
+     <rdf:li>OLAP</rdf:li>
+     <rdf:li>RDFRules</rdf:li>
+     <rdf:li>AMIE</rdf:li>
+     <rdf:li>Linked Data</rdf:li>
+     <rdf:li>RDF</rdf:li>
+     <rdf:li>Association Rules</rdf:li></rdf:Bag></dc:subject>
   </rdf:Description> 
   <rdf:Description rdf:about="" xmlns:prism="http://prismstandard.org/namespaces/basic/2.2/"> 
   </rdf:Description> 
@@ -80,15 +84,15 @@
   </rdf:Description> 
   <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/"> 
    <xmp:CreatorTool>LaTeX with hyperref</xmp:CreatorTool> 
-   <xmp:ModifyDate>2021-06-23T23:34:27+02:00</xmp:ModifyDate> 
-   <xmp:CreateDate>2021-06-23T23:34:27+02:00</xmp:CreateDate> 
-   <xmp:MetadataDate>2021-06-23T23:34:27+02:00</xmp:MetadataDate> 
+   <xmp:ModifyDate>2021-06-24T14:44:44+02:00</xmp:ModifyDate> 
+   <xmp:CreateDate>2021-06-24T14:44:44+02:00</xmp:CreateDate> 
+   <xmp:MetadataDate>2021-06-24T14:44:44+02:00</xmp:MetadataDate> 
   </rdf:Description> 
   <rdf:Description rdf:about="" xmlns:xmpRights = "http://ns.adobe.com/xap/1.0/rights/"> 
   </rdf:Description> 
   <rdf:Description rdf:about="" xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"> 
    <xmpMM:DocumentID>uuid:E471EDA9-0143-B4EC-2929-27CBFE26697B</xmpMM:DocumentID> 
-   <xmpMM:InstanceID>uuid:983698B5-4BE0-6C1B-9F48-87210B438513</xmpMM:InstanceID> 
+   <xmpMM:InstanceID>uuid:148445B5-FF53-2701-D8A3-B4A63D560CA4</xmpMM:InstanceID> 
   </rdf:Description> 
  </rdf:RDF> 
 </x:xmpmeta> 

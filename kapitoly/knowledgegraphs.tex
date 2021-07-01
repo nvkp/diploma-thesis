@@ -1,6 +1,6 @@
 \chapter{Linked Data\label{linkeddata}}
 
-Linked Data is a set of best practices for publishing and connecting data on the Web structured in such a way that it is usable not only for human processing but also processable by machines. It builds upon the general architecture of the World Wide Web. Instead of creating links between particular documents from different sources in the case of the classic Web of documents, the Linked Data connects the representations of real-world objects or abstract concepts. Tim Berners-Lee expressed these best practises in four principles, known as the Linked Data principles.\cite{bernersLee2006}
+Linked Data is a set of best practices for publishing and connecting data on the Web structured in such a way that it is usable not only for human processing but also processable by machines. It builds upon the general architecture of the World Wide Web. Instead of creating links between particular documents from different sources in the case of the classic Web of documents, the Linked Data connects the representations of real-world objects or abstract concepts. Tim Berners-Lee expressed these best practices in four principles, known as the Linked Data principles.\cite{bernersLee2006}
 
 \begin{itemize}
     \item Use URIs as names for things.
@@ -20,7 +20,7 @@ Set of triples then establishes a RDF graph. URIs at the subject and object posi
 It is important to distinguish the model itself from its formats. RDF describes only an abstract structure of the data that has to be materialized into a certain format when the data is published on the Web. The first standard serialization format published together with RDF in \cite{rdfPrimer2004} is RDF/XML. An example of two triples described in RDF/XML format is shown in the listing \ref{rdfxmlexample}. The RDF/XML format suits well the use cases, where little human interaction with the data is expected because its syntax is difficult for a human to read and write compared to other formats. On the other hand, its XML background makes it a perfect format for data processed and generated solely by machines.
 
 \begin{figure}[h]
-\begin{lstlisting}[language = XML, caption={Example of RDF data described in RDF/XML format (Source: author)}, label={rdfxmlexample},captionpos=b escapeinside={(*@}{@*)}]
+\begin{lstlisting}[language = XML, caption={Example of RDF data described in RDF/XML format}, label={rdfxmlexample},captionpos=b escapeinside={(*@}{@*)}]
 <?xml version="1.0" encoding="UTF-8"?>
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -33,10 +33,10 @@ It is important to distinguish the model itself from its formats. RDF describes 
 \end{lstlisting}
 \end{figure}
 
-One of the most used and most human-readable formats is Turtle (Tense RDF Triple Language).\cite{turtlew3c2014} It provides various shorthands, enabling to make the representation as brief as possible and thus suitable to be written by hand. The common part of URI strings can be prefixed, so only the decisive end of the URIs has to be stated. The symbol of the semicolon is used to divide pairs of predicate and object belonging to the same subject, so the subject does not have to be repeated. If the described triples share both subject and predicate, a comma can be used to divide the different objects of the triples. Usage of a prefix and the two symbols is shown in an example in the listing \ref{turtleexample}.
+One of the most used and most human-readable formats is Turtle (Terse RDF Triple Language).\cite{turtlew3c2014} It provides various shorthands, enabling to make the representation as brief as possible and thus suitable to be written by hand. The common part of URI strings can be prefixed, so only the decisive end of the URIs has to be stated. The symbol of the semicolon is used to divide pairs of predicate and object belonging to the same subject, so the subject does not have to be repeated. If the described triples share both subject and predicate, a comma can be used to divide the different objects of the triples. Usage of a prefix and the two symbols is shown in an example in the listing \ref{turtleexample}.
 
 \begin{figure}[h]
-\begin{lstlisting}[language = turtle, caption={Example of RDF data described in Turtle format (Source: author)}, label={turtleexample},captionpos=b escapeinside={(*@}{@*)}]
+\begin{lstlisting}[language = turtle, caption={Example of RDF data described in Turtle format}, label={turtleexample},captionpos=b escapeinside={(*@}{@*)}]
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix eg: <http://example.com/> .
@@ -49,7 +49,7 @@ eg:john-johnson rdf:type foaf:Person ;
 Same as with the relational data model and SQL, RDF also needs a capable language for querying and manipulating the data. For this purposes, SPARQL was designed.\cite{sparqlw3c2008} Example of a simple SELECT query written is SPARQL is shown in the listing \ref{sparqlexample}. Similarly to SQL, the WHERE clause serves to limit the search place from which the result of the query is given. Content of the WHERE clause resembles the Turtle syntax. URIs, that can be bound to variable that occurs in the pattern stated in the WHERE clause, are contained in the output of the query if the variable is enumerated after the SELECT keyword. This particular query would return all possible bindings for variable \verb|name| ie. all names of persons, for whom the queried data states, that they know a certain John Jackson.
 
 \begin{figure}[h]
-\begin{lstlisting}[language = SPARQL, caption={Example of a simple SPARQL query (Source: author)}, label={sparqlexample},captionpos=b escapeinside={(*@}{@*)}]
+\begin{lstlisting}[language = SPARQL, caption={Example of a simple SPARQL query}, label={sparqlexample},captionpos=b escapeinside={(*@}{@*)}]
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX eg: <http://example.com/>
@@ -66,16 +66,16 @@ select ?name where {
 
 \section{Linked Open Data}
 
-The first activities with the goal of starting the publication of Linked Data on a global scale were conducted by the Semantic Web research community as part of the W3C Linking Open Data (LOD) project established in 2007.\cite{Heath2011} The aim of the project was to identify datasets published under an open license and to publish them according to the Linked Data principles. All data sets that are published under an open license and are connected to other data sets are referred to as LOD cloud. 
+The first activities with the goal of starting the publication of Linked Data on a global scale were conducted by the Semantic Web research community as part of the W3C Linking Open Data (LOD) informal initiative established in 2007.\cite{Heath2011} The aim of the initiative was to identify datasets published under an open license and to publish them according to the Linked Data principles. All data sets that are published under an open license and are connected to other data sets are referred to as LOD cloud. 
 
 The content of the LOD spans across multiple domains. The website \href{http://lod-cloud.net}{lod-cloud.net} tracks the current state of published LOD data sets and divides the data sets into these categories, so-called subclouds: Cross-Domain, Geography, Government, Life Sciences, Linquistics, Media, Publications, Social Networking and User-Generated. A data set can fall into more than one category. Cross-Domain, general knowledge data sets play an important role of an intermediary through which unrelated data sets can be connected. 
 
 \subsection{Wikidata}
 
-One of those data sets is Wikidata. It is a sister project of Wikipedia, founded and hosted by the Wikimedia Foundation. The data set is managed in an open an collaborative way. Everybody who is interested in expanding the knowledge base can create an account and start contributing. The website of the project provides an intuitive user interface for editing and creating data, so no technical skills beyond common usage of the Internet is needed. The data set currently contains over 93 million items edited by over 26 thousand active contributors. Every item of the dataset is allocated an unique identifier prefixed by the letter \textbf{Q}, so-called QID or Q number. The items are described by their statements corresponding to RDF triples. Predicates are in the context of Wikidata called properties and are prefixed by letter \textbf{P} similar to items. A sample of the triples contained in Wikidata in Turtle syntax shows listing \ref{wikidataexample}.
+One of those data sets is Wikidata. It is a sister project of Wikipedia, founded and hosted by the Wikimedia Foundation. The data set is managed in an open and collaborative way. Everybody who is interested in expanding the knowledge base can create an account and start contributing. The website of the project provides an intuitive user interface for editing and creating data, so no technical skills beyond common usage of the Internet is needed. The data set currently contains over 93 million items edited by over 26 thousand active contributors. Every item of the dataset is allocated an unique identifier prefixed by the letter \textbf{Q}, so-called QID or Q number. The items are described by their statements corresponding to RDF triples. Predicates are in the context of Wikidata called properties and are prefixed by letter \textbf{P} similar to items. A sample of the triples contained in Wikidata in Turtle syntax shows listing \ref{wikidataexample}.
 
 \begin{figure}[h]
-\begin{lstlisting}[language = Turtle, caption={Wikidata content sample (Source: author)}, label={wikidataexample},captionpos=b escapeinside={(*@}{@*)}]
+\begin{lstlisting}[language = Turtle, caption={Wikidata content sample}, label={wikidataexample},captionpos=b escapeinside={(*@}{@*)}]
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix wd: <http://www.wikidata.org/entity/> .
 @prefix wdt: <http://www.wikidata.org/prop/direct> .
@@ -87,46 +87,10 @@ wd:Q111 wdt:P361 wd:Q7879772
 \end{lstlisting}
 \end{figure}
 
-An different approach is taken by the DBpedia project. Instead of relying on manual contribution of volunteers, DBpedias data comes from an application of NLP extraction algorithms over plain text of Wikipedia's articles. 
-
-% Proto si tento způsob osvojili nejen komercní subjekty, které si od toho slibují ... ale i subjekty verejného sektoru, kteri disponují disponují takovými daty a bud jsou povinni, nebo poznaly uzitek v tom taková data publikovat pro verejnost
-
-% odkazy na data.gov a data.gov.uk
-
-\cite{gdpr162_2020}
-
-% jedním zpusobem jak takova data publikovat je ve forme RDF
+A different approach is taken by the DBpedia project. Instead of relying on manual contribution of volunteers, DBpedia's data comes from an application of NLP extraction algorithms over plain text of Wikipedia's articles. 
 
 \subsection{YAGO}
 
+This knowledge combines multiple sources of LOD. It contains data about movies, people, cities, countries, etc. The main source of the entities and their relations is Wikidata, but in YAGO all its entity identifiers are converted into a human-readable form and annotated by the \textit{schema.org}\footnote{\href{https://schema.org/}{https://schema.org/}} ontology maintained by Google. The authors of YAGO call it \textit{a simplified, cleaned, and “reasonable” version of Wikidata}.\cite{yagoweb}
 
-
-
-
-
-
-
-
-
-% The facts of an RDF KB can usually be divided into an A-Box and a T-Box. While the A-Box contains instance data, the T-Box is the subset of facts that define classes, domains, ranges for predicates, and the class hierarchy.
-
-
-%\begin{enumerate}
-%    \item A unifying data model
-%    \item A standardized data access mechanism
-%    \item Hyperlink-based data discovery
-%    \item Self-descriptive data -> If an application consuming Linked Data encounters data described with an unfamiliar vocabulary, the application can dereference the URIs that identify vocabulary terms in order to find their definition.
-%\end{enumerate}
-
-
-%The prototypical example of cross-domain Linked Data is DBpedia 6 -> wikidata, YAGO = cross-domain datasets
-
-%Because of its breadth of topical coverage, DBpedia has served as a hub within the Web of Data from the early stages of the Linking Open Data project.
-
-%Further cross-domain data sets include UMBEL 8 , YAGO [104], and OpenCyc 9 . These are, in turn, linked with DBpedia, helping to facilitate data integration across a wide range of interlinked sources.
-
-%Geography is another factor that can often connect information from varied topical domains. This is apparent in the Web of Data, where the Geonames 10 data set frequently serves as a hub for other data sets that have some geographical component. Geonames is an open-license geographical database that publishes Linked Data about 8 million locations.
-
-%Governmental bodies and public-sector organisations produce a wealth of data, ranging from economic statistics, to registers of companies and land ownership, reports on the performance of schools, crime statistics, and the voting records of elected representatives. Recent drives to \textbf{increase government transparency} have led to a significant increase in the amount of governmental and public-sector data that is made accessible on the Web.
-
-%The potential of Linked Data for easing the access to government data is increasingly understood, with both the data.gov.uk 26 and data.gov 27 initiatives publishing significant volumes of data in RDF.
+The YAGO data set is released in individual versions, unlike Wikidata, which is worked on continuously. The current version is YAGO 4. \cite{yago4}. All previous versions are available as file dumps\footnote{\href{https://yago-knowledge.org/downloads}{https://yago-knowledge.org/downloads}} and the current version is also accessible via SPARQL endpoint\footnote{\href{https://yago-knowledge.org/sparql}{https://yago-knowledge.org/sparql}}.

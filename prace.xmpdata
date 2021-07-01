@@ -1,7 +1,7 @@
 % Metadata k uložení do PDF, podrobnější popis viz dokumentace balíčku pdfx.
 
-\Author{Jméno Příjmení}
-\Title{Název práce}
-\Keywords{klíčová slova\sep další taková\sep ještě jiná}
-\Subject{Abstrakt práce}
-\Publisher{Vysoká škola ekonomická v Praze, fakulta informatiky a statistiky}
+\Author{Petr Novák}
+\Title{Experiment with rule mining from linked government data}
+\Keywords{Data Mining\sep OLAP\sep RDFRules\sep AMIE\sep Linked Data\sep RDF\sep Association Rules}
+\Subject{Some public-sector organizations and governmental bodies are publishing their data as LOD data cubes. The interlinked nature of LOD encourages the published data cubes to be enriched with additional information available from other sources published as RDF as well. This new information in the form of binary relationships contained in these knowledge graphs can be used when mining association rules over the aggregated data, which can lead to finding relationships that cannot be found in the cubes themselves. Mining of association rules over RDF data and at the same time in their aggregated form is a not yet explored area and achieving the generation of meaningful interpretable rules that bring new knowledge is not yet a solved problem. This work explores the possibilities of enriching the RDF data cube structured by the Data Cube vocabulary with the data from general knowledge graphs and of mining such data by the AMIE algorithm or its derivatives. The findings are demonstrated in a performed experiment of mining association rules with the RDFRules framework over the data sets of the Czech Social Security Administration, Czech statistical office, Wikidata, and YAGO.}
+\Publisher{Prague University of Economics and Business Faculty of Informatics and Statistics}
